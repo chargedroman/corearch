@@ -24,7 +24,6 @@ class StandardErrorHandler(private val context: BaseActivity<*, *>)
 
         if(throwable != null) {
             log(throwable)
-            context.showMessage(throwable.toString())
         }
     }
 
