@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">ImmoscoutPuller</string>
+    <string name="btn_get_apartments">Get Apartments now</string>
 </resources>
