@@ -1,2 +1,3 @@
+include ':basearch'
 include ':app'
 rootProject.name = "ImmoscoutPuller"
