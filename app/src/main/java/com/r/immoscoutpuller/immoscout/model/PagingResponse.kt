@@ -9,9 +9,23 @@ import com.google.gson.annotations.SerializedName
  */
 
 data class PagingResponse(
-    @SerializedName("description") val description: DescriptionResponse
-)
+    @SerializedName("description") val description: DescriptionResponse?,
+    @SerializedName("paging") val paging: PageDataResponse?,
+    @SerializedName("resultlistEntries") val resultListEntries: List<ImmoItemsResponse>?
+) {
 
-data class DescriptionResponse(
-    @SerializedName("text") val text: String
-)
+    fun getAllImmoItems(): List<ImmoItemResponse> {
+        if(resultListEntries == null) {
+            return listOf()
+        }
+
+        val result = mutableListOf<ImmoItemResponse>()
+
+        for(entry in resultListEntries) {
+            result.addAll(entry.immoItems)
+        }
+
+        return result
+    }
+
+}

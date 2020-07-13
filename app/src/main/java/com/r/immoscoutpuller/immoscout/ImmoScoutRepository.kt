@@ -1,5 +1,6 @@
 package com.r.immoscoutpuller.immoscout
 
+import com.r.immoscoutpuller.immoscout.model.ImmoItemResponse
 import com.r.immoscoutpuller.immoscout.model.PagingResponse
 import kotlinx.coroutines.flow.Flow
 
@@ -15,6 +16,6 @@ interface ImmoScoutRepository {
         maxPrice: String,
         minLivingSpace: String,
         minNumberOfRooms: String
-    ): Flow<PagingResponse>
+    ): Flow<List<ImmoItemResponse>>
 
 }

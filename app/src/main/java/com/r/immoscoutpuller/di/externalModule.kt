@@ -32,4 +32,6 @@ val externalModule = module {
 
     single<ImmoScoutParser> { ImmoScoutParserImpl() }
 
+    single<ImmoScoutUrlBuilder> { ImmoScoutUrlBuilderImpl() }
+
 }
