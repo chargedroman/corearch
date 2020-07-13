@@ -2,6 +2,8 @@ package com.r.immoscoutpuller.pull
 
 import androidx.lifecycle.MutableLiveData
 import com.r.immoscoutpuller.immoscout.ImmoScoutRepository
+import com.r.immoscoutpuller.immoscout.model.ImmoItemResponse
+import com.r.immoscoutpuller.immoscout.presentation.PresentableImmoItem
 import com.roman.basearch.viewmodel.BaseViewModel
 import com.roman.basearch.viewmodel.launch
 import org.koin.core.inject
@@ -14,9 +16,9 @@ import org.koin.core.inject
 
 class PullViewModel : BaseViewModel() {
 
-    val result: MutableLiveData<String> = MutableLiveData()
+    val immoItems: MutableLiveData<List<PresentableImmoItem>> = MutableLiveData()
 
-    val immoScoutRepository: ImmoScoutRepository by inject()
+    private val immoScoutRepository: ImmoScoutRepository by inject()
 
 
     init {
@@ -31,9 +33,14 @@ class PullViewModel : BaseViewModel() {
 
         launch(
             flow,
-            { result.postValue(it.toString()); message.postValue(it.toString()) },
+            { immoItems.postValue(it) },
             { error.postValue(it) }
         )
+    }
+
+
+    fun onImmoItemClicked(item: PresentableImmoItem) {
+        message.postValue(item.toString())
     }
 
 }

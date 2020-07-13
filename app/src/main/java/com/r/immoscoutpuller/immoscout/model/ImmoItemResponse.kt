@@ -15,7 +15,8 @@ data class ImmoItemResponse(
     @SerializedName("@modification") val modification: Date,
     @SerializedName("@publishDate") val publishDate: Date,
     @SerializedName("attributes") val attributes: List<ImmoItemSearchAttribute>,
-    @SerializedName("realEstateId") val realEstateId: Long
+    @SerializedName("realEstateId") val realEstateId: Long,
+    @SerializedName("resultlist.realEstate") val details: ImmoItemDetailResponse
 )
 
 data class ImmoItemSearchAttribute(

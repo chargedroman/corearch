@@ -13,5 +13,5 @@ data class PriceResponse(
     @SerializedName("marketingType") val marketingType: String,
     @SerializedName("priceIntervalType") val priceIntervalType: String,
     @SerializedName("rentScope") val rentScope: String?,
-    @SerializedName("value") val value: Long
+    @SerializedName("value") val value: Double
 )

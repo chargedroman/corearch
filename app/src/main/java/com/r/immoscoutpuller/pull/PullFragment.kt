@@ -3,9 +3,15 @@ package com.r.immoscoutpuller.pull
 import android.view.View
 import android.os.Bundle
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.r.immoscoutpuller.R
 import com.r.immoscoutpuller.databinding.FragmentPullBinding
+import com.roman.basearch.arch.AutoClearedValue
+import com.roman.basearch.baseextensions.closeKeyboardOnTouch
 import com.roman.basearch.view.BaseFragment
+import com.roman.basearch.view.MarginDecoration
 
 /**
  *
@@ -14,6 +20,8 @@ import com.roman.basearch.view.BaseFragment
  */
 
 class PullFragment : BaseFragment<FragmentPullBinding, PullViewModel>() {
+
+    private var adapter by AutoClearedValue<PullAdapter>()
 
     private val lazy: PullViewModel by viewModels()
 
@@ -24,7 +32,37 @@ class PullFragment : BaseFragment<FragmentPullBinding, PullViewModel>() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        //TODO setup stuff like recyclerviews, observing viewmodel ...
+        setupRecyclerView()
+        observeViewModel()
+    }
+
+
+    private fun setupRecyclerView() {
+        val recyclerView = dataBinding.recyclerView
+        val orientation = RecyclerView.VERTICAL
+        val margin = resources.getDimensionPixelSize(R.dimen.marginStandard)
+
+        val marginDecoration = MarginDecoration(
+            verticalMargin = margin,
+            horizontalMargin = margin,
+            layoutOrientation = orientation
+        )
+
+        adapter = PullAdapter {
+            viewModel.onImmoItemClicked(it)
+        }
+
+        closeKeyboardOnTouch(recyclerView)
+        recyclerView.layoutManager = LinearLayoutManager(context, orientation, false)
+        recyclerView.addItemDecoration(marginDecoration)
+        recyclerView.adapter = adapter
+    }
+
+    private fun observeViewModel() {
+
+        viewModel.immoItems.observe(viewLifecycleOwner, Observer {
+            if(it != null) adapter.submitList(it)
+        })
     }
 
 }

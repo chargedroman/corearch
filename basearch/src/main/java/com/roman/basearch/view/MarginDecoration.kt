@@ -3,19 +3,18 @@ package com.roman.basearch.view
 import android.graphics.Rect
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.RecyclerView.ItemDecoration
-
 
 /**
  *
  * Author: romanvysotsky
- * Created: 2020-04-11
+ * Created: 14.07.20
  */
 
 class MarginDecoration(
-    private val space: Int,
-    private val orientation: Int
-) : ItemDecoration() {
+    private val verticalMargin: Int = 0,
+    private val horizontalMargin: Int = 0,
+    private val layoutOrientation: Int = RecyclerView.VERTICAL
+) : RecyclerView.ItemDecoration() {
 
     override fun getItemOffsets(
         outRect: Rect,
@@ -27,16 +26,14 @@ class MarginDecoration(
         val position: Int = parent.getChildAdapterPosition(view)
         val isLastItem = position == (parent.adapter?.itemCount ?: 0) - 1
 
-        if (orientation == RecyclerView.VERTICAL) {
-            outRect.set(space, 0, space, 0)
+        outRect.set(verticalMargin, horizontalMargin, verticalMargin, horizontalMargin)
+
+        if (!isLastItem && layoutOrientation == RecyclerView.HORIZONTAL) {
+            outRect.set(verticalMargin, horizontalMargin, 0, horizontalMargin)
         }
 
-        if (orientation == RecyclerView.HORIZONTAL) {
-            if(isLastItem) {
-                outRect.set(0, space, 0, space)
-            } else {
-                outRect.set(0, space, 0, 0)
-            }
+        if (!isLastItem && layoutOrientation == RecyclerView.VERTICAL) {
+            outRect.set(verticalMargin, horizontalMargin, verticalMargin, 0)
         }
 
     }

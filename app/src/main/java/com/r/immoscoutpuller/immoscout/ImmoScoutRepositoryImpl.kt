@@ -2,6 +2,7 @@ package com.r.immoscoutpuller.immoscout
 
 import com.r.immoscoutpuller.immoscout.model.ImmoItemResponse
 import com.r.immoscoutpuller.immoscout.model.PagingResponse
+import com.r.immoscoutpuller.immoscout.presentation.PresentableImmoItem
 import kotlinx.coroutines.flow.*
 import okhttp3.*
 import org.koin.core.KoinComponent
@@ -26,7 +27,7 @@ class ImmoScoutRepositoryImpl : ImmoScoutRepository, KoinComponent {
         minNumberOfRooms: String
     ) = flow {
 
-        val resultList = mutableListOf<ImmoItemResponse>()
+        val resultList = mutableListOf<PresentableImmoItem>()
 
         var hasNext = true
         var pageNumber = 0
@@ -34,7 +35,7 @@ class ImmoScoutRepositoryImpl : ImmoScoutRepository, KoinComponent {
         while(hasNext) {
             val next = getMainzApartmentsWeb(maxPrice, minLivingSpace, minNumberOfRooms, pageNumber.toString())
             val result = next.getAllImmoItems()
-            resultList.addAll(result)
+            resultList.transformingAddAll(result)
 
             pageNumber++
             hasNext = next.paging?.numberOfPages != null && next.paging.numberOfPages > pageNumber
@@ -43,6 +44,12 @@ class ImmoScoutRepositoryImpl : ImmoScoutRepository, KoinComponent {
         emit(resultList)
     }
 
+
+    private fun MutableList<PresentableImmoItem>.transformingAddAll(raw: List<ImmoItemResponse>) {
+        for(item in raw) {
+            this.add(PresentableImmoItem(item))
+        }
+    }
 
     private fun getMainzApartmentsWeb(
         maxPrice: String,
