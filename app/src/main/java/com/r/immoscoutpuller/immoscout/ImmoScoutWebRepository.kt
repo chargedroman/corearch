@@ -1,6 +1,6 @@
 package com.r.immoscoutpuller.immoscout
 
-import com.r.immoscoutpuller.immoscout.model.RentingResult
+import com.r.immoscoutpuller.immoscout.model.RentingResponse
 import retrofit2.http.GET
 import retrofit2.http.Header
 import retrofit2.http.Query
@@ -23,6 +23,6 @@ interface ImmoScoutWebRepository {
         @Query("geocodes") geoCodes: String = "1276011021001,1276011021017,1276011021023",
         @Query("realestatetype") realEstateType: String = "APARTMENT_RENT",
         @Header("Accept") accept: String = "application/json;strict=true"
-    ): List<RentingResult>
+    ): List<RentingResponse>
 
 }

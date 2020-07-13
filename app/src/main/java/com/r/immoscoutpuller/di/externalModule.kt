@@ -28,7 +28,7 @@ val externalModule = module {
             )
     }
 
-    single<ImmoScoutRepository> { ImmoScoutRepositoryImpl(get()) }
+    single<ImmoScoutRepository> { ImmoScoutRepositoryImpl() }
 
     single<AnalyticsRepository> { AnalyticsRepositoryImpl() }
 

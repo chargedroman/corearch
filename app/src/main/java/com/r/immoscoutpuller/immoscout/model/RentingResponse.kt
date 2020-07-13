@@ -8,6 +8,6 @@ import com.google.gson.annotations.SerializedName
  * Created: 13.07.20
  */
 
-data class RentingResult(
+data class RentingResponse(
     @SerializedName("foo") val foo: String
 )

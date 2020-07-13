@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="immo_base_url" translatable="false">https://rest.immobilienscout24.de/restapi/api/</string>
+    <string name="immo_base_web_url" translatable="false">https://www.immobilienscout24.de/</string>
 </resources>

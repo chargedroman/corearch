@@ -27,7 +27,7 @@ class PullViewModel : BaseViewModel() {
     fun onGetApartmentsClicked() {
 
         val flow = immoScoutRepository
-            .getMainzApartments("750", "45", "2")
+            .getMainzApartmentsWeb("750", "45", "2")
 
         launch(
             flow,

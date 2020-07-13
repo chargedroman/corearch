@@ -1,5 +1,6 @@
 package com.roman.basearch.repository
 
+import com.roman.basearch.viewmodel.getKoinInstance
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -16,16 +17,7 @@ class WebRepositoryFactory {
 
     fun <T> create(repository: WebRepository<T>): T {
 
-        val loggingInterceptor = HttpLoggingInterceptor()
-        loggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
-
-        val okHttpClient = OkHttpClient
-            .Builder()
-            .addInterceptor(loggingInterceptor)
-            .connectTimeout(1, TimeUnit.MINUTES)
-            .readTimeout(1, TimeUnit.MINUTES)
-            .writeTimeout(1, TimeUnit.MINUTES)
-            .build()
+        val okHttpClient = getKoinInstance<OkHttpClient>()
 
         val retrofit = Retrofit.Builder()
             .client(okHttpClient)
