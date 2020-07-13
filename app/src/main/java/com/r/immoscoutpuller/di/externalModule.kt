@@ -1,9 +1,7 @@
 package com.r.immoscoutpuller.di
 
 import com.r.immoscoutpuller.R
-import com.r.immoscoutpuller.immoscout.ImmoScoutRepository
-import com.r.immoscoutpuller.immoscout.ImmoScoutRepositoryImpl
-import com.r.immoscoutpuller.immoscout.ImmoScoutWebRepository
+import com.r.immoscoutpuller.immoscout.*
 import com.r.immoscoutpuller.repository.AnalyticsRepositoryImpl
 import com.roman.basearch.repository.AnalyticsRepository
 import com.roman.basearch.repository.WebRepository
@@ -31,5 +29,7 @@ val externalModule = module {
     single<ImmoScoutRepository> { ImmoScoutRepositoryImpl() }
 
     single<AnalyticsRepository> { AnalyticsRepositoryImpl() }
+
+    single<ImmoScoutParser> { ImmoScoutParserImpl() }
 
 }

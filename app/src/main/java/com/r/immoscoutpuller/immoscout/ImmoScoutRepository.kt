@@ -1,6 +1,6 @@
 package com.r.immoscoutpuller.immoscout
 
-import com.r.immoscoutpuller.immoscout.model.RentingResponse
+import com.r.immoscoutpuller.immoscout.model.PagingResponse
 import kotlinx.coroutines.flow.Flow
 
 /**
@@ -11,17 +11,10 @@ import kotlinx.coroutines.flow.Flow
 
 interface ImmoScoutRepository {
 
-    fun getMainzApartments(
-        maxPrice: String,
-        minLivingSpace: String,
-        minNumberOfRooms: String
-    ): Flow<List<RentingResponse>>
-
-
     fun getMainzApartmentsWeb(
         maxPrice: String,
         minLivingSpace: String,
         minNumberOfRooms: String
-    ): Flow<List<RentingResponse>>
+    ): Flow<PagingResponse>
 
 }
