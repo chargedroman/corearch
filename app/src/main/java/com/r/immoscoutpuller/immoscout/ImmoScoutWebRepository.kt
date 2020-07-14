@@ -16,7 +16,7 @@ interface ImmoScoutWebRepository {
 
 
     @GET("search/v1.0/search/region")
-    suspend fun getMainzApartments(
+    suspend fun getRentableApartments(
         @Query("price") price: String,
         @Query("numberofrooms") numberOfRooms: String,
         @Query("livingspace") livingSpace: String,

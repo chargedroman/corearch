@@ -18,7 +18,7 @@ class ImmoScoutUrlBuilderImpl : ImmoScoutUrlBuilder, KoinComponent {
     private val textLocalization: TextLocalization by inject()
 
 
-    override fun getMainzApartmentsUrl(
+    override fun getRentableApartmentsUrl(
         request: RentingApartmentsRequest,
         pageNumber: Int
     ): HttpUrl {
@@ -28,8 +28,6 @@ class ImmoScoutUrlBuilderImpl : ImmoScoutUrlBuilder, KoinComponent {
 
         builder.addPathSegment("Suche")
         builder.addPathSegment("de")
-        builder.addPathSegment("rheinland-pfalz")
-        builder.addPathSegment("mainz")
         builder.addPathSegment("wohnung-mieten")
 
         builder.addQueryParameter("geocodes", request.geoCodes)

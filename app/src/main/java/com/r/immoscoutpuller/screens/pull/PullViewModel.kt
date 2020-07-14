@@ -4,7 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import com.google.gson.JsonSyntaxException
 import com.r.immoscoutpuller.R
 import com.r.immoscoutpuller.immoscout.ImmoScoutRepository
-import com.r.immoscoutpuller.immoscout.model.RentingApartmentsRequest
+import com.r.immoscoutpuller.immoscout.getApartmentsRequestSettings
 import com.r.immoscoutpuller.immoscout.presentation.PresentableImmoItem
 import com.roman.basearch.utility.LocalRepository
 import com.roman.basearch.utility.TextLocalization
@@ -38,8 +38,8 @@ class PullViewModel : BaseViewModel() {
 
     fun getApartments() {
 
-        val request = localRepository.getApartmentsRequest()
-        val flow = immoScoutRepository.getMainzApartmentsWeb(request)
+        val request = localRepository.getApartmentsRequestSettings()
+        val flow = immoScoutRepository.getRentableApartmentsWeb(request)
 
         launch(
             flow,
@@ -64,19 +64,6 @@ class PullViewModel : BaseViewModel() {
         }
 
         message.postValue(errorMessage)
-    }
-
-    private fun LocalRepository.getApartmentsRequest(): RentingApartmentsRequest {
-
-        return RentingApartmentsRequest(
-            retrieve("minPrice")?.toDoubleOrNull() ?: 0.0,
-            retrieve("maxPrice")?.toDoubleOrNull() ?: 0.0,
-            retrieve("minSpace")?.toDoubleOrNull() ?: 0.0,
-            retrieve("maxSpace")?.toDoubleOrNull() ?: 0.0,
-            retrieve("minRooms")?.toDoubleOrNull() ?: 0.0,
-            retrieve("maxRooms")?.toDoubleOrNull() ?: 0.0,
-            retrieve("geoCodes") ?: ""
-        )
     }
 
 }

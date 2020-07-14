@@ -12,6 +12,6 @@ import kotlinx.coroutines.flow.Flow
 
 interface ImmoScoutRepository {
 
-    fun getMainzApartmentsWeb(request: RentingApartmentsRequest): Flow<List<PresentableImmoItem>>
+    fun getRentableApartmentsWeb(request: RentingApartmentsRequest): Flow<List<PresentableImmoItem>>
 
 }

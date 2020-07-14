@@ -13,6 +13,10 @@
         <variable
             name="key"
             type="String" />
+
+        <variable
+            name="multipleLines"
+            type="Boolean" />
     </data>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -20,6 +24,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
+        android:hint="@{hint}"
         app:endIconMode="clear_text"
         app:endIconDrawable="@drawable/ic_close"
         app:layout_constraintTop_toTopOf="parent"
@@ -31,8 +36,7 @@
             android:id="@+id/edit_profile_edit_content_first_name"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:hint="@{hint}"
-            android:singleLine="true"
+            android:singleLine="@{safeUnbox(!multipleLines)}"
             app:bindTextToLocalRepositoryKey="@{key}"/>
 
     </com.google.android.material.textfield.TextInputLayout>

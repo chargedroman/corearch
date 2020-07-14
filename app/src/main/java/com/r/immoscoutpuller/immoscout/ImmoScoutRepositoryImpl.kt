@@ -23,7 +23,7 @@ class ImmoScoutRepositoryImpl : ImmoScoutRepository, KoinComponent {
     private val immoScoutUrlBuilder: ImmoScoutUrlBuilder by inject()
 
 
-    override fun getMainzApartmentsWeb(request: RentingApartmentsRequest) = flow {
+    override fun getRentableApartmentsWeb(request: RentingApartmentsRequest) = flow {
 
         val resultList = mutableListOf<PresentableImmoItem>()
 
@@ -31,7 +31,7 @@ class ImmoScoutRepositoryImpl : ImmoScoutRepository, KoinComponent {
         var pageNumber = 0
 
         while(hasNext) {
-            val next = getMainzApartmentsWeb(request, pageNumber)
+            val next = getRentableApartmentsWeb(request, pageNumber)
             val result = next.getAllImmoItems()
             resultList.transformingAddAll(result)
 
@@ -49,13 +49,13 @@ class ImmoScoutRepositoryImpl : ImmoScoutRepository, KoinComponent {
         }
     }
 
-    private fun getMainzApartmentsWeb(
+    private fun getRentableApartmentsWeb(
         request: RentingApartmentsRequest,
         pageNumber: Int
     ): PagingResponse {
 
         val immoWebUrl = immoScoutUrlBuilder
-            .getMainzApartmentsUrl(request, pageNumber)
+            .getRentableApartmentsUrl(request, pageNumber)
 
         val webRequest = Request.Builder()
             .url(immoWebUrl)

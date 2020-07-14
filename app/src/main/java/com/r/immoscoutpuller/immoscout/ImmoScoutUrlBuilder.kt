@@ -11,6 +11,6 @@ import okhttp3.HttpUrl
 
 interface ImmoScoutUrlBuilder {
 
-    fun getMainzApartmentsUrl(request: RentingApartmentsRequest, pageNumber: Int): HttpUrl
+    fun getRentableApartmentsUrl(request: RentingApartmentsRequest, pageNumber: Int): HttpUrl
 
 }
