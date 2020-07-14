@@ -39,6 +39,8 @@ class ImmoScoutRepositoryImpl : ImmoScoutRepository, KoinComponent {
             hasNext = next.paging?.numberOfPages != null && next.paging.numberOfPages > pageNumber
         }
 
+        resultList.sortBy { -it.pojo.creation.time }
+
         emit(resultList)
     }
 
