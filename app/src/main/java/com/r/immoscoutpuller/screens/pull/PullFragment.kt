@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.r.immoscoutpuller.R
@@ -11,7 +12,6 @@ import com.r.immoscoutpuller.databinding.FragmentPullBinding
 import com.roman.basearch.arch.AutoClearedValue
 import com.roman.basearch.baseextensions.closeKeyboardOnTouch
 import com.roman.basearch.view.BaseFragment
-import com.roman.basearch.view.MarginDecoration
 
 /**
  *
@@ -52,21 +52,16 @@ class PullFragment : BaseFragment<FragmentPullBinding, PullViewModel>() {
     private fun setupRecyclerView() {
         val recyclerView = dataBinding.recyclerView
         val orientation = RecyclerView.VERTICAL
-        val margin = resources.getDimensionPixelSize(R.dimen.marginStandard)
-
-        val marginDecoration = MarginDecoration(
-            verticalMargin = margin,
-            horizontalMargin = margin,
-            layoutOrientation = orientation
-        )
+        val layoutManager = LinearLayoutManager(context, orientation, false)
+        val dividerItemDecoration = DividerItemDecoration(recyclerView.context, layoutManager.orientation)
 
         adapter = PullAdapter {
             viewModel.onImmoItemClicked(it)
         }
 
         closeKeyboardOnTouch(recyclerView)
-        recyclerView.layoutManager = LinearLayoutManager(context, orientation, false)
-        recyclerView.addItemDecoration(marginDecoration)
+        recyclerView.layoutManager = layoutManager
+        recyclerView.addItemDecoration(dividerItemDecoration)
         recyclerView.adapter = adapter
     }
 
