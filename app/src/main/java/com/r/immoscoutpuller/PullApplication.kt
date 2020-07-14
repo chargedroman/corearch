@@ -1,11 +1,10 @@
 package com.r.immoscoutpuller
 
-import android.app.Application
 import com.r.immoscoutpuller.di.externalModule
-import com.roman.basearch.di.utilityModule
-import org.koin.android.ext.koin.androidContext
-import org.koin.android.ext.koin.androidLogger
-import org.koin.core.context.startKoin
+import com.r.immoscoutpuller.repository.AnalyticsRepositoryImpl
+import com.roman.basearch.repository.AnalyticsRepository
+import com.roman.basearch.view.BaseApplication
+import org.koin.core.module.Module
 
 /**
  *
@@ -14,20 +13,14 @@ import org.koin.core.context.startKoin
  */
 
 
-class PullApplication : Application() {
+class PullApplication : BaseApplication() {
 
-    override fun onCreate() {
-        super.onCreate()
-        initKoin()
+    override fun createAdditionalDependencyInjectionModules(): List<Module> {
+        return listOf(externalModule)
     }
 
-    private fun initKoin() {
-
-        startKoin {
-            androidContext(this@PullApplication)
-            androidLogger()
-            modules(listOf(utilityModule, externalModule))
-        }
+    override fun createAnalyticsRepository(): AnalyticsRepository {
+        return AnalyticsRepositoryImpl()
     }
 
 }

@@ -2,6 +2,8 @@ package com.roman.basearch.utility
 
 import android.content.Context
 import android.content.res.Resources.NotFoundException
+import android.text.format.DateUtils
+import java.util.*
 
 /**
  *
@@ -28,6 +30,22 @@ class TextLocalizationImpl(val context: Context):
         } catch (e: NotFoundException) {
             ""
         }
+    }
+
+    override fun formatDecimal(decimal: Double): String {
+        val long = decimal.toLong()
+        val fraction = decimal - long
+
+        return if(fraction > 0) {
+            decimal.toString()
+        } else {
+            long.toString()
+        }
+    }
+
+    override fun getSimpleDate(date: Date): String {
+        val result = DateUtils.getRelativeTimeSpanString(context, date.time)
+        return result.toString()
     }
 
 }

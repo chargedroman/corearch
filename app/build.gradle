@@ -54,6 +54,8 @@ dependencies {
 
     implementation project(':basearch')
 
+    // time formatting
+    implementation 'net.danlew:android.joda:2.10.6'
 
     // Jetpack navigation
     implementation 'androidx.navigation:navigation-fragment-ktx:2.3.0'
