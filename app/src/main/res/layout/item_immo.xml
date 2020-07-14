@@ -9,11 +9,17 @@
             name="viewModel"
             type="com.r.immoscoutpuller.immoscout.presentation.PresentableImmoItem.ViewModel" />
 
+        <variable
+            name="clickListener"
+            type="com.roman.basearch.view.list.ItemClickListener" />
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="?selectableItemBackground"
+        android:onClick="@{() -> clickListener.onItemClicked(viewModel.item)}">
 
 
         <TextView

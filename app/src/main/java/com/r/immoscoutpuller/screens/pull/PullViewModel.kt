@@ -4,6 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import com.google.gson.JsonSyntaxException
 import com.r.immoscoutpuller.R
 import com.r.immoscoutpuller.immoscout.ImmoScoutRepository
+import com.r.immoscoutpuller.immoscout.ImmoScoutUrlBuilder
 import com.r.immoscoutpuller.immoscout.getApartmentsRequestSettings
 import com.r.immoscoutpuller.immoscout.presentation.PresentableImmoItem
 import com.roman.basearch.utility.LocalRepository
@@ -25,6 +26,7 @@ class PullViewModel : BaseViewModel() {
     private val immoScoutRepository: ImmoScoutRepository by inject()
     private val textLocalization: TextLocalization by inject()
     private val localRepository: LocalRepository by inject()
+    private val immoUrlBuilder: ImmoScoutUrlBuilder by inject()
 
 
     init {
@@ -50,7 +52,12 @@ class PullViewModel : BaseViewModel() {
 
 
     fun onImmoItemClicked(item: PresentableImmoItem) {
-        message.postValue(item.toString())
+        val url = immoUrlBuilder.getApartmentUrl(item.pojo)
+        val navigation = PullNavigation.ToWeb(url.toString()) {
+            this.error.postValue(it)
+            this.message.postValue(textLocalization.getString(R.string.item_could_not_open))
+        }
+        this.navigation.postValue(navigation)
     }
 
 

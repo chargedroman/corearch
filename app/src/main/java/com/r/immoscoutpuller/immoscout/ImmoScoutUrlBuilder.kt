@@ -1,5 +1,6 @@
 package com.r.immoscoutpuller.immoscout
 
+import com.r.immoscoutpuller.immoscout.model.ImmoItemResponse
 import com.r.immoscoutpuller.immoscout.model.RentingApartmentsRequest
 import okhttp3.HttpUrl
 
@@ -12,5 +13,6 @@ import okhttp3.HttpUrl
 interface ImmoScoutUrlBuilder {
 
     fun getRentableApartmentsUrl(request: RentingApartmentsRequest, pageNumber: Int): HttpUrl
+    fun getApartmentUrl(item: ImmoItemResponse): HttpUrl
 
 }

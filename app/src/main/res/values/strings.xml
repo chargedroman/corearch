@@ -6,6 +6,7 @@
 
     <string name="item_rooms">%1$s rooms</string>
     <string name="item_living_space">%1$s qm</string>
+    <string name="item_could_not_open">There seems to be no browser installed, cannot open item.</string>
 
     <string name="pull_get_error_parse">Encountered an issue while parsing: %1$s</string>
     <string name="pull_get_error_default">Something went wrong while getting the apartments: %1$s</string>
