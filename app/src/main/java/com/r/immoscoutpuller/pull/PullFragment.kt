@@ -1,7 +1,7 @@
 package com.r.immoscoutpuller.pull
 
-import android.view.View
 import android.os.Bundle
+import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -32,10 +32,22 @@ class PullFragment : BaseFragment<FragmentPullBinding, PullViewModel>() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        setupRefresh()
         setupRecyclerView()
         observeViewModel()
     }
 
+
+    private fun setupRefresh() {
+
+        dataBinding.layoutRefresh.setOnRefreshListener {
+            viewModel.onUserRefreshedData()
+        }
+
+        viewModel.isLoading.observe(viewLifecycleOwner, Observer {
+            if(it == false) dataBinding.layoutRefresh.isRefreshing = false
+        })
+    }
 
     private fun setupRecyclerView() {
         val recyclerView = dataBinding.recyclerView

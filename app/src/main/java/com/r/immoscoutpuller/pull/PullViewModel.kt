@@ -28,11 +28,15 @@ class PullViewModel : BaseViewModel() {
 
 
     init {
-        onGetApartmentsClicked()
+        getApartments()
     }
 
 
-    fun onGetApartmentsClicked() {
+    fun onUserRefreshedData() {
+        getApartments()
+    }
+
+    fun getApartments() {
 
         val request = localRepository.getApartmentsRequest()
         val flow = immoScoutRepository.getMainzApartmentsWeb(request)
