@@ -1,102 +1,150 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
-        <import type="android.view.View"/>
+        <import type="android.view.View" />
 
         <variable
             name="viewModel"
             type="com.r.immoscoutpuller.screens.settings.SettingsViewModel" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
 
-        <include layout="@layout/text_input_shared_prefs"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:id="@+id/min_price"
-            android:layout_margin="16dp"
-            app:key='@{@string/min_price}'
-            app:hint="@{@string/min_price}"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/max_price"/>
+            <include
+                android:id="@+id/min_price"
+                layout="@layout/text_input_shared_prefs"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                app:hint="@{@string/min_price}"
+                app:key='@{@string/min_price}'
+                app:layout_constraintEnd_toStartOf="@id/max_price"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        <include layout="@layout/text_input_shared_prefs"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:id="@+id/max_price"
-            android:layout_margin="16dp"
-            app:key='@{@string/max_price}'
-            app:hint="@{@string/max_price}"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toEndOf="@id/min_price"
-            app:layout_constraintEnd_toEndOf="parent"/>
-
-
-        <include layout="@layout/text_input_shared_prefs"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:id="@+id/min_space"
-            android:layout_margin="16dp"
-            app:key='@{@string/min_space}'
-            app:hint="@{@string/min_space}"
-            app:layout_constraintTop_toBottomOf="@id/min_price"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/max_space"/>
-
-        <include layout="@layout/text_input_shared_prefs"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:id="@+id/max_space"
-            android:layout_margin="16dp"
-            app:key='@{@string/max_space}'
-            app:hint="@{@string/max_space}"
-            app:layout_constraintTop_toBottomOf="@id/min_price"
-            app:layout_constraintStart_toEndOf="@id/min_space"
-            app:layout_constraintEnd_toEndOf="parent"/>
-
-        <include layout="@layout/text_input_shared_prefs"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:id="@+id/min_rooms"
-            android:layout_margin="16dp"
-            app:key='@{@string/min_rooms}'
-            app:hint="@{@string/min_rooms}"
-            app:layout_constraintTop_toBottomOf="@id/min_space"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/max_rooms"/>
-
-        <include layout="@layout/text_input_shared_prefs"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:id="@+id/max_rooms"
-            android:layout_margin="16dp"
-            app:key='@{@string/max_rooms}'
-            app:hint="@{@string/max_rooms}"
-            app:layout_constraintTop_toBottomOf="@id/min_space"
-            app:layout_constraintStart_toEndOf="@id/min_rooms"
-            app:layout_constraintEnd_toEndOf="parent"/>
+            <include
+                android:id="@+id/max_price"
+                layout="@layout/text_input_shared_prefs"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                app:hint="@{@string/max_price}"
+                app:key='@{@string/max_price}'
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/min_price"
+                app:layout_constraintTop_toTopOf="parent" />
 
 
-        <include layout="@layout/text_input_shared_prefs"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:id="@+id/geo_codes"
-            android:layout_margin="16dp"
-            app:key='@{@string/geo_codes}'
-            app:hint="@{@string/geo_codes}"
-            app:multipleLines="@{true}"
-            app:layout_constraintTop_toBottomOf="@id/min_rooms"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"/>
+            <include
+                android:id="@+id/min_space"
+                layout="@layout/text_input_shared_prefs"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                app:hint="@{@string/min_space}"
+                app:key='@{@string/min_space}'
+                app:layout_constraintEnd_toStartOf="@id/max_space"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/min_price" />
+
+            <include
+                android:id="@+id/max_space"
+                layout="@layout/text_input_shared_prefs"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                app:hint="@{@string/max_space}"
+                app:key='@{@string/max_space}'
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/min_space"
+                app:layout_constraintTop_toBottomOf="@id/min_price" />
+
+            <include
+                android:id="@+id/min_rooms"
+                layout="@layout/text_input_shared_prefs"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                app:hint="@{@string/min_rooms}"
+                app:key='@{@string/min_rooms}'
+                app:layout_constraintEnd_toStartOf="@id/max_rooms"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/min_space" />
+
+            <include
+                android:id="@+id/max_rooms"
+                layout="@layout/text_input_shared_prefs"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                app:hint="@{@string/max_rooms}"
+                app:key='@{@string/max_rooms}'
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/min_rooms"
+                app:layout_constraintTop_toBottomOf="@id/min_space" />
 
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <include
+                android:id="@+id/geo_codes"
+                layout="@layout/text_input_shared_prefs"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                app:hint="@{@string/geo_codes}"
+                app:key='@{@string/geo_codes}'
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/min_rooms"
+                app:multipleLines="@{true}" />
+
+
+            <TextView
+                android:id="@+id/txt_start_pull"
+                style="@style/StandardButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="16dp"
+                android:onClick="@{() -> viewModel.onStartPullingClicked()}"
+                android:text="@string/settings_start_work"
+                android:visibility="@{safeUnbox(viewModel.showStartButton) ? View.VISIBLE : View.GONE}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/geo_codes"
+                tools:visibility="visible"/>
+
+            <TextView
+                android:id="@+id/txt_stop_pull"
+                style="@style/StandardButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="16dp"
+                android:onClick="@{() -> viewModel.onStopPullingClicked()}"
+                android:text="@string/settings_stop_work"
+                android:visibility="@{safeUnbox(viewModel.showStopButton) ? View.VISIBLE : View.GONE}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/txt_start_pull" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
 
 </layout>

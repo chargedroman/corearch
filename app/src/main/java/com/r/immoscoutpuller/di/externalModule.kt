@@ -2,6 +2,8 @@ package com.r.immoscoutpuller.di
 
 import com.r.immoscoutpuller.R
 import com.r.immoscoutpuller.immoscout.*
+import com.r.immoscoutpuller.repository.WorkRepository
+import com.r.immoscoutpuller.repository.WorkRepositoryImpl
 import com.roman.basearch.repository.WebRepository
 import com.roman.basearch.repository.WebRepositoryFactory
 import org.koin.dsl.module
@@ -29,5 +31,7 @@ val externalModule = module {
     single<ImmoScoutParser> { ImmoScoutParserImpl() }
 
     single<ImmoScoutUrlBuilder> { ImmoScoutUrlBuilderImpl() }
+
+    single<WorkRepository> { WorkRepositoryImpl(get()) }
 
 }

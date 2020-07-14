@@ -3,6 +3,7 @@ package com.r.immoscoutpuller.screens.settings
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import com.r.immoscoutpuller.R
 import com.r.immoscoutpuller.databinding.FragmentSettingsBinding
 import com.roman.basearch.view.BaseFragment
@@ -24,6 +25,9 @@ class SettingsFragment : BaseFragment<FragmentSettingsBinding, SettingsViewModel
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        viewModel.workData.observe(viewLifecycleOwner, Observer {
+            viewModel.workInfoUpdated(it)
+        })
     }
 
 
