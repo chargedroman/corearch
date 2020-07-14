@@ -2,9 +2,11 @@ package com.r.immoscoutpuller.immoscout
 
 import com.r.immoscoutpuller.immoscout.model.ImmoItemResponse
 import com.r.immoscoutpuller.immoscout.model.PagingResponse
+import com.r.immoscoutpuller.immoscout.model.RentingApartmentsRequest
 import com.r.immoscoutpuller.immoscout.presentation.PresentableImmoItem
-import kotlinx.coroutines.flow.*
-import okhttp3.*
+import kotlinx.coroutines.flow.flow
+import okhttp3.OkHttpClient
+import okhttp3.Request
 import org.koin.core.KoinComponent
 import org.koin.core.inject
 
@@ -21,11 +23,7 @@ class ImmoScoutRepositoryImpl : ImmoScoutRepository, KoinComponent {
     private val immoScoutUrlBuilder: ImmoScoutUrlBuilder by inject()
 
 
-    override fun getMainzApartmentsWeb(
-        maxPrice: String,
-        minLivingSpace: String,
-        minNumberOfRooms: String
-    ) = flow {
+    override fun getMainzApartmentsWeb(request: RentingApartmentsRequest) = flow {
 
         val resultList = mutableListOf<PresentableImmoItem>()
 
@@ -33,7 +31,7 @@ class ImmoScoutRepositoryImpl : ImmoScoutRepository, KoinComponent {
         var pageNumber = 0
 
         while(hasNext) {
-            val next = getMainzApartmentsWeb(maxPrice, minLivingSpace, minNumberOfRooms, pageNumber.toString())
+            val next = getMainzApartmentsWeb(request, pageNumber)
             val result = next.getAllImmoItems()
             resultList.transformingAddAll(result)
 
@@ -52,20 +50,18 @@ class ImmoScoutRepositoryImpl : ImmoScoutRepository, KoinComponent {
     }
 
     private fun getMainzApartmentsWeb(
-        maxPrice: String,
-        minLivingSpace: String,
-        minNumberOfRooms: String,
-        pageNumber: String
+        request: RentingApartmentsRequest,
+        pageNumber: Int
     ): PagingResponse {
 
         val immoWebUrl = immoScoutUrlBuilder
-            .getMainzApartmentsUrl(maxPrice, minLivingSpace, minNumberOfRooms, pageNumber)
+            .getMainzApartmentsUrl(request, pageNumber)
 
-        val request = Request.Builder()
+        val webRequest = Request.Builder()
             .url(immoWebUrl)
             .build()
 
-        val webResponse = client.newCall(request).execute()
+        val webResponse = client.newCall(webRequest).execute()
         return immoScoutParser.extractPagingResponseFrom(webResponse)
     }
 

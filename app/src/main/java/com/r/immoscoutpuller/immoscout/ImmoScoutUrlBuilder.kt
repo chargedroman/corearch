@@ -1,5 +1,6 @@
 package com.r.immoscoutpuller.immoscout
 
+import com.r.immoscoutpuller.immoscout.model.RentingApartmentsRequest
 import okhttp3.HttpUrl
 
 /**
@@ -10,11 +11,6 @@ import okhttp3.HttpUrl
 
 interface ImmoScoutUrlBuilder {
 
-    fun getMainzApartmentsUrl(
-        maxPrice: String,
-        minLivingSpace: String,
-        minNumberOfRooms: String,
-        pageNumber: String
-    ): HttpUrl
+    fun getMainzApartmentsUrl(request: RentingApartmentsRequest, pageNumber: Int): HttpUrl
 
 }

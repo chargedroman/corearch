@@ -1,6 +1,7 @@
 package com.r.immoscoutpuller.immoscout
 
 import com.r.immoscoutpuller.R
+import com.r.immoscoutpuller.immoscout.model.RentingApartmentsRequest
 import com.roman.basearch.utility.TextLocalization
 import okhttp3.HttpUrl
 import org.koin.core.KoinComponent
@@ -18,10 +19,8 @@ class ImmoScoutUrlBuilderImpl : ImmoScoutUrlBuilder, KoinComponent {
 
 
     override fun getMainzApartmentsUrl(
-        maxPrice: String,
-        minLivingSpace: String,
-        minNumberOfRooms: String,
-        pageNumber: String
+        request: RentingApartmentsRequest,
+        pageNumber: Int
     ): HttpUrl {
 
         val webUrl = textLocalization.getString(R.string.immo_base_web_url)
@@ -33,11 +32,11 @@ class ImmoScoutUrlBuilderImpl : ImmoScoutUrlBuilder, KoinComponent {
         builder.addPathSegment("mainz")
         builder.addPathSegment("wohnung-mieten")
 
-        builder.addQueryParameter("geocodes", "1276011021001,1276011021017,1276011021023")
-        builder.addQueryParameter("price", "-$maxPrice")
-        builder.addQueryParameter("livingspace", "$minLivingSpace-")
-        builder.addQueryParameter("numberofrooms", "$minNumberOfRooms-")
-        builder.addQueryParameter("pagenumber", pageNumber)
+        builder.addQueryParameter("geocodes", request.geoCodes)
+        builder.addQueryParameter("price", request.getPrice())
+        builder.addQueryParameter("livingspace", request.getLivingSpace())
+        builder.addQueryParameter("numberofrooms", request.getNumberOfRooms())
+        builder.addQueryParameter("pagenumber", pageNumber.toString())
 
         return builder.build()
     }
