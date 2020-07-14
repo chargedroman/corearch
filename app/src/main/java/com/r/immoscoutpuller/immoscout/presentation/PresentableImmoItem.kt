@@ -28,7 +28,7 @@ class PresentableImmoItem(val pojo: ImmoItemResponse): KoinComponent {
 
     private fun warmRent(): String {
         val price = NumberFormatter.formatDecimal(pojo.details.calculatedPrice.value)
-        return price+pojo.details.calculatedPrice.currency
+        return price+" "+pojo.details.calculatedPrice.currency
     }
 
     private fun rooms(): String {
