@@ -1,6 +1,9 @@
 <resources>
     <string name="app_name">ImmoscoutPuller</string>
 
+    <string name="menu_title_pull">Overview</string>
+    <string name="menu_title_settings">Settings</string>
+
     <string name="pull_get_error_parse">Encountered an issue while parsing: %1$s</string>
     <string name="pull_get_error_default">Something went wrong while getting the apartments: %1$s</string>
     <string name="pull_get_empty">There were no items found for the searching criteria</string>
