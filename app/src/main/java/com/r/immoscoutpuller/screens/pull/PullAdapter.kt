@@ -1,4 +1,4 @@
-package com.r.immoscoutpuller.pull
+package com.r.immoscoutpuller.screens.pull
 
 import androidx.recyclerview.widget.DiffUtil
 import com.r.immoscoutpuller.R

@@ -8,7 +8,7 @@
 
         <variable
             name="viewModel"
-            type="com.r.immoscoutpuller.settings.SettingsViewModel" />
+            type="com.r.immoscoutpuller.screens.settings.SettingsViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

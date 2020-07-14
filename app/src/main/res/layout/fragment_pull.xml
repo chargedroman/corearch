@@ -9,7 +9,7 @@
 
         <variable
             name="viewModel"
-            type="com.r.immoscoutpuller.pull.PullViewModel" />
+            type="com.r.immoscoutpuller.screens.pull.PullViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

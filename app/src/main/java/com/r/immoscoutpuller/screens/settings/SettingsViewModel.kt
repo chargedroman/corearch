@@ -1,4 +1,4 @@
-package com.r.immoscoutpuller.settings
+package com.r.immoscoutpuller.screens.settings
 
 import com.roman.basearch.viewmodel.BaseViewModel
 

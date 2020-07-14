@@ -1,4 +1,4 @@
-package com.r.immoscoutpuller.pull
+package com.r.immoscoutpuller.screens.pull
 
 import android.os.Bundle
 import android.view.View

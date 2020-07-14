@@ -1,4 +1,4 @@
-package com.r.immoscoutpuller.settings
+package com.r.immoscoutpuller.screens.settings
 
 import android.os.Bundle
 import android.view.View
