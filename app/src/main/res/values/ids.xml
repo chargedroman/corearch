@@ -2,4 +2,18 @@
 <resources>
     <string name="immo_base_url" translatable="false">https://rest.immobilienscout24.de/restapi/api/</string>
     <string name="immo_base_web_url" translatable="false">https://www.immobilienscout24.de/</string>
+
+
+    <string name="min_price" translatable="false">minPrice</string>
+    <string name="max_price" translatable="false">maxPrice</string>
+
+    <string name="min_space" translatable="false">minSpace</string>
+    <string name="max_space" translatable="false">maxSpace</string>
+
+    <string name="min_rooms" translatable="false">minRooms</string>
+    <string name="max_rooms" translatable="false">maxRooms</string>
+
+    <string name="geo_codes" translatable="false">geoCodes</string>
+
+
 </resources>

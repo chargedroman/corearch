@@ -1,10 +1,214 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+
+
+        <item name="android:statusBarColor">@android:color/black</item>
+        <item name="android:windowBackground">@android:color/white</item>
+
+        <item name="textInputStyle">@style/CustomFontTextInputLayout</item>
+
+        <item name="android:alertDialogTheme">@style/AlertDialogTheme</item>
+
+        <item name="android:fontFamily">@font/quicksand_bold</item>
+
     </style>
+
+
+    <style name="AlertDialogTheme" parent="Theme.MaterialComponents.Light.Dialog.Alert">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorAccent">@color/colorPrimary</item>
+        <item name="android:textAppearanceSmall">@font/kreon_light</item>
+        <item name="android:textAppearanceMedium">@font/kreon_light</item>
+        <item name="android:textAppearanceLarge">@font/kreon_light</item>
+    </style>
+
+
+    <!-- style for number picker -->
+    <style name="NumberPickerStyle">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@android:color/black</item>
+        <item name="android:colorControlNormal" tools:targetApi="lollipop">@color/colorPrimary</item>
+    </style>
+
+
+
+    <!-- style for input texts -->
+    <style name="CustomFontTextInputLayout" parent="Widget.Design.TextInputLayout">
+        <item name="hintTextAppearance">@style/TextInputLayoutHintText</item>
+        <item name="helperTextTextAppearance">@style/TextInputLayoutHelperText</item>
+        <item name="errorTextAppearance">@style/TextInputLayoutErrorText</item>
+    </style>
+
+    <style name="TextInputLayoutHintText" parent="TextAppearance.Design.Hint">
+        <item name="android:fontFamily">@font/kreon_light</item>
+    </style>
+
+    <style name="TextInputLayoutHelperText" parent="TextAppearance.Design.HelperText">
+        <item name="android:fontFamily">@font/kreon_light</item>
+    </style>
+
+    <style name="TextInputLayoutErrorText" parent="TextAppearance.Design.Error">
+        <item name="android:fontFamily">@font/kreon_light</item>
+    </style>
+
+    <style name="Widget.Design.TextInputLayout" parent="android:Widget">
+        <item name="hintTextAppearance">@style/TextAppearance.Design.Hint</item>
+        <item name="errorTextAppearance">@style/TextAppearance.Design.Error</item>
+    </style>
+
+
+    <!-- base styles for texts -->
+
+    <style name="StandardTextInput" parent="TextAppearance.AppCompat">
+        <item name="android:fontFamily">@font/kreon_light</item>
+        <item name="android:textColor">@android:color/black</item>
+        <item name="android:textSize">20sp</item>
+    </style>
+
+    <style name="StandardHeader" parent="TextAppearance.AppCompat">
+        <item name="android:fontFamily">@font/quicksand_bold</item>
+        <item name="android:textColor">@android:color/black</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="StandardBody" parent="TextAppearance.AppCompat">
+        <item name="android:fontFamily">@font/kreon_light</item>
+        <item name="android:textColor">@android:color/black</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="StandardBodyMedium" parent="TextAppearance.AppCompat">
+        <item name="android:fontFamily">@font/kreon_medium</item>
+        <item name="android:textColor">@android:color/black</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+
+    <!-- "sub classes" of the base styles with different standardized sizes and colors -->
+
+    <style name="OverlayHeader" parent="StandardHeader">
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
+    <style name="OverlayBody" parent="StandardBody">
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
+    <style name="OverlayBodyMedium" parent="StandardBodyMedium">
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
+    <style name="OverlayHeaderSmall" parent="StandardHeaderSmall">
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
+    <style name="OverlayBodySmall" parent="StandardBodySmall">
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
+    <style name="OverlayBodyMediumSmall" parent="StandardBodyMediumSmall">
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
+    <style name="OverlayHeaderBig" parent="StandardHeaderBig">
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
+    <style name="OverlayBodyBig" parent="StandardBodyBig">
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
+    <style name="OverlayBodyMediumBig" parent="StandardBodyMediumBig">
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
+    <style name="OverlayHeaderMini" parent="StandardHeaderMini">
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
+    <style name="OverlayHeaderHuge" parent="StandardHeaderHuge">
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
+
+    <style name="StandardHeaderSmall" parent="StandardHeader">
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="StandardBodySmall" parent="StandardBody">
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="StandardBodyMediumSmall" parent="StandardBodyMedium">
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="StandardHeaderBig" parent="StandardHeader">
+        <item name="android:textSize">24sp</item>
+    </style>
+
+    <style name="StandardBodyBig" parent="StandardBody">
+        <item name="android:textSize">20sp</item>
+    </style>
+
+    <style name="StandardBodyMediumBig" parent="StandardBodyMedium">
+        <item name="android:textSize">20sp</item>
+    </style>
+
+    <style name="StandardHeaderMini" parent="StandardHeader">
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="StandardHeaderHuge" parent="StandardHeader">
+        <item name="android:textSize">30sp</item>
+    </style>
+
+
+
+    <!-- special text style for the text inside the big gray circles (in profile, activities) -->
+
+    <style name="CircleItemMainText" parent="TextAppearance.AppCompat">
+        <item name="android:textColor">@color/colorAccent</item>
+        <item name="android:textSize">26sp</item>
+        <item name="android:fontFamily">@font/quicksand_bold</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="CircleItemSubText" parent="TextAppearance.AppCompat">
+        <item name="android:textSize">14sp</item>
+        <item name="android:fontFamily">@font/kreon_medium</item>
+        <item name="android:textColor">@android:color/darker_gray</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="CircleItemSubTextBig" parent="TextAppearance.AppCompat">
+        <item name="android:textColor">@android:color/darker_gray</item>
+        <item name="android:textSize">24sp</item>
+        <item name="android:fontFamily">@font/quicksand_bold</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+
+    <!-- special text style for voucher chips (those in shops, showing time left or open for all customers) -->
+
+    <style name="VoucherItemTag" parent="TextAppearance.AppCompat">
+        <item name="android:textSize">12sp</item>
+        <item name="android:fontFamily">@font/quicksand_bold</item>
+        <item name="android:textColor">@android:color/black</item>
+        <item name="android:gravity">center</item>
+        <item name="android:paddingStart">16dp</item>
+        <item name="android:paddingEnd">16dp</item>
+        <item name="android:paddingTop">4dp</item>
+        <item name="android:paddingBottom">4dp</item>
+    </style>
+
 
 </resources>

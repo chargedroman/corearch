@@ -17,15 +17,19 @@ data class RentingApartmentsRequest(
 ) {
 
     fun getPrice(): String {
-        return "$minPrice-$maxPrice"
+        return "$minPrice-"+toStringOrEmptyIfZero(maxPrice)
     }
 
     fun getLivingSpace(): String {
-        return "$minLivingSpace-$maxLivingSpace"
+        return "$minLivingSpace-"+toStringOrEmptyIfZero(maxLivingSpace)
     }
 
     fun getNumberOfRooms(): String {
-        return "$minNumberOfRooms-$maxNumberOfRooms"
+        return "$minNumberOfRooms-"+toStringOrEmptyIfZero(maxNumberOfRooms)
+    }
+
+    private fun toStringOrEmptyIfZero(double: Double): String {
+        return if(double == 0.0) "" else double.toString()
     }
 
 }

@@ -70,7 +70,7 @@ class PullViewModel : BaseViewModel() {
 
         return RentingApartmentsRequest(
             retrieve("minPrice")?.toDoubleOrNull() ?: 0.0,
-            retrieve("minPrice")?.toDoubleOrNull() ?: 0.0,
+            retrieve("maxPrice")?.toDoubleOrNull() ?: 0.0,
             retrieve("minSpace")?.toDoubleOrNull() ?: 0.0,
             retrieve("maxSpace")?.toDoubleOrNull() ?: 0.0,
             retrieve("minRooms")?.toDoubleOrNull() ?: 0.0,
