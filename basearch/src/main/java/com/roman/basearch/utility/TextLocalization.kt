@@ -22,6 +22,8 @@ interface TextLocalization {
 
     fun getSimpleDate(date: Date): String
 
+    fun getDateDifferenceToToday(date: Date): String
+
 
     companion object {
         fun createInstance(context: Context): TextLocalization {

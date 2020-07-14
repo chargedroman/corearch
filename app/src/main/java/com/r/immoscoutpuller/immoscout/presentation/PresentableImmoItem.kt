@@ -29,12 +29,12 @@ class PresentableImmoItem(val pojo: ImmoItemResponse): KoinComponent {
 
 
     private fun inserted(): String {
-        val inserted = textLocalization.getSimpleDate(pojo.publishDate)
+        val inserted = textLocalization.getDateDifferenceToToday(pojo.publishDate)
         return textLocalization.getString(R.string.item_inserted, inserted)
     }
 
     private fun lastModified(): String {
-        val inserted = textLocalization.getSimpleDate(pojo.modification)
+        val inserted = textLocalization.getDateDifferenceToToday(pojo.modification)
         return textLocalization.getString(R.string.item_last_modified, inserted)
     }
 

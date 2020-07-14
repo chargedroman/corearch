@@ -3,6 +3,7 @@ package com.roman.basearch.utility
 import android.content.Context
 import android.content.res.Resources.NotFoundException
 import android.text.format.DateUtils
+import android.text.format.DateUtils.MINUTE_IN_MILLIS
 import java.util.*
 
 /**
@@ -46,6 +47,12 @@ class TextLocalizationImpl(val context: Context):
     override fun getSimpleDate(date: Date): String {
         val result = DateUtils.getRelativeTimeSpanString(context, date.time)
         return result.toString()
+    }
+
+    override fun getDateDifferenceToToday(date: Date): String {
+        val time = date.time
+        val now = Date().time
+        return DateUtils.getRelativeTimeSpanString(time, now, MINUTE_IN_MILLIS).toString()
     }
 
 }

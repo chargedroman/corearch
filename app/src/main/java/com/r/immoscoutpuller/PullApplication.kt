@@ -4,6 +4,7 @@ import com.r.immoscoutpuller.di.externalModule
 import com.r.immoscoutpuller.repository.AnalyticsRepositoryImpl
 import com.roman.basearch.repository.AnalyticsRepository
 import com.roman.basearch.view.BaseApplication
+import net.danlew.android.joda.JodaTimeAndroid
 import org.koin.core.module.Module
 
 /**
@@ -21,6 +22,11 @@ class PullApplication : BaseApplication() {
 
     override fun createAnalyticsRepository(): AnalyticsRepository {
         return AnalyticsRepositoryImpl()
+    }
+
+    override fun onCreate() {
+        super.onCreate()
+        JodaTimeAndroid.init(this);
     }
 
 }
