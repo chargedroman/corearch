@@ -1,6 +1,7 @@
 package com.r.immoscoutpuller.immoscout.model
 
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 import java.util.*
 
 /**
@@ -17,7 +18,7 @@ data class ImmoItemResponse(
     @SerializedName("attributes") val attributes: List<ImmoItemSearchAttribute>,
     @SerializedName("realEstateId") val realEstateId: Long,
     @SerializedName("resultlist.realEstate") val details: ImmoItemDetailResponse
-)
+): Serializable
 
 data class ImmoItemSearchAttribute(
     @SerializedName("label") val label: String,

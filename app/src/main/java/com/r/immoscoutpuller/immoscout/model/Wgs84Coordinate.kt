@@ -1,7 +1,7 @@
 package com.r.immoscoutpuller.immoscout.model
 
 import com.google.gson.annotations.SerializedName
-import java.util.*
+import java.io.Serializable
 
 /**
  *
@@ -12,4 +12,4 @@ import java.util.*
 data class Wgs84Coordinate(
     @SerializedName("latitude") val latitude: Double,
     @SerializedName("longitude") val longitude: Double
-)
+): Serializable

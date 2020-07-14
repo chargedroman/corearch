@@ -3,6 +3,7 @@ package com.r.immoscoutpuller.repository
 import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.work.*
+import com.r.immoscoutpuller.background.PullWorker
 import java.util.concurrent.TimeUnit
 
 /**

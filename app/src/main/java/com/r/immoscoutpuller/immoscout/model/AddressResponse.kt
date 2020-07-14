@@ -1,7 +1,7 @@
 package com.r.immoscoutpuller.immoscout.model
 
 import com.google.gson.annotations.SerializedName
-import java.util.*
+import java.io.Serializable
 
 /**
  *
@@ -16,4 +16,4 @@ data class AddressResponse(
     @SerializedName("quarter") val quarter: String,
     @SerializedName("street") val street: String,
     @SerializedName("wgs84Coordinate") val wgs84Coordinate: Wgs84Coordinate
-)
+): Serializable

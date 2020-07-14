@@ -1,6 +1,7 @@
 package com.r.immoscoutpuller.immoscout.model
 
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 
 /**
  *
@@ -10,4 +11,4 @@ import com.google.gson.annotations.SerializedName
 
 data class DescriptionResponse(
     @SerializedName("text") val text: String
-)
+): Serializable

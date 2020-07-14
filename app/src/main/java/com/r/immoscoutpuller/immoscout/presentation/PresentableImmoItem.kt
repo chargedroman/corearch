@@ -7,6 +7,7 @@ import com.roman.basearch.utility.TextLocalization
 import com.roman.basearch.view.list.BaseItemViewModel
 import org.koin.core.KoinComponent
 import org.koin.core.inject
+import java.io.Serializable
 
 /**
  *
@@ -14,7 +15,7 @@ import org.koin.core.inject
  * Created: 14.07.20
  */
 
-class PresentableImmoItem(val pojo: ImmoItemResponse): KoinComponent {
+class PresentableImmoItem(val pojo: ImmoItemResponse): KoinComponent, Serializable {
 
     private val textLocalization: TextLocalization by inject()
 

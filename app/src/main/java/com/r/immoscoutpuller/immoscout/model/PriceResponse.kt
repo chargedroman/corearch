@@ -1,6 +1,7 @@
 package com.r.immoscoutpuller.immoscout.model
 
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 
 /**
  *
@@ -14,4 +15,4 @@ data class PriceResponse(
     @SerializedName("priceIntervalType") val priceIntervalType: String,
     @SerializedName("rentScope") val rentScope: String?,
     @SerializedName("value") val value: Double
-)
+): Serializable

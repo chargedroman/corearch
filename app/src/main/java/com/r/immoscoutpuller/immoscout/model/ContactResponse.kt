@@ -1,7 +1,7 @@
 package com.r.immoscoutpuller.immoscout.model
 
 import com.google.gson.annotations.SerializedName
-import java.util.*
+import java.io.Serializable
 
 /**
  *
@@ -13,4 +13,4 @@ data class ContactResponse(
     @SerializedName("firstname") val firstName: String,
     @SerializedName("lastname") val lastName: String,
     @SerializedName("salutation") val salutation: String
-)
+): Serializable

@@ -1,4 +1,4 @@
-package com.r.immoscoutpuller.repository
+package com.r.immoscoutpuller.background
 
 import android.content.Context
 import androidx.work.Worker
@@ -13,9 +13,9 @@ import androidx.work.WorkerParameters
 class PullWorker(context: Context, params: WorkerParameters) : Worker(context, params) {
 
     override fun doWork(): Result {
-        println("started work!")
-        Thread.sleep(3000)
-        println("stopped work!")
+
+
+
         return Result.success()
     }
 

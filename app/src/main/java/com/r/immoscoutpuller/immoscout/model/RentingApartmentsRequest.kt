@@ -1,5 +1,7 @@
 package com.r.immoscoutpuller.immoscout.model
 
+import java.io.Serializable
+
 /**
  *
  * Author: romanvysotsky
@@ -14,7 +16,7 @@ data class RentingApartmentsRequest(
     val minNumberOfRooms: Double = 0.0,
     val maxNumberOfRooms: Double = 0.0,
     val geoCodes: String = ""
-) {
+): Serializable {
 
     fun getPrice(): String {
         return "$minPrice-"+toStringOrEmptyIfZero(maxPrice)

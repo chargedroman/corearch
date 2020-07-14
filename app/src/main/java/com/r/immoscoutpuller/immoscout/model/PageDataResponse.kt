@@ -1,6 +1,7 @@
 package com.r.immoscoutpuller.immoscout.model
 
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 
 /**
  *
@@ -14,4 +15,4 @@ data class PageDataResponse(
     @SerializedName("numberOfPages") val numberOfPages: Int,
     @SerializedName("pageNumber") val pageNumber: Int,
     @SerializedName("pageSize") val pageSize: Int
-)
+): Serializable
