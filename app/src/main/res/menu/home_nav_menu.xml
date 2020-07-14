@@ -3,10 +3,12 @@
 
     <item
             android:id="@id/fragment_home"
+            android:icon="@drawable/ic_house_solid"
             android:title="@string/menu_title_pull"/>
 
     <item
             android:id="@id/fragment_settings"
+            android:icon="@drawable/ic_cogs_solid"
             android:title="@string/menu_title_settings"/>
 
 </menu>
