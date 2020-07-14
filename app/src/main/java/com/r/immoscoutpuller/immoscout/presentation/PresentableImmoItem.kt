@@ -3,6 +3,7 @@ package com.r.immoscoutpuller.immoscout.presentation
 import androidx.databinding.ObservableField
 import com.r.immoscoutpuller.R
 import com.r.immoscoutpuller.immoscout.model.ImmoItemResponse
+import com.r.immoscoutpuller.util.NumberFormatter
 import com.roman.basearch.utility.TextLocalization
 import com.roman.basearch.view.list.BaseItemViewModel
 import org.koin.core.KoinComponent
@@ -21,16 +22,23 @@ class PresentableImmoItem(val pojo: ImmoItemResponse): KoinComponent {
 
     val warmRent = warmRent()
     val rooms = rooms()
+    val livingSpace = livingSpace()
     val title = pojo.details.title
 
 
     private fun warmRent(): String {
-        return pojo.details.calculatedPrice.value.toString()+pojo.details.calculatedPrice.currency
+        val price = NumberFormatter.formatDecimal(pojo.details.calculatedPrice.value)
+        return price+pojo.details.calculatedPrice.currency
     }
 
     private fun rooms(): String {
-        val rooms = pojo.details.numberOfRooms.toString()
+        val rooms = NumberFormatter.formatDecimal(pojo.details.numberOfRooms)
         return textLocalization.getString(R.string.item_rooms, rooms)
+    }
+
+    private fun livingSpace(): String {
+        val space = NumberFormatter.formatDecimal(pojo.details.livingSpace)
+        return textLocalization.getString(R.string.item_living_space, space)
     }
 
 
