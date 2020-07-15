@@ -22,7 +22,7 @@ class WorkRepositoryImpl(private val context: Context): WorkRepository {
 
     override fun startPullingWork() {
 
-        val workManager = WorkManager.getInstance(context)
+        val workManager = WorkManager.getInstance()
         val work = createPullWork()
         val policy = ExistingPeriodicWorkPolicy.REPLACE
         workManager.enqueueUniquePeriodicWork(WORK_NAME, policy, work)
@@ -31,14 +31,14 @@ class WorkRepositoryImpl(private val context: Context): WorkRepository {
 
     override fun stopPullingWork() {
 
-        val workManager = WorkManager.getInstance(context)
+        val workManager = WorkManager.getInstance()
         workManager.cancelUniqueWork(WORK_NAME)
 
     }
 
     override fun pullWorkLiveData(): LiveData<List<WorkInfo>> {
 
-        val workManager = WorkManager.getInstance(context)
+        val workManager = WorkManager.getInstance()
         return workManager.getWorkInfosForUniqueWorkLiveData(WORK_NAME)
 
     }
