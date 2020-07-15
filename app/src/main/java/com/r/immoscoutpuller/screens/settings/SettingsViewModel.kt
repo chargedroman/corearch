@@ -2,8 +2,14 @@ package com.r.immoscoutpuller.screens.settings
 
 import androidx.lifecycle.MutableLiveData
 import androidx.work.WorkInfo
+import com.r.immoscoutpuller.R
+import com.r.immoscoutpuller.background.PullWorker
+import com.r.immoscoutpuller.immoscout.presentation.PresentableImmoItem
 import com.r.immoscoutpuller.repository.WorkRepository
+import com.roman.basearch.utility.LocalRepository
+import com.roman.basearch.utility.TextLocalization
 import com.roman.basearch.viewmodel.BaseViewModel
+import com.roman.basearch.viewmodel.launch
 import org.koin.core.inject
 
 /**
@@ -15,11 +21,25 @@ import org.koin.core.inject
 class SettingsViewModel : BaseViewModel() {
 
     val workRepository: WorkRepository by inject()
+    val localRepository: LocalRepository by inject()
+    val textLocalization: TextLocalization by inject()
     val workData = workRepository.pullWorkLiveData()
 
     val showStartButton: MutableLiveData<Boolean> = MutableLiveData()
     val showStopButton: MutableLiveData<Boolean> = MutableLiveData()
 
+
+    fun onDeleteOldItemsClicked() {
+
+        val flow =
+            localRepository.saveFile(PullWorker.KEY_IMMO_LIST, listOf<PresentableImmoItem>())
+
+        launch(
+            flow,
+            { message.postValue(textLocalization.getString(R.string.settings_delete_success)) },
+            { message.postValue(textLocalization.getString(R.string.settings_delete_fail)) }
+        )
+    }
 
     fun workInfoUpdated(list: List<WorkInfo>) {
         if(canStartPullWork(list)) {

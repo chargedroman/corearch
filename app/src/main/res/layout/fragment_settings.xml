@@ -142,6 +142,20 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/txt_start_pull" />
 
+            <TextView
+                android:id="@+id/txt_delete_old"
+                style="@style/StandardButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="16dp"
+                android:onClick="@{() -> viewModel.onDeleteOldItemsClicked()}"
+                android:text="@string/settings_delete_old"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/txt_stop_pull" />
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
