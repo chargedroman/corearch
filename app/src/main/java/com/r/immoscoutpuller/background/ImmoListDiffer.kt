@@ -18,13 +18,28 @@ class ImmoListDiffer {
         val lastItems = lastItems
         val freshItems = freshItems
 
-        val new = mutableListOf<PresentableImmoItem>()
-        val deleted = mutableListOf<PresentableImmoItem>()
-        val modified = mutableListOf<PresentableImmoItem>()
-
-
+        val new = freshItems.filter { !lastItems.containsItem(it) }
+        val deleted = lastItems.filter { !freshItems.containsItem(it) }
+        val modified = lastItems.filter { freshItems.containsModifiedItem(it) }
 
         return Diff(new, deleted, modified)
+    }
+
+
+    private fun List<PresentableImmoItem>.containsModifiedItem(item: PresentableImmoItem): Boolean {
+        val single = singleOrNull { it.pojo.id == item.pojo.id } ?: return false
+        return single.pojo != item.pojo
+    }
+
+    private fun List<PresentableImmoItem>.containsItem(item: PresentableImmoItem): Boolean {
+
+        for(i in this) {
+            if(i.pojo.id == item.pojo.id) {
+                return true
+            }
+        }
+
+        return false
     }
 
 
