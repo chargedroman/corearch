@@ -5,6 +5,7 @@ import androidx.work.CoroutineWorker
 import androidx.work.WorkerParameters
 import com.r.immoscoutpuller.immoscout.ImmoScoutRepository
 import com.r.immoscoutpuller.immoscout.presentation.PresentableImmoItem
+import com.r.immoscoutpuller.notifications.NotificationRepository
 import com.roman.basearch.utility.LocalRepository
 import com.roman.basearch.utility.TextLocalization
 import kotlinx.coroutines.CoroutineDispatcher
@@ -31,6 +32,7 @@ class PullWorker(context: Context, params: WorkerParameters)
     val localRepository: LocalRepository by inject()
     val textLocalization: TextLocalization by inject()
     val immoScoutRepository: ImmoScoutRepository by inject()
+    val notificationRepository: NotificationRepository by inject()
 
     override val coroutineContext: CoroutineDispatcher get() = Dispatchers.IO
 

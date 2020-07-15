@@ -2,6 +2,8 @@ package com.r.immoscoutpuller.di
 
 import com.r.immoscoutpuller.R
 import com.r.immoscoutpuller.immoscout.*
+import com.r.immoscoutpuller.notifications.NotificationRepository
+import com.r.immoscoutpuller.notifications.NotificationRepositoryImpl
 import com.r.immoscoutpuller.repository.WorkRepository
 import com.r.immoscoutpuller.repository.WorkRepositoryImpl
 import com.roman.basearch.repository.WebRepository
@@ -33,5 +35,11 @@ val externalModule = module {
     single<ImmoScoutUrlBuilder> { ImmoScoutUrlBuilderImpl() }
 
     single<WorkRepository> { WorkRepositoryImpl(get()) }
+
+    single<NotificationRepository> {
+        NotificationRepositoryImpl(
+            get()
+        )
+    }
 
 }

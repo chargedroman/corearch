@@ -17,4 +17,7 @@
     <string name="settings_start_work">Start pulling rentables</string>
     <string name="settings_stop_work">Stop pulling rentables</string>
 
+    <string name="notifications_channel_name">ImmoPuller background work notifications</string>
+    <string name="notifications_channel_desc">All relevant notifications for background work while pulling rentables</string>
+
 </resources>
