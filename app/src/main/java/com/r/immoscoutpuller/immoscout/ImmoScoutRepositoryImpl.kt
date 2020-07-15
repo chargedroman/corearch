@@ -4,6 +4,8 @@ import com.r.immoscoutpuller.immoscout.model.ImmoItemResponse
 import com.r.immoscoutpuller.immoscout.model.PagingResponse
 import com.r.immoscoutpuller.immoscout.model.RentingApartmentsRequest
 import com.r.immoscoutpuller.immoscout.presentation.PresentableImmoItem
+import com.roman.basearch.utility.LocalRepository
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import okhttp3.OkHttpClient
 import okhttp3.Request
@@ -19,9 +21,15 @@ import org.koin.core.inject
 class ImmoScoutRepositoryImpl : ImmoScoutRepository, KoinComponent {
 
     private val client: OkHttpClient by inject()
+    private val localRepository: LocalRepository by inject()
     private val immoScoutParser: ImmoScoutParser by inject()
     private val immoScoutUrlBuilder: ImmoScoutUrlBuilder by inject()
 
+
+    override fun getRentableApartmentsWebFromLocalData(): Flow<List<PresentableImmoItem>> {
+        val request = localRepository.getApartmentsRequestSettings()
+        return getRentableApartmentsWeb(request)
+    }
 
     override fun getRentableApartmentsWeb(request: RentingApartmentsRequest) = flow {
 

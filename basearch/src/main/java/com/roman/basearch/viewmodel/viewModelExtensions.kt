@@ -1,8 +1,8 @@
 package com.roman.basearch.viewmodel
 
 import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.*
 import org.koin.core.KoinComponent
@@ -33,6 +33,20 @@ fun <T> BaseViewModel.launch(
         .onEach { onSuccess(it) }
         .catch { onError(it) }
         .launchIn(viewModelScope)
+}
+
+suspend fun <T> CoroutineScope.launch(flow: Flow<T>): Pair<T?, Throwable?> {
+
+    var result: Pair<T?, Throwable?> = Pair(null, null)
+
+    val job = flow
+        .onEach { result = Pair<T?, Throwable?>(it, null) }
+        .catch { result = Pair<T?, Throwable?>(null, it) }
+        .launchIn(this)
+
+    job.join()
+
+    return result
 }
 
 inline fun <reified T> getKoinInstance(): T {
