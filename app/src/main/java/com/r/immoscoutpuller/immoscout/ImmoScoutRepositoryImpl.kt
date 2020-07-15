@@ -26,7 +26,7 @@ class ImmoScoutRepositoryImpl : ImmoScoutRepository, KoinComponent {
     private val immoScoutUrlBuilder: ImmoScoutUrlBuilder by inject()
 
 
-    override fun getRentableApartmentsWebFromLocalData(): Flow<List<PresentableImmoItem>> {
+    override fun getRentableApartmentsWeb(): Flow<List<PresentableImmoItem>> {
         val request = localRepository.getApartmentsRequestSettings()
         return getRentableApartmentsWeb(request)
     }

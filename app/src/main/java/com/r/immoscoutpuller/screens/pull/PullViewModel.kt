@@ -38,7 +38,7 @@ class PullViewModel : BaseViewModel() {
     fun getApartments() {
 
         val flow =
-            immoScoutRepository.getRentableApartmentsWebFromLocalData()
+            immoScoutRepository.getRentableApartmentsWeb()
 
         launch(
             flow,

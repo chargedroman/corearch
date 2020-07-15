@@ -12,7 +12,7 @@ import kotlinx.coroutines.flow.Flow
 
 interface ImmoScoutRepository {
 
-    fun getRentableApartmentsWebFromLocalData(): Flow<List<PresentableImmoItem>>
+    fun getRentableApartmentsWeb(): Flow<List<PresentableImmoItem>>
     fun getRentableApartmentsWeb(request: RentingApartmentsRequest): Flow<List<PresentableImmoItem>>
 
 }
