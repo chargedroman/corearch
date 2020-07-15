@@ -8,7 +8,6 @@ import com.r.immoscoutpuller.immoscout.presentation.PresentableImmoItem
 import com.roman.basearch.utility.LocalRepository
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.flow.*
 import org.koin.core.KoinComponent
@@ -37,13 +36,13 @@ class PullWorker(context: Context, params: WorkerParameters)
     override val coroutineContext: CoroutineDispatcher get() = Dispatchers.IO
 
 
-    @ExperimentalCoroutinesApi
     override suspend fun doWork(): Result = coroutineScope {
 
         val differ = ImmoListDiffer()
 
         val job = getLastItems()
             .flatMapConcat { differ.lastItems = it; getFreshItems() }
+            .flatMapConcat { saveFreshItems(it) }
             .flatMapConcat { differ.freshItems = it; getDiff(differ) }
             .flatMapConcat { showNotificationsForEach(it) }
             .onStart { notificationHelperSummary.onStart() }
@@ -53,7 +52,6 @@ class PullWorker(context: Context, params: WorkerParameters)
 
         Result.success()
     }
-
 
 
     private fun getDiff(differ: ImmoListDiffer): Flow<ImmoListDiffer.Diff> = flow {
@@ -74,6 +72,10 @@ class PullWorker(context: Context, params: WorkerParameters)
         notificationHelperItem.onDone(diff)
         notificationHelperSummary.onDone(diff)
         emit(diff)
+    }
+
+    private fun saveFreshItems(items: List<PresentableImmoItem>): Flow<List<PresentableImmoItem>> {
+        return localRepository.saveFile(KEY_IMMO_LIST, items)
     }
 
 
