@@ -5,8 +5,8 @@ import com.r.immoscoutpuller.R
 import com.r.immoscoutpuller.immoscout.model.ImmoItemResponse
 import com.roman.basearch.utility.TextLocalization
 import com.roman.basearch.view.list.BaseItemViewModel
+import com.roman.basearch.viewmodel.getKoinInstance
 import org.koin.core.KoinComponent
-import org.koin.core.inject
 import java.io.Serializable
 
 /**
@@ -17,7 +17,7 @@ import java.io.Serializable
 
 class PresentableImmoItem(val pojo: ImmoItemResponse): KoinComponent, Serializable {
 
-    private val textLocalization: TextLocalization by inject()
+    @Transient private val textLocalization: TextLocalization = getKoinInstance()
 
 
     val warmRent = warmRent()

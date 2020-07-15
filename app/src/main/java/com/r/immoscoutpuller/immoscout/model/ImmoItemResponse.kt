@@ -23,4 +23,4 @@ data class ImmoItemResponse(
 data class ImmoItemSearchAttribute(
     @SerializedName("label") val label: String,
     @SerializedName("value") val value: String
-)
+): Serializable
