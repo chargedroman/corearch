@@ -46,7 +46,7 @@ class WorkRepositoryImpl(private val context: Context): WorkRepository {
 
     private fun createPullWork(): PeriodicWorkRequest {
         return PeriodicWorkRequest
-            .Builder(PullWorker::class.java, 1, TimeUnit.MINUTES)
+            .Builder(PullWorker::class.java, 15, TimeUnit.MINUTES)
             .setConstraints(createConstraints())
             .setBackoffCriteria(BackoffPolicy.EXPONENTIAL, BACKOFF_DELAY_SECONDS, TimeUnit.SECONDS)
             .build()
