@@ -12,7 +12,7 @@ data class NotificationModel(
     val iconResId: Int = R.drawable.ic_house_solid,
     val title: String = "",
     val text: String = "",
-    val showProgress: Boolean = true,
+    val showProgress: Boolean = false,
     val notificationId: Int = NOTIFICATION_ID,
     val deepLinkOnClick: String? = null
 ) {

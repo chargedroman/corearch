@@ -9,6 +9,6 @@ package com.r.immoscoutpuller.notifications
 interface NotificationRepository {
 
     fun showNotification(model: NotificationModel)
-    fun cancelNotification(model: NotificationModel)
+    fun cancelNotification(notificationId: Int)
 
 }

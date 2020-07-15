@@ -47,6 +47,12 @@ class ImmoListDiffer {
         val newItems: List<PresentableImmoItem> = listOf(),
         val deletedItems: List<PresentableImmoItem> = listOf(),
         val modifiedItems: List<PresentableImmoItem> = listOf()
-    )
+    ) {
+
+        fun noChanges(): Boolean {
+            return newItems.isEmpty() && deletedItems.isEmpty() && modifiedItems.isEmpty()
+        }
+
+    }
 
 }

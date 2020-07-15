@@ -17,7 +17,19 @@
     <string name="settings_start_work">Start pulling rentables</string>
     <string name="settings_stop_work">Stop pulling rentables</string>
 
+
     <string name="notifications_channel_name">ImmoPuller background work notifications</string>
     <string name="notifications_channel_desc">All relevant notifications for background work while pulling rentables</string>
+
+    <string name="notifications_item_new_title">New apartment added!</string>
+    <string name="notifications_item_deleted_title">Apartment deleted</string>
+    <string name="notifications_item_modified_title">Apartment modified</string>
+
+    <string name="notifications_progress_title">Pulling rentable apartments..</string>
+    <string name="notifications_done_title">Apartments pulled</string>
+
+    <string name="notifications_summary">Price: %1$s, Space: %2$s, Rooms: %3$s, GeoCodes: %4$s</string>
+    <string name="notifications_item_summary">%1$s\n%2$s, %3$s, %4$s, %5$s, %6$s</string>
+
 
 </resources>

@@ -37,8 +37,8 @@ class NotificationRepositoryImpl(private val context: Context):
             null
 
 
-    override fun cancelNotification(model: NotificationModel) {
-        notificationManager.cancel(model.notificationId)
+    override fun cancelNotification(notificationId: Int) {
+        notificationManager.cancel(notificationId)
     }
 
     override fun showNotification(model: NotificationModel) {
