@@ -5,9 +5,11 @@
 
     <data>
 
+        <import type="com.r.immoscoutpuller.model.ImmoItem"/>
+
         <variable
             name="viewModel"
-            type="com.r.immoscoutpuller.immoscout.presentation.PresentableImmoItem.ViewModel" />
+            type="com.r.immoscoutpuller.model.ImmoItem.ViewModel&lt;ImmoItem>" />
 
         <variable
             name="clickListener"

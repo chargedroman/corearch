@@ -3,7 +3,7 @@ package com.r.immoscoutpuller.immoscout
 import com.r.immoscoutpuller.immoscout.model.ImmoItemResponse
 import com.r.immoscoutpuller.immoscout.model.PagingResponse
 import com.r.immoscoutpuller.immoscout.model.RentingApartmentsRequest
-import com.r.immoscoutpuller.immoscout.presentation.PresentableImmoItem
+import com.r.immoscoutpuller.model.PresentableImmoScoutItem
 import com.roman.basearch.utility.LocalRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -26,14 +26,14 @@ class ImmoScoutRepositoryImpl : ImmoScoutRepository, KoinComponent {
     private val immoScoutUrlBuilder: ImmoScoutUrlBuilder by inject()
 
 
-    override fun getRentableApartmentsWeb(): Flow<List<PresentableImmoItem>> {
+    override fun getRentableApartmentsWeb(): Flow<List<PresentableImmoScoutItem>> {
         val request = localRepository.getApartmentsRequestSettings()
         return getRentableApartmentsWeb(request)
     }
 
     override fun getRentableApartmentsWeb(request: RentingApartmentsRequest) = flow {
 
-        val resultList = mutableListOf<PresentableImmoItem>()
+        val resultList = mutableListOf<PresentableImmoScoutItem>()
 
         var hasNext = true
         var pageNumber = 0
@@ -53,9 +53,9 @@ class ImmoScoutRepositoryImpl : ImmoScoutRepository, KoinComponent {
     }
 
 
-    private fun MutableList<PresentableImmoItem>.transformingAddAll(raw: List<ImmoItemResponse>) {
+    private fun MutableList<PresentableImmoScoutItem>.transformingAddAll(raw: List<ImmoItemResponse>) {
         for(item in raw) {
-            this.add(PresentableImmoItem(item))
+            this.add(PresentableImmoScoutItem(item))
         }
     }
 

@@ -2,7 +2,7 @@ package com.r.immoscoutpuller.background
 
 import com.r.immoscoutpuller.R
 import com.r.immoscoutpuller.immoscout.ImmoScoutUrlBuilder
-import com.r.immoscoutpuller.immoscout.presentation.PresentableImmoItem
+import com.r.immoscoutpuller.model.PresentableImmoScoutItem
 import com.r.immoscoutpuller.notifications.NotificationModel
 import com.r.immoscoutpuller.notifications.NotificationRepository
 import com.roman.basearch.utility.TextLocalization
@@ -33,25 +33,25 @@ class NotificationHelperItem: KoinComponent {
      * Item notifications for add/delete/modify
      */
 
-    private fun showNewItemNotification(item: PresentableImmoItem) {
+    private fun showNewItemNotification(item: PresentableImmoScoutItem) {
         val title = textLocalization.getString(R.string.notifications_item_new_title)
         val model = item.itemNotification(title)
         notificationRepository.showNotification(model)
     }
 
-    private fun showDeletedItemNotification(item: PresentableImmoItem) {
+    private fun showDeletedItemNotification(item: PresentableImmoScoutItem) {
         val title = textLocalization.getString(R.string.notifications_item_deleted_title)
         val model = item.itemNotification(title)
         notificationRepository.showNotification(model)
     }
 
-    private fun showModifiedItemNotification(item: PresentableImmoItem) {
+    private fun showModifiedItemNotification(item: PresentableImmoScoutItem) {
         val title = textLocalization.getString(R.string.notifications_item_modified_title)
         val model = item.itemNotification(title)
         notificationRepository.showNotification(model)
     }
 
-    private fun PresentableImmoItem.itemNotification(title: String): NotificationModel {
+    private fun PresentableImmoScoutItem.itemNotification(title: String): NotificationModel {
 
         val text = textLocalization.getString(
             R.string.notifications_item_summary,

@@ -1,13 +1,9 @@
-package com.r.immoscoutpuller.immoscout.presentation
+package com.r.immoscoutpuller.model
 
-import androidx.databinding.ObservableField
 import com.r.immoscoutpuller.R
 import com.r.immoscoutpuller.immoscout.model.ImmoItemResponse
 import com.roman.basearch.utility.TextLocalization
-import com.roman.basearch.view.list.BaseItemViewModel
 import com.roman.basearch.viewmodel.getKoinInstance
-import org.koin.core.KoinComponent
-import java.io.Serializable
 
 /**
  *
@@ -15,18 +11,20 @@ import java.io.Serializable
  * Created: 14.07.20
  */
 
-class PresentableImmoItem(val pojo: ImmoItemResponse): KoinComponent, Serializable {
+class PresentableImmoScoutItem(val pojo: ImmoItemResponse): ImmoItem() {
 
     @Transient private val textLocalization: TextLocalization = getKoinInstance()
 
 
-    val warmRent = warmRent()
-    val rooms = rooms()
-    val livingSpace = livingSpace()
+    override val id = pojo.id
 
-    val title = pojo.details.title
-    val inserted = inserted()
-    val lastModified = lastModified()
+    override val warmRent = warmRent()
+    override val rooms = rooms()
+    override val livingSpace = livingSpace()
+
+    override val title = pojo.details.title
+    override val inserted = inserted()
+    override val lastModified = lastModified()
 
 
     private fun inserted(): String {
@@ -52,17 +50,6 @@ class PresentableImmoItem(val pojo: ImmoItemResponse): KoinComponent, Serializab
     private fun livingSpace(): String {
         val space = textLocalization.formatDecimal(pojo.details.livingSpace)
         return textLocalization.getString(R.string.item_living_space, space)
-    }
-
-
-    class ViewModel: BaseItemViewModel<PresentableImmoItem>() {
-
-        val item: ObservableField<PresentableImmoItem> = ObservableField()
-
-        override fun bindItem(item: PresentableImmoItem) {
-            this.item.set(item)
-        }
-
     }
 
 }

@@ -4,7 +4,7 @@ import android.content.Context
 import androidx.work.CoroutineWorker
 import androidx.work.WorkerParameters
 import com.r.immoscoutpuller.immoscout.ImmoScoutRepository
-import com.r.immoscoutpuller.immoscout.presentation.PresentableImmoItem
+import com.r.immoscoutpuller.model.PresentableImmoScoutItem
 import com.roman.basearch.utility.LocalRepository
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
@@ -58,13 +58,13 @@ class PullWorker(context: Context, params: WorkerParameters)
         emit(differ.createDiff())
     }
 
-    private fun getLastItems(): Flow<List<PresentableImmoItem>> {
+    private fun getLastItems(): Flow<List<PresentableImmoScoutItem>> {
         return localRepository
-            .readFile<List<PresentableImmoItem>>(KEY_IMMO_LIST)
+            .readFile<List<PresentableImmoScoutItem>>(KEY_IMMO_LIST)
             .catch { emit(listOf()) }
     }
 
-    private fun getFreshItems(): Flow<List<PresentableImmoItem>> {
+    private fun getFreshItems(): Flow<List<PresentableImmoScoutItem>> {
         return immoScoutRepository.getRentableApartmentsWeb()
     }
 
@@ -74,7 +74,7 @@ class PullWorker(context: Context, params: WorkerParameters)
         emit(diff)
     }
 
-    private fun saveFreshItems(items: List<PresentableImmoItem>): Flow<List<PresentableImmoItem>> {
+    private fun saveFreshItems(items: List<PresentableImmoScoutItem>): Flow<List<PresentableImmoScoutItem>> {
         return localRepository.saveFile(KEY_IMMO_LIST, items)
     }
 
