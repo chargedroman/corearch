@@ -25,7 +25,7 @@ class ImmoUrlRepositoryImpl : ImmoUrlRepository, KoinComponent {
         pageNumber: Int
     ): HttpUrl {
 
-        val webUrl = textLocalization.getString(R.string.immo_base_web_url)
+        val webUrl = textLocalization.getString(R.string.immo_scout_base_web_url)
         val builder = HttpUrl.parse(webUrl)!!.newBuilder()
 
         builder.addPathSegment("Suche")
@@ -42,14 +42,30 @@ class ImmoUrlRepositoryImpl : ImmoUrlRepository, KoinComponent {
     }
 
 
+    override fun getImmoWeltUrl(request: ImmoRequest, pageNumber: Int): HttpUrl {
+        TODO("Not yet implemented")
+    }
+
+
     override fun getApartmentUrl(item: ImmoItem): HttpUrl {
 
         return getImmoScoutApartmentUrl(item)
     }
 
 
+    private fun getImmoWeltApartmentUrl(item: ImmoItem): HttpUrl {
+        val webUrl = textLocalization.getString(R.string.immo_welt_base_web_url)
+        val builder = HttpUrl.parse(webUrl)!!.newBuilder()
+
+        builder.addPathSegment("expose")
+        builder.addPathSegment(item.id.toString())
+
+        return builder.build()
+    }
+
+
     private fun getImmoScoutApartmentUrl(item: ImmoItem): HttpUrl {
-        val webUrl = textLocalization.getString(R.string.immo_base_web_url)
+        val webUrl = textLocalization.getString(R.string.immo_scout_base_web_url)
         val builder = HttpUrl.parse(webUrl)!!.newBuilder()
 
         builder.addPathSegment("expose")

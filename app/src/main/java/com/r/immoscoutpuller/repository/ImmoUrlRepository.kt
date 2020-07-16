@@ -13,6 +13,7 @@ import okhttp3.HttpUrl
 interface ImmoUrlRepository {
 
     fun getImmoScoutUrl(request: ImmoRequest, pageNumber: Int): HttpUrl
+    fun getImmoWeltUrl(request: ImmoRequest, pageNumber: Int): HttpUrl
     fun getApartmentUrl(item: ImmoItem): HttpUrl
 
 }

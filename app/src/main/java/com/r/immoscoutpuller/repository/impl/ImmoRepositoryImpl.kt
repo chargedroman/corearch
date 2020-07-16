@@ -64,11 +64,13 @@ class ImmoRepositoryImpl : ImmoRepository, KoinComponent {
         return getImmoWeltApartmentsWeb(request)
     }
 
-    override fun getImmoWeltApartmentsWeb(request: ImmoRequest): Flow<List<PresentableImmoWeltItem>> {
-        return flow {
 
-            emit(listOf())
-        }
+    override fun getImmoWeltApartmentsWeb(request: ImmoRequest) = flow {
+
+        val resultList = mutableListOf<PresentableImmoWeltItem>()
+
+
+        emit(resultList)
     }
 
 
