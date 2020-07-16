@@ -96,6 +96,18 @@
                 app:layout_constraintStart_toEndOf="@id/min_rooms"
                 app:layout_constraintTop_toBottomOf="@id/min_space" />
 
+            <include
+                android:id="@+id/city"
+                layout="@layout/text_input_shared_prefs"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                app:hint="@{@string/city}"
+                app:key="@{@string/city}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/min_rooms"
+                app:multipleLines="@{true}" />
 
             <include
                 android:id="@+id/geo_codes_scout"
@@ -107,7 +119,7 @@
                 app:key="@{@string/geo_codes_scout}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/min_rooms"
+                app:layout_constraintTop_toBottomOf="@id/city"
                 app:multipleLines="@{true}" />
 
             <include

@@ -16,6 +16,7 @@
 
     <string name="geo_codes_scout" translatable="false">geoCodesScout</string>
     <string name="geo_codes_welt" translatable="false">geoCodesWelt</string>
+    <string name="city" translatable="false">city</string>
 
 
 </resources>

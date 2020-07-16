@@ -1,5 +1,6 @@
 package com.r.immoscoutpuller.model
 
+import com.r.immoscoutpuller.immowelt.model.ImmoWeltItemResponse
 import com.roman.basearch.utility.TextLocalization
 import com.roman.basearch.viewmodel.getKoinInstance
 
@@ -9,7 +10,7 @@ import com.roman.basearch.viewmodel.getKoinInstance
  * Created: 16.07.20
  */
 
-class PresentableImmoWeltItem: ImmoItem() {
+class PresentableImmoWeltItem(val pojo: ImmoWeltItemResponse): ImmoItem() {
 
     @Transient
     private val textLocalization: TextLocalization = getKoinInstance()

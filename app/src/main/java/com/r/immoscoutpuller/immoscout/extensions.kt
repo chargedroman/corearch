@@ -18,7 +18,8 @@ fun LocalRepository.getImmoScoutRequestSettings(): ImmoRequest {
         retrieve("maxSpace")?.toDoubleOrNull() ?: 0.0,
         retrieve("minRooms")?.toDoubleOrNull() ?: 0.0,
         retrieve("maxRooms")?.toDoubleOrNull() ?: 0.0,
-        retrieve("geoCodesScout") ?: ""
+        retrieve("geoCodesScout") ?: "",
+        retrieve("city") ?: ""
     )
 }
 
@@ -31,6 +32,7 @@ fun LocalRepository.getImmoWeltRequestSettings(): ImmoRequest {
         retrieve("maxSpace")?.toDoubleOrNull() ?: 0.0,
         retrieve("minRooms")?.toDoubleOrNull() ?: 0.0,
         retrieve("maxRooms")?.toDoubleOrNull() ?: 0.0,
-        retrieve("geoCodesWelt") ?: ""
+        retrieve("geoCodesWelt") ?: "",
+        retrieve("city") ?: ""
     )
 }

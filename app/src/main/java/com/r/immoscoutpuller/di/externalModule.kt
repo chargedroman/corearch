@@ -2,6 +2,8 @@ package com.r.immoscoutpuller.di
 
 import com.r.immoscoutpuller.immoscout.ImmoScoutParser
 import com.r.immoscoutpuller.immoscout.ImmoScoutParserImpl
+import com.r.immoscoutpuller.immowelt.ImmoWeltParser
+import com.r.immoscoutpuller.immowelt.ImmoWeltParserImpl
 import com.r.immoscoutpuller.notifications.NotificationRepository
 import com.r.immoscoutpuller.notifications.NotificationRepositoryImpl
 import com.r.immoscoutpuller.repository.ImmoRepository
@@ -23,6 +25,8 @@ val externalModule = module {
     single<ImmoRepository> { ImmoRepositoryImpl() }
 
     single<ImmoScoutParser> { ImmoScoutParserImpl() }
+
+    single<ImmoWeltParser> { ImmoWeltParserImpl() }
 
     single<ImmoUrlRepository> { ImmoUrlRepositoryImpl() }
 

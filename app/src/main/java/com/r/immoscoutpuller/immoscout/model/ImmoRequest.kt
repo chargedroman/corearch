@@ -15,7 +15,8 @@ data class ImmoRequest(
     val maxLivingSpace: Double = 0.0,
     val minNumberOfRooms: Double = 0.0,
     val maxNumberOfRooms: Double = 0.0,
-    val geoCodes: String = ""
+    val geoCodes: String = "",
+    val city: String = ""
 ): Serializable {
 
     fun getPrice(): String {

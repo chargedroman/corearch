@@ -14,6 +14,9 @@ interface ImmoUrlRepository {
 
     fun getImmoScoutUrl(request: ImmoRequest, pageNumber: Int): HttpUrl
     fun getImmoWeltUrl(request: ImmoRequest, pageNumber: Int): HttpUrl
+
     fun getApartmentUrl(item: ImmoItem): HttpUrl
+    fun getImmoScoutExposeUrl(itemId: String): HttpUrl
+    fun getImmoWeltExposeUrl(itemId: String): HttpUrl
 
 }

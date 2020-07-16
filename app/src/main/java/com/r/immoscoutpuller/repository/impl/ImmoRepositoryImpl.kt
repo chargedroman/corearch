@@ -6,6 +6,8 @@ import com.r.immoscoutpuller.immoscout.getImmoWeltRequestSettings
 import com.r.immoscoutpuller.immoscout.model.ImmoItemResponse
 import com.r.immoscoutpuller.immoscout.model.ImmoRequest
 import com.r.immoscoutpuller.immoscout.model.PagingResponse
+import com.r.immoscoutpuller.immowelt.ImmoWeltParser
+import com.r.immoscoutpuller.immowelt.model.ImmoWeltItemResponse
 import com.r.immoscoutpuller.model.PresentableImmoScoutItem
 import com.r.immoscoutpuller.model.PresentableImmoWeltItem
 import com.r.immoscoutpuller.repository.ImmoRepository
@@ -29,7 +31,8 @@ class ImmoRepositoryImpl : ImmoRepository, KoinComponent {
     private val client: OkHttpClient by inject()
     private val localRepository: LocalRepository by inject()
     private val immoScoutParser: ImmoScoutParser by inject()
-    private val immoScoutUrlBuilder: ImmoUrlRepository by inject()
+    private val immoWeltParser: ImmoWeltParser by inject()
+    private val immoUrlBuilder: ImmoUrlRepository by inject()
 
 
     override fun getImmoScoutApartmentsWeb(): Flow<List<PresentableImmoScoutItem>> {
@@ -68,7 +71,12 @@ class ImmoRepositoryImpl : ImmoRepository, KoinComponent {
     override fun getImmoWeltApartmentsWeb(request: ImmoRequest) = flow {
 
         val resultList = mutableListOf<PresentableImmoWeltItem>()
+        val allItemIds = getImmoWeltIds(request)
 
+        for(itemId in allItemIds) {
+            val immoWeltItem = getImmoWeltItem(itemId)
+            resultList.add(PresentableImmoWeltItem(immoWeltItem))
+        }
 
         emit(resultList)
     }
@@ -80,20 +88,52 @@ class ImmoRepositoryImpl : ImmoRepository, KoinComponent {
         }
     }
 
+
+    private fun getImmoWeltIds(request: ImmoRequest): Set<String> {
+        val allIds = mutableSetOf<String>()
+
+        var hasNext = true
+        var pageNumber = 1
+
+        while(hasNext) {
+            val next = getImmoWeltIds(request, pageNumber)
+            hasNext = !(next.isEmpty() || allIds.containsAll(next))
+            pageNumber++
+            allIds.addAll(next)
+        }
+
+        return allIds
+    }
+
+
+    private fun getImmoWeltIds(
+        request: ImmoRequest,
+        pageNumber: Int
+    ): List<String> {
+
+        val immoWebUrl = immoUrlBuilder.getImmoWeltUrl(request, pageNumber)
+        val webRequest = Request.Builder().url(immoWebUrl).build()
+        val webResponse = client.newCall(webRequest).execute()
+        return immoWeltParser.extractEstateIdsFrom(webResponse)
+    }
+
     private fun getImmoScoutApartmentsWeb(
         request: ImmoRequest,
         pageNumber: Int
     ): PagingResponse {
 
-        val immoWebUrl = immoScoutUrlBuilder
-            .getImmoScoutUrl(request, pageNumber)
-
-        val webRequest = Request.Builder()
-            .url(immoWebUrl)
-            .build()
-
+        val immoWebUrl = immoUrlBuilder.getImmoScoutUrl(request, pageNumber)
+        val webRequest = Request.Builder().url(immoWebUrl).build()
         val webResponse = client.newCall(webRequest).execute()
         return immoScoutParser.extractPagingResponseFrom(webResponse)
+    }
+
+    private fun getImmoWeltItem(itemId: String): ImmoWeltItemResponse {
+
+        val immoWebUrl = immoUrlBuilder.getImmoWeltExposeUrl(itemId)
+        val webRequest = Request.Builder().url(immoWebUrl).build()
+        val webResponse = client.newCall(webRequest).execute()
+        return immoWeltParser.extractImmoItemFrom(itemId, webResponse)
     }
 
 
