@@ -1,15 +1,14 @@
-package com.r.immoscoutpuller.screens.pull
+package com.r.immoscoutpuller.screens.basepull
 
 import android.os.Bundle
 import android.view.View
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.r.immoscoutpuller.R
 import com.r.immoscoutpuller.databinding.FragmentPullBinding
-import com.r.immoscoutpuller.model.PresentableImmoScoutItem
+import com.r.immoscoutpuller.model.ImmoItem
 import com.r.immoscoutpuller.model.PullAdapter
 import com.roman.basearch.arch.AutoClearedValue
 import com.roman.basearch.baseextensions.closeKeyboardOnTouch
@@ -21,13 +20,10 @@ import com.roman.basearch.view.BaseFragment
  * Created:
  */
 
-class PullFragment : BaseFragment<FragmentPullBinding, PullViewModel>() {
+abstract class PullFragment<Type: ImmoItem> : BaseFragment<FragmentPullBinding, PullViewModel<Type>>() {
 
-    private var adapter by AutoClearedValue<PullAdapter<PresentableImmoScoutItem>>()
+    private var adapter by AutoClearedValue<PullAdapter<Type>>()
 
-    private val lazy: PullViewModel by viewModels()
-
-    override val viewModel: PullViewModel get() = lazy
     override val layoutResourceId: Int get() = R.layout.fragment_pull
 
 
@@ -57,7 +53,7 @@ class PullFragment : BaseFragment<FragmentPullBinding, PullViewModel>() {
         val layoutManager = LinearLayoutManager(context, orientation, false)
         val dividerItemDecoration = DividerItemDecoration(recyclerView.context, layoutManager.orientation)
 
-        adapter = PullAdapter<PresentableImmoScoutItem> {
+        adapter = PullAdapter<Type> {
             viewModel.onImmoItemClicked(it)
         }
 

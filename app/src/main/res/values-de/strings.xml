@@ -1,7 +1,8 @@
 <resources>
     <string name="app_name">ImmoscoutPuller</string>
 
-    <string name="menu_title_pull">Übersicht</string>
+    <string name="menu_title_pull_scout">ImmoScout</string>
+    <string name="menu_title_pull_welt">ImmoWelt</string>
     <string name="menu_title_settings">Einstellungen</string>
 
     <string name="item_rooms">%1$s Räume</string>

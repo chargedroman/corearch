@@ -1,14 +1,15 @@
-package com.r.immoscoutpuller.screens.pull
+package com.r.immoscoutpuller.screens.basepull
 
 import androidx.lifecycle.MutableLiveData
 import com.google.gson.JsonSyntaxException
 import com.r.immoscoutpuller.R
-import com.r.immoscoutpuller.model.PresentableImmoScoutItem
+import com.r.immoscoutpuller.model.ImmoItem
 import com.r.immoscoutpuller.repository.ImmoRepository
 import com.r.immoscoutpuller.repository.ImmoUrlRepository
 import com.roman.basearch.utility.TextLocalization
 import com.roman.basearch.viewmodel.BaseViewModel
 import com.roman.basearch.viewmodel.launch
+import kotlinx.coroutines.flow.Flow
 import org.koin.core.inject
 
 /**
@@ -17,18 +18,22 @@ import org.koin.core.inject
  * Created:
  */
 
-class PullViewModel : BaseViewModel() {
+abstract class PullViewModel<Type: ImmoItem> : BaseViewModel() {
 
-    val immoItems: MutableLiveData<List<PresentableImmoScoutItem>> = MutableLiveData()
+    val immoItems: MutableLiveData<List<Type>> = MutableLiveData()
 
-    private val immoScoutRepository: ImmoRepository by inject()
-    private val textLocalization: TextLocalization by inject()
-    private val immoUrlBuilder: ImmoUrlRepository by inject()
+    val immoRepository: ImmoRepository by inject()
+    val textLocalization: TextLocalization by inject()
+    val immoUrlBuilder: ImmoUrlRepository by inject()
+
+
+    abstract fun getFreshItems(): Flow<List<Type>>
 
 
     init {
         getApartments()
     }
+
 
 
     fun onUserRefreshedData() {
@@ -37,18 +42,15 @@ class PullViewModel : BaseViewModel() {
 
     fun getApartments() {
 
-        val flow =
-            immoScoutRepository.getImmoScoutApartmentsWeb()
-
         launch(
-            flow,
+            getFreshItems(),
             { immoItems.postValue(it) },
             { handleErrorOnGetApartments(it) }
         )
     }
 
 
-    fun onImmoItemClicked(item: PresentableImmoScoutItem) {
+    fun onImmoItemClicked(item: Type) {
         val url = immoUrlBuilder.getApartmentUrl(item)
         val navigation = PullNavigation.ToWeb(url.toString()) {
             this.error.postValue(it)

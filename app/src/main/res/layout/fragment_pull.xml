@@ -7,9 +7,11 @@
 
         <import type="android.view.View" />
 
+        <import type="com.r.immoscoutpuller.model.ImmoItem"/>
+
         <variable
             name="viewModel"
-            type="com.r.immoscoutpuller.screens.pull.PullViewModel" />
+            type="com.r.immoscoutpuller.screens.basepull.PullViewModel&lt;ImmoItem>" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -36,6 +38,7 @@
 
         <TextView
             android:id="@+id/txt_empty"
+            style="@style/StandardHeader"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"

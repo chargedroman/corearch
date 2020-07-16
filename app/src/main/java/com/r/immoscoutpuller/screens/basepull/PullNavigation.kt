@@ -1,4 +1,4 @@
-package com.r.immoscoutpuller.screens.pull
+package com.r.immoscoutpuller.screens.basepull
 
 import com.r.immoscoutpuller.command.DeepLinkCommand
 import com.roman.basearch.navigation.Navigation
