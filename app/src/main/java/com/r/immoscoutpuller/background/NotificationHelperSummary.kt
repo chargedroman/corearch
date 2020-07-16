@@ -1,8 +1,8 @@
 package com.r.immoscoutpuller.background
 
 import com.r.immoscoutpuller.R
-import com.r.immoscoutpuller.immoscout.getApartmentsRequestSettings
-import com.r.immoscoutpuller.immoscout.model.ImmoScoutRequest
+import com.r.immoscoutpuller.immoscout.getImmoScoutRequestSettings
+import com.r.immoscoutpuller.immoscout.model.ImmoRequest
 import com.r.immoscoutpuller.model.ImmoItem
 import com.r.immoscoutpuller.notifications.NotificationModel
 import com.r.immoscoutpuller.notifications.NotificationRepository
@@ -42,14 +42,14 @@ class NotificationHelperSummary<Type: ImmoItem>: KoinComponent {
      */
 
     private fun showProgressItemNotification() {
-        val request = localRepository.getApartmentsRequestSettings()
+        val request = localRepository.getImmoScoutRequestSettings()
         val title = textLocalization.getString(R.string.notifications_progress_title)
         val model = request.itemNotification(title, true)
         notificationRepository.showNotification(model)
     }
 
     private fun showDoneItemNotification() {
-        val request = localRepository.getApartmentsRequestSettings()
+        val request = localRepository.getImmoScoutRequestSettings()
         val title = textLocalization.getString(R.string.notifications_done_title)
         val model = request.itemNotification(title, false)
         notificationRepository.showNotification(model)
@@ -59,7 +59,7 @@ class NotificationHelperSummary<Type: ImmoItem>: KoinComponent {
         notificationRepository.cancelNotification(NotificationModel().notificationId)
     }
 
-    private fun ImmoScoutRequest.itemNotification(title: String, progress: Boolean)
+    private fun ImmoRequest.itemNotification(title: String, progress: Boolean)
             : NotificationModel {
 
         val text = textLocalization

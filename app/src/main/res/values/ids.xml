@@ -13,7 +13,8 @@
     <string name="min_rooms" translatable="false">minRooms</string>
     <string name="max_rooms" translatable="false">maxRooms</string>
 
-    <string name="geo_codes" translatable="false">geoCodes</string>
+    <string name="geo_codes_scout" translatable="false">geoCodesScout</string>
+    <string name="geo_codes_welt" translatable="false">geoCodesWelt</string>
 
 
 </resources>

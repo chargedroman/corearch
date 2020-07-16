@@ -1,7 +1,7 @@
 package com.r.immoscoutpuller.repository.impl
 
 import com.r.immoscoutpuller.R
-import com.r.immoscoutpuller.immoscout.model.ImmoScoutRequest
+import com.r.immoscoutpuller.immoscout.model.ImmoRequest
 import com.r.immoscoutpuller.model.ImmoItem
 import com.r.immoscoutpuller.repository.ImmoUrlRepository
 import com.roman.basearch.utility.TextLocalization
@@ -21,7 +21,7 @@ class ImmoUrlRepositoryImpl : ImmoUrlRepository, KoinComponent {
 
 
     override fun getImmoScoutUrl(
-        request: ImmoScoutRequest,
+        request: ImmoRequest,
         pageNumber: Int
     ): HttpUrl {
 

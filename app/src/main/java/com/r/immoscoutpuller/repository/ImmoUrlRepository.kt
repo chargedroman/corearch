@@ -1,6 +1,6 @@
 package com.r.immoscoutpuller.repository
 
-import com.r.immoscoutpuller.immoscout.model.ImmoScoutRequest
+import com.r.immoscoutpuller.immoscout.model.ImmoRequest
 import com.r.immoscoutpuller.model.ImmoItem
 import okhttp3.HttpUrl
 
@@ -12,7 +12,7 @@ import okhttp3.HttpUrl
 
 interface ImmoUrlRepository {
 
-    fun getImmoScoutUrl(request: ImmoScoutRequest, pageNumber: Int): HttpUrl
+    fun getImmoScoutUrl(request: ImmoRequest, pageNumber: Int): HttpUrl
     fun getApartmentUrl(item: ImmoItem): HttpUrl
 
 }

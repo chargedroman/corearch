@@ -8,7 +8,7 @@ import java.io.Serializable
  * Created: 14.07.20
  */
 
-data class ImmoScoutRequest(
+data class ImmoRequest(
     val minPrice: Double = 0.0,
     val maxPrice: Double = 0.0,
     val minLivingSpace: Double = 0.0,

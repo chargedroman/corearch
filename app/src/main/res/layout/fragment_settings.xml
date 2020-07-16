@@ -98,16 +98,29 @@
 
 
             <include
-                android:id="@+id/geo_codes"
+                android:id="@+id/geo_codes_scout"
                 layout="@layout/text_input_shared_prefs"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="16dp"
-                app:hint="@{@string/geo_codes}"
-                app:key='@{@string/geo_codes}'
+                app:hint="@{@string/geo_codes_scout}"
+                app:key="@{@string/geo_codes_scout}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/min_rooms"
+                app:multipleLines="@{true}" />
+
+            <include
+                android:id="@+id/geo_codes_welt"
+                layout="@layout/text_input_shared_prefs"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                app:hint="@{@string/geo_codes_welt}"
+                app:key="@{@string/geo_codes_welt}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/geo_codes_scout"
                 app:multipleLines="@{true}" />
 
 
@@ -124,7 +137,7 @@
                 android:visibility="@{safeUnbox(viewModel.showStartButton) ? View.VISIBLE : View.GONE}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/geo_codes"
+                app:layout_constraintTop_toBottomOf="@id/geo_codes_welt"
                 tools:visibility="visible"/>
 
             <TextView

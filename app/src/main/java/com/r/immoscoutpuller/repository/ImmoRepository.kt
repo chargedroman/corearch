@@ -1,7 +1,8 @@
 package com.r.immoscoutpuller.repository
 
-import com.r.immoscoutpuller.immoscout.model.ImmoScoutRequest
+import com.r.immoscoutpuller.immoscout.model.ImmoRequest
 import com.r.immoscoutpuller.model.PresentableImmoScoutItem
+import com.r.immoscoutpuller.model.PresentableImmoWeltItem
 import kotlinx.coroutines.flow.Flow
 
 /**
@@ -13,6 +14,9 @@ import kotlinx.coroutines.flow.Flow
 interface ImmoRepository {
 
     fun getImmoScoutApartmentsWeb(): Flow<List<PresentableImmoScoutItem>>
-    fun getImmoScoutApartmentsWeb(request: ImmoScoutRequest): Flow<List<PresentableImmoScoutItem>>
+    fun getImmoScoutApartmentsWeb(request: ImmoRequest): Flow<List<PresentableImmoScoutItem>>
+
+    fun getImmoWeltApartmentsWeb(): Flow<List<PresentableImmoWeltItem>>
+    fun getImmoWeltApartmentsWeb(request: ImmoRequest): Flow<List<PresentableImmoWeltItem>>
 
 }

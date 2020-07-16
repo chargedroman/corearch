@@ -1,11 +1,13 @@
 package com.r.immoscoutpuller.repository.impl
 
 import com.r.immoscoutpuller.immoscout.ImmoScoutParser
-import com.r.immoscoutpuller.immoscout.getApartmentsRequestSettings
+import com.r.immoscoutpuller.immoscout.getImmoScoutRequestSettings
+import com.r.immoscoutpuller.immoscout.getImmoWeltRequestSettings
 import com.r.immoscoutpuller.immoscout.model.ImmoItemResponse
-import com.r.immoscoutpuller.immoscout.model.ImmoScoutRequest
+import com.r.immoscoutpuller.immoscout.model.ImmoRequest
 import com.r.immoscoutpuller.immoscout.model.PagingResponse
 import com.r.immoscoutpuller.model.PresentableImmoScoutItem
+import com.r.immoscoutpuller.model.PresentableImmoWeltItem
 import com.r.immoscoutpuller.repository.ImmoRepository
 import com.r.immoscoutpuller.repository.ImmoUrlRepository
 import com.roman.basearch.utility.LocalRepository
@@ -31,11 +33,11 @@ class ImmoRepositoryImpl : ImmoRepository, KoinComponent {
 
 
     override fun getImmoScoutApartmentsWeb(): Flow<List<PresentableImmoScoutItem>> {
-        val request = localRepository.getApartmentsRequestSettings()
+        val request = localRepository.getImmoScoutRequestSettings()
         return getImmoScoutApartmentsWeb(request)
     }
 
-    override fun getImmoScoutApartmentsWeb(request: ImmoScoutRequest) = flow {
+    override fun getImmoScoutApartmentsWeb(request: ImmoRequest) = flow {
 
         val resultList = mutableListOf<PresentableImmoScoutItem>()
 
@@ -57,6 +59,19 @@ class ImmoRepositoryImpl : ImmoRepository, KoinComponent {
     }
 
 
+    override fun getImmoWeltApartmentsWeb(): Flow<List<PresentableImmoWeltItem>> {
+        val request = localRepository.getImmoWeltRequestSettings()
+        return getImmoWeltApartmentsWeb(request)
+    }
+
+    override fun getImmoWeltApartmentsWeb(request: ImmoRequest): Flow<List<PresentableImmoWeltItem>> {
+        return flow {
+
+            emit(listOf())
+        }
+    }
+
+
     private fun MutableList<PresentableImmoScoutItem>.transformingAddAll(raw: List<ImmoItemResponse>) {
         for(item in raw) {
             this.add(PresentableImmoScoutItem(item))
@@ -64,7 +79,7 @@ class ImmoRepositoryImpl : ImmoRepository, KoinComponent {
     }
 
     private fun getImmoScoutApartmentsWeb(
-        request: ImmoScoutRequest,
+        request: ImmoRequest,
         pageNumber: Int
     ): PagingResponse {
 
@@ -78,7 +93,6 @@ class ImmoRepositoryImpl : ImmoRepository, KoinComponent {
         val webResponse = client.newCall(webRequest).execute()
         return immoScoutParser.extractPagingResponseFrom(webResponse)
     }
-
 
 
 }
