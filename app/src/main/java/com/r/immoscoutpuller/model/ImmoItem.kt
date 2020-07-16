@@ -18,7 +18,7 @@ abstract class ImmoItem : KoinComponent, Serializable {
     }
 
 
-    abstract val id: Long
+    abstract val id: String
     abstract val dataTypeHashCode: Int
 
     abstract val warmRent: String

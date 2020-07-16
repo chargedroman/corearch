@@ -16,7 +16,7 @@ class PresentableImmoScoutItem(val pojo: ImmoItemResponse): ImmoItem() {
     @Transient private val textLocalization: TextLocalization = getKoinInstance()
 
 
-    override val id = pojo.id
+    override val id = pojo.id.toString()
     override val dataTypeHashCode: Int = pojo.hashCode()
 
     override val warmRent = warmRent()

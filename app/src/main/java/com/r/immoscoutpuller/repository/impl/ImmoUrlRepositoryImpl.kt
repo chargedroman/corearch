@@ -58,7 +58,7 @@ class ImmoUrlRepositoryImpl : ImmoUrlRepository, KoinComponent {
         val builder = HttpUrl.parse(webUrl)!!.newBuilder()
 
         builder.addPathSegment("expose")
-        builder.addPathSegment(item.id.toString())
+        builder.addPathSegment(item.id)
 
         return builder.build()
     }
@@ -69,7 +69,7 @@ class ImmoUrlRepositoryImpl : ImmoUrlRepository, KoinComponent {
         val builder = HttpUrl.parse(webUrl)!!.newBuilder()
 
         builder.addPathSegment("expose")
-        builder.addPathSegment(item.id.toString())
+        builder.addPathSegment(item.id)
 
         return builder.build()
     }

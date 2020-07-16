@@ -14,7 +14,7 @@ class PresentableImmoWeltItem: ImmoItem() {
     @Transient
     private val textLocalization: TextLocalization = getKoinInstance()
 
-    override val id = 1L
+    override val id = ""
     override val dataTypeHashCode: Int = 1
 
     override val warmRent = ""
