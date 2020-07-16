@@ -26,16 +26,14 @@ abstract class AbstractPullWorker<Type: ImmoItem>(context: Context, params: Work
 
 
     abstract val keyImmoList: String
+    abstract val notificationTitlePrefixRes: Int
 
     abstract fun getFreshImmoItems(): Flow<List<Type>>
 
 
     private val localRepository: LocalRepository by inject()
-
-    private val notificationHelperItem =
-        NotificationHelperItem<Type>()
-    private val notificationHelperSummary =
-        NotificationHelperSummary<Type>()
+    private lateinit var notificationHelperItem: NotificationHelperItem<Type>
+    private lateinit var notificationHelperSummary: NotificationHelperSummary<Type>
 
 
     override val coroutineContext: CoroutineDispatcher get() = Dispatchers.IO
@@ -43,8 +41,10 @@ abstract class AbstractPullWorker<Type: ImmoItem>(context: Context, params: Work
 
     override suspend fun doWork(): Result = coroutineScope {
 
-        val differ =
-            ImmoListDiffer<Type>()
+        notificationHelperItem = NotificationHelperItem(notificationTitlePrefixRes)
+        notificationHelperSummary = NotificationHelperSummary(notificationTitlePrefixRes)
+
+        val differ = ImmoListDiffer<Type>()
 
         val job = getLastItems()
             .flatMapConcat { differ.lastItems = it; getFreshImmoItems() }

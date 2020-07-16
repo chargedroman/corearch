@@ -15,11 +15,13 @@ import org.koin.core.inject
  * Created: 15.07.20
  */
 
-class NotificationHelperItem<Type: ImmoItem>: KoinComponent {
+class NotificationHelperItem<Type: ImmoItem>(titlePrefixRes: Int): KoinComponent {
 
     private val urlBuilder: ImmoUrlRepository by inject()
     private val textLocalization: TextLocalization by inject()
     private val notificationRepository: NotificationRepository by inject()
+
+    private val prefix = textLocalization.getString(titlePrefixRes)+" : "
 
 
     fun onDone(diff: ImmoListDiffer.Diff<Type>) {
@@ -57,9 +59,10 @@ class NotificationHelperItem<Type: ImmoItem>: KoinComponent {
             R.string.notifications_item_summary,
             this.title, rooms, livingSpace, warmRent, inserted, lastModified
         )
+        val fullTitle = prefix+title
 
         return NotificationModel(
-            title = title,
+            title = fullTitle,
             text = text,
             notificationId = this.id.toInt(),
             deepLinkOnClick = urlBuilder.getApartmentUrl(this).toString()

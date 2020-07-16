@@ -2,6 +2,7 @@ package com.r.immoscoutpuller.background.worker
 
 import android.content.Context
 import androidx.work.WorkerParameters
+import com.r.immoscoutpuller.R
 import com.r.immoscoutpuller.immoscout.IMMO_WELT_ITEMS
 import com.r.immoscoutpuller.model.PresentableImmoWeltItem
 import com.r.immoscoutpuller.repository.ImmoRepository
@@ -18,6 +19,7 @@ class ImmoWeltPullWorker(context: Context, params: WorkerParameters)
     : AbstractPullWorker<PresentableImmoWeltItem>(context, params) {
 
     override val keyImmoList: String = IMMO_WELT_ITEMS
+    override val notificationTitlePrefixRes: Int = R.string.menu_title_pull_welt
 
     private val immoRepository: ImmoRepository by inject()
 

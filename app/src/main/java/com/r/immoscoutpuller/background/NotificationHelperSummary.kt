@@ -17,11 +17,13 @@ import org.koin.core.inject
  * Created: 15.07.20
  */
 
-class NotificationHelperSummary<Type: ImmoItem>: KoinComponent {
+class NotificationHelperSummary<Type: ImmoItem>(titlePrefixRes: Int): KoinComponent {
 
     private val localRepository: LocalRepository by inject()
     private val textLocalization: TextLocalization by inject()
     private val notificationRepository: NotificationRepository by inject()
+
+    private val prefix = textLocalization.getString(titlePrefixRes)+" : "
 
 
     fun onStart() {
@@ -56,7 +58,7 @@ class NotificationHelperSummary<Type: ImmoItem>: KoinComponent {
     }
 
     private fun cancelSummaryNotification() {
-        notificationRepository.cancelNotification(NotificationModel().notificationId)
+        notificationRepository.cancelNotification(prefix.hashCode())
     }
 
     private fun ImmoRequest.itemNotification(title: String, progress: Boolean)
@@ -64,9 +66,11 @@ class NotificationHelperSummary<Type: ImmoItem>: KoinComponent {
 
         val text = textLocalization
             .getString(R.string.notifications_summary, getPrice(), getLivingSpace(), getNumberOfRooms(), geoCodes)
+        val fullTitle = prefix + title
 
         return NotificationModel(
-            title = title,
+            notificationId = prefix.hashCode(),
+            title = fullTitle,
             text = text,
             showProgress = progress
         )
