@@ -1,10 +1,10 @@
 package com.r.immoscoutpuller.background
 
 import com.r.immoscoutpuller.R
-import com.r.immoscoutpuller.immoscout.ImmoScoutUrlBuilder
 import com.r.immoscoutpuller.model.PresentableImmoScoutItem
 import com.r.immoscoutpuller.notifications.NotificationModel
 import com.r.immoscoutpuller.notifications.NotificationRepository
+import com.r.immoscoutpuller.repository.ImmoUrlRepository
 import com.roman.basearch.utility.TextLocalization
 import org.koin.core.KoinComponent
 import org.koin.core.inject
@@ -17,7 +17,7 @@ import org.koin.core.inject
 
 class NotificationHelperItem: KoinComponent {
 
-    private val urlBuilder: ImmoScoutUrlBuilder by inject()
+    private val urlBuilder: ImmoUrlRepository by inject()
     private val textLocalization: TextLocalization by inject()
     private val notificationRepository: NotificationRepository by inject()
 
@@ -62,7 +62,7 @@ class NotificationHelperItem: KoinComponent {
             title = title,
             text = text,
             notificationId = this.pojo.id.toInt(),
-            deepLinkOnClick = urlBuilder.getApartmentUrl(pojo).toString()
+            deepLinkOnClick = urlBuilder.getImmoScoutApartmentUrl(pojo).toString()
         )
     }
 

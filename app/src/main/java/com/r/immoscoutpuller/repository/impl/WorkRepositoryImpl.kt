@@ -1,9 +1,10 @@
-package com.r.immoscoutpuller.repository
+package com.r.immoscoutpuller.repository.impl
 
 import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.work.*
 import com.r.immoscoutpuller.background.PullWorker
+import com.r.immoscoutpuller.repository.WorkRepository
 import java.util.concurrent.TimeUnit
 
 /**
@@ -12,11 +13,12 @@ import java.util.concurrent.TimeUnit
  * Created: 14.07.20
  */
 
-class WorkRepositoryImpl(private val context: Context): WorkRepository {
+class WorkRepositoryImpl(private val context: Context):
+    WorkRepository {
 
     companion object {
         const val BACKOFF_DELAY_SECONDS = 60L
-        const val WORK_NAME = "PullRentAbleApartments"
+        const val WORK_NAME = "PullImmoScoutApartments"
     }
 
 
@@ -48,7 +50,8 @@ class WorkRepositoryImpl(private val context: Context): WorkRepository {
         return PeriodicWorkRequest
             .Builder(PullWorker::class.java, 15, TimeUnit.MINUTES)
             .setConstraints(createConstraints())
-            .setBackoffCriteria(BackoffPolicy.EXPONENTIAL, BACKOFF_DELAY_SECONDS, TimeUnit.SECONDS)
+            .setBackoffCriteria(BackoffPolicy.EXPONENTIAL,
+                BACKOFF_DELAY_SECONDS, TimeUnit.SECONDS)
             .build()
     }
 

@@ -3,9 +3,9 @@ package com.r.immoscoutpuller.screens.pull
 import androidx.lifecycle.MutableLiveData
 import com.google.gson.JsonSyntaxException
 import com.r.immoscoutpuller.R
-import com.r.immoscoutpuller.immoscout.ImmoScoutRepository
-import com.r.immoscoutpuller.immoscout.ImmoScoutUrlBuilder
 import com.r.immoscoutpuller.model.PresentableImmoScoutItem
+import com.r.immoscoutpuller.repository.ImmoRepository
+import com.r.immoscoutpuller.repository.ImmoUrlRepository
 import com.roman.basearch.utility.TextLocalization
 import com.roman.basearch.viewmodel.BaseViewModel
 import com.roman.basearch.viewmodel.launch
@@ -21,9 +21,9 @@ class PullViewModel : BaseViewModel() {
 
     val immoItems: MutableLiveData<List<PresentableImmoScoutItem>> = MutableLiveData()
 
-    private val immoScoutRepository: ImmoScoutRepository by inject()
+    private val immoScoutRepository: ImmoRepository by inject()
     private val textLocalization: TextLocalization by inject()
-    private val immoUrlBuilder: ImmoScoutUrlBuilder by inject()
+    private val immoUrlBuilder: ImmoUrlRepository by inject()
 
 
     init {
@@ -38,7 +38,7 @@ class PullViewModel : BaseViewModel() {
     fun getApartments() {
 
         val flow =
-            immoScoutRepository.getRentableApartmentsWeb()
+            immoScoutRepository.getImmoScoutApartmentsWeb()
 
         launch(
             flow,
@@ -49,7 +49,7 @@ class PullViewModel : BaseViewModel() {
 
 
     fun onImmoItemClicked(item: PresentableImmoScoutItem) {
-        val url = immoUrlBuilder.getApartmentUrl(item.pojo)
+        val url = immoUrlBuilder.getImmoScoutApartmentUrl(item.pojo)
         val navigation = PullNavigation.ToWeb(url.toString()) {
             this.error.postValue(it)
             this.message.postValue(textLocalization.getString(R.string.item_could_not_open))

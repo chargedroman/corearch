@@ -1,8 +1,9 @@
-package com.r.immoscoutpuller.immoscout
+package com.r.immoscoutpuller.repository.impl
 
 import com.r.immoscoutpuller.R
 import com.r.immoscoutpuller.immoscout.model.ImmoItemResponse
-import com.r.immoscoutpuller.immoscout.model.RentingApartmentsRequest
+import com.r.immoscoutpuller.immoscout.model.ImmoScoutRequest
+import com.r.immoscoutpuller.repository.ImmoUrlRepository
 import com.roman.basearch.utility.TextLocalization
 import okhttp3.HttpUrl
 import org.koin.core.KoinComponent
@@ -14,13 +15,13 @@ import org.koin.core.inject
  * Created: 13.07.20
  */
 
-class ImmoScoutUrlBuilderImpl : ImmoScoutUrlBuilder, KoinComponent {
+class ImmoUrlRepositoryImpl : ImmoUrlRepository, KoinComponent {
 
     private val textLocalization: TextLocalization by inject()
 
 
-    override fun getRentableApartmentsUrl(
-        request: RentingApartmentsRequest,
+    override fun getImmoScoutUrl(
+        request: ImmoScoutRequest,
         pageNumber: Int
     ): HttpUrl {
 
@@ -41,7 +42,7 @@ class ImmoScoutUrlBuilderImpl : ImmoScoutUrlBuilder, KoinComponent {
     }
 
 
-    override fun getApartmentUrl(item: ImmoItemResponse): HttpUrl {
+    override fun getImmoScoutApartmentUrl(item: ImmoItemResponse): HttpUrl {
 
         val webUrl = textLocalization.getString(R.string.immo_base_web_url)
         val builder = HttpUrl.parse(webUrl)!!.newBuilder()

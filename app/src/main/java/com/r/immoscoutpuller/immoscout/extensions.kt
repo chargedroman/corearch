@@ -1,6 +1,6 @@
 package com.r.immoscoutpuller.immoscout
 
-import com.r.immoscoutpuller.immoscout.model.RentingApartmentsRequest
+import com.r.immoscoutpuller.immoscout.model.ImmoScoutRequest
 import com.roman.basearch.utility.LocalRepository
 
 /**
@@ -9,9 +9,9 @@ import com.roman.basearch.utility.LocalRepository
  * Created: 14.07.20
  */
 
-fun LocalRepository.getApartmentsRequestSettings(): RentingApartmentsRequest {
+fun LocalRepository.getApartmentsRequestSettings(): ImmoScoutRequest {
 
-    return RentingApartmentsRequest(
+    return ImmoScoutRequest(
         retrieve("minPrice")?.toDoubleOrNull() ?: 0.0,
         retrieve("maxPrice")?.toDoubleOrNull() ?: 0.0,
         retrieve("minSpace")?.toDoubleOrNull() ?: 0.0,

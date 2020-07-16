@@ -3,8 +3,8 @@ package com.r.immoscoutpuller.background
 import android.content.Context
 import androidx.work.CoroutineWorker
 import androidx.work.WorkerParameters
-import com.r.immoscoutpuller.immoscout.ImmoScoutRepository
 import com.r.immoscoutpuller.model.PresentableImmoScoutItem
+import com.r.immoscoutpuller.repository.ImmoRepository
 import com.roman.basearch.utility.LocalRepository
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
@@ -27,7 +27,7 @@ class PullWorker(context: Context, params: WorkerParameters)
     }
 
     val localRepository: LocalRepository by inject()
-    val immoScoutRepository: ImmoScoutRepository by inject()
+    val immoScoutRepository: ImmoRepository by inject()
 
     val notificationHelperItem = NotificationHelperItem()
     val notificationHelperSummary = NotificationHelperSummary()
@@ -65,7 +65,7 @@ class PullWorker(context: Context, params: WorkerParameters)
     }
 
     private fun getFreshItems(): Flow<List<PresentableImmoScoutItem>> {
-        return immoScoutRepository.getRentableApartmentsWeb()
+        return immoScoutRepository.getImmoScoutApartmentsWeb()
     }
 
     private fun showNotificationsForEach(diff: ImmoListDiffer.Diff) = flow {

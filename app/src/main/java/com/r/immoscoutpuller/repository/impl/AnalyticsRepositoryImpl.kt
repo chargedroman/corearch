@@ -1,4 +1,4 @@
-package com.r.immoscoutpuller.repository
+package com.r.immoscoutpuller.repository.impl
 
 import android.util.Log
 import com.roman.basearch.repository.AnalyticsRepository

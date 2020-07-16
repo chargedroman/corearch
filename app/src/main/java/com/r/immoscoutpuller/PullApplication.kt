@@ -1,7 +1,7 @@
 package com.r.immoscoutpuller
 
 import com.r.immoscoutpuller.di.externalModule
-import com.r.immoscoutpuller.repository.AnalyticsRepositoryImpl
+import com.r.immoscoutpuller.repository.impl.AnalyticsRepositoryImpl
 import com.roman.basearch.repository.AnalyticsRepository
 import com.roman.basearch.view.BaseApplication
 import net.danlew.android.joda.JodaTimeAndroid

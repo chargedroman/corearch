@@ -2,7 +2,7 @@ package com.r.immoscoutpuller.background
 
 import com.r.immoscoutpuller.R
 import com.r.immoscoutpuller.immoscout.getApartmentsRequestSettings
-import com.r.immoscoutpuller.immoscout.model.RentingApartmentsRequest
+import com.r.immoscoutpuller.immoscout.model.ImmoScoutRequest
 import com.r.immoscoutpuller.notifications.NotificationModel
 import com.r.immoscoutpuller.notifications.NotificationRepository
 import com.roman.basearch.utility.LocalRepository
@@ -58,7 +58,7 @@ class NotificationHelperSummary: KoinComponent {
         notificationRepository.cancelNotification(NotificationModel().notificationId)
     }
 
-    private fun RentingApartmentsRequest.itemNotification(title: String, progress: Boolean)
+    private fun ImmoScoutRequest.itemNotification(title: String, progress: Boolean)
             : NotificationModel {
 
         val text = textLocalization
