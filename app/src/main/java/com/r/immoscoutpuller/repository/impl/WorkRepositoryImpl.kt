@@ -3,7 +3,7 @@ package com.r.immoscoutpuller.repository.impl
 import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.work.*
-import com.r.immoscoutpuller.background.PullWorker
+import com.r.immoscoutpuller.background.ImmoScoutPullWorker
 import com.r.immoscoutpuller.repository.WorkRepository
 import java.util.concurrent.TimeUnit
 
@@ -48,7 +48,7 @@ class WorkRepositoryImpl(private val context: Context):
 
     private fun createPullWork(): PeriodicWorkRequest {
         return PeriodicWorkRequest
-            .Builder(PullWorker::class.java, 15, TimeUnit.MINUTES)
+            .Builder(ImmoScoutPullWorker::class.java, 15, TimeUnit.MINUTES)
             .setConstraints(createConstraints())
             .setBackoffCriteria(BackoffPolicy.EXPONENTIAL,
                 BACKOFF_DELAY_SECONDS, TimeUnit.SECONDS)

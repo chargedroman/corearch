@@ -3,6 +3,7 @@ package com.r.immoscoutpuller.background
 import com.r.immoscoutpuller.R
 import com.r.immoscoutpuller.immoscout.getApartmentsRequestSettings
 import com.r.immoscoutpuller.immoscout.model.ImmoScoutRequest
+import com.r.immoscoutpuller.model.ImmoItem
 import com.r.immoscoutpuller.notifications.NotificationModel
 import com.r.immoscoutpuller.notifications.NotificationRepository
 import com.roman.basearch.utility.LocalRepository
@@ -16,7 +17,7 @@ import org.koin.core.inject
  * Created: 15.07.20
  */
 
-class NotificationHelperSummary: KoinComponent {
+class NotificationHelperSummary<Type: ImmoItem>: KoinComponent {
 
     private val localRepository: LocalRepository by inject()
     private val textLocalization: TextLocalization by inject()
@@ -27,7 +28,7 @@ class NotificationHelperSummary: KoinComponent {
         showProgressItemNotification()
     }
 
-    fun onDone(diff: ImmoListDiffer.Diff) {
+    fun onDone(diff: ImmoListDiffer.Diff<Type>) {
         if(diff.noChanges()) {
             cancelSummaryNotification()
         } else {

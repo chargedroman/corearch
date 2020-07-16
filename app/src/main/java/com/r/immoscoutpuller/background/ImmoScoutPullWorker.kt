@@ -19,18 +19,18 @@ import org.koin.core.inject
  * Created: 14.07.20
  */
 
-class PullWorker(context: Context, params: WorkerParameters)
+class ImmoScoutPullWorker(context: Context, params: WorkerParameters)
     : CoroutineWorker(context, params), KoinComponent {
 
     companion object {
-        const val KEY_IMMO_LIST = "immoItems"
+        const val KEY_IMMO_LIST = "immoScoutItems"
     }
 
     val localRepository: LocalRepository by inject()
     val immoScoutRepository: ImmoRepository by inject()
 
-    val notificationHelperItem = NotificationHelperItem()
-    val notificationHelperSummary = NotificationHelperSummary()
+    val notificationHelperItem = NotificationHelperItem<PresentableImmoScoutItem>()
+    val notificationHelperSummary = NotificationHelperSummary<PresentableImmoScoutItem>()
 
 
     override val coroutineContext: CoroutineDispatcher get() = Dispatchers.IO
@@ -38,7 +38,7 @@ class PullWorker(context: Context, params: WorkerParameters)
 
     override suspend fun doWork(): Result = coroutineScope {
 
-        val differ = ImmoListDiffer()
+        val differ = ImmoListDiffer<PresentableImmoScoutItem>()
 
         val job = getLastItems()
             .flatMapConcat { differ.lastItems = it; getFreshItems() }
@@ -54,7 +54,9 @@ class PullWorker(context: Context, params: WorkerParameters)
     }
 
 
-    private fun getDiff(differ: ImmoListDiffer): Flow<ImmoListDiffer.Diff> = flow {
+    private fun getDiff(differ: ImmoListDiffer<PresentableImmoScoutItem>)
+            : Flow<ImmoListDiffer.Diff<PresentableImmoScoutItem>> = flow {
+
         emit(differ.createDiff())
     }
 
@@ -68,7 +70,7 @@ class PullWorker(context: Context, params: WorkerParameters)
         return immoScoutRepository.getImmoScoutApartmentsWeb()
     }
 
-    private fun showNotificationsForEach(diff: ImmoListDiffer.Diff) = flow {
+    private fun showNotificationsForEach(diff: ImmoListDiffer.Diff<PresentableImmoScoutItem>) = flow {
         notificationHelperItem.onDone(diff)
         notificationHelperSummary.onDone(diff)
         emit(diff)

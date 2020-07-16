@@ -49,7 +49,7 @@ class PullViewModel : BaseViewModel() {
 
 
     fun onImmoItemClicked(item: PresentableImmoScoutItem) {
-        val url = immoUrlBuilder.getImmoScoutApartmentUrl(item.pojo)
+        val url = immoUrlBuilder.getApartmentUrl(item)
         val navigation = PullNavigation.ToWeb(url.toString()) {
             this.error.postValue(it)
             this.message.postValue(textLocalization.getString(R.string.item_could_not_open))

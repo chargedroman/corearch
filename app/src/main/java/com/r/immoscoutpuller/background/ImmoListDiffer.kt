@@ -1,6 +1,6 @@
 package com.r.immoscoutpuller.background
 
-import com.r.immoscoutpuller.model.PresentableImmoScoutItem
+import com.r.immoscoutpuller.model.ImmoItem
 
 /**
  *
@@ -8,12 +8,12 @@ import com.r.immoscoutpuller.model.PresentableImmoScoutItem
  * Created: 15.07.20
  */
 
-class ImmoListDiffer {
-    var lastItems: List<PresentableImmoScoutItem> = listOf()
-    var freshItems: List<PresentableImmoScoutItem> = listOf()
+class ImmoListDiffer<Type: ImmoItem> {
+    var lastItems: List<Type> = listOf()
+    var freshItems: List<Type> = listOf()
 
 
-    fun createDiff(): Diff {
+    fun createDiff(): Diff<Type> {
 
         val lastItems = lastItems
         val freshItems = freshItems
@@ -26,15 +26,15 @@ class ImmoListDiffer {
     }
 
 
-    private fun List<PresentableImmoScoutItem>.containsModifiedItem(item: PresentableImmoScoutItem): Boolean {
-        val single = singleOrNull { it.pojo.id == item.pojo.id } ?: return false
-        return single.pojo != item.pojo
+    private fun List<Type>.containsModifiedItem(item: Type): Boolean {
+        val single = singleOrNull { it.id == item.id } ?: return false
+        return single != item
     }
 
-    private fun List<PresentableImmoScoutItem>.containsItem(item: PresentableImmoScoutItem): Boolean {
+    private fun List<Type>.containsItem(item: Type): Boolean {
 
         for(i in this) {
-            if(i.pojo.id == item.pojo.id) {
+            if(i.id == item.id) {
                 return true
             }
         }
@@ -43,10 +43,10 @@ class ImmoListDiffer {
     }
 
 
-    data class Diff(
-        val newItems: List<PresentableImmoScoutItem> = listOf(),
-        val deletedItems: List<PresentableImmoScoutItem> = listOf(),
-        val modifiedItems: List<PresentableImmoScoutItem> = listOf()
+    data class Diff<Type: ImmoItem>(
+        val newItems: List<Type> = listOf(),
+        val deletedItems: List<Type> = listOf(),
+        val modifiedItems: List<Type> = listOf()
     ) {
 
         fun noChanges(): Boolean {

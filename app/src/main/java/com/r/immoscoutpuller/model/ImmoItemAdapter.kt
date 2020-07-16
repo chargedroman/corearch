@@ -26,7 +26,7 @@ class PullAdapter<Type: ImmoItem>(clickFunction: (Type) -> Unit) :
 
 class ImmoItemDiffUtil<Type: ImmoItem> : DiffUtil.ItemCallback<Type>() {
     override fun areContentsTheSame(p0: Type, p1: Type): Boolean {
-        return p0.equals(p1)
+        return p0 == p1
     }
 
     override fun areItemsTheSame(p0: Type, p1: Type): Boolean {

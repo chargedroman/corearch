@@ -1,8 +1,8 @@
 package com.r.immoscoutpuller.repository.impl
 
 import com.r.immoscoutpuller.R
-import com.r.immoscoutpuller.immoscout.model.ImmoItemResponse
 import com.r.immoscoutpuller.immoscout.model.ImmoScoutRequest
+import com.r.immoscoutpuller.model.ImmoItem
 import com.r.immoscoutpuller.repository.ImmoUrlRepository
 import com.roman.basearch.utility.TextLocalization
 import okhttp3.HttpUrl
@@ -42,8 +42,13 @@ class ImmoUrlRepositoryImpl : ImmoUrlRepository, KoinComponent {
     }
 
 
-    override fun getImmoScoutApartmentUrl(item: ImmoItemResponse): HttpUrl {
+    override fun getApartmentUrl(item: ImmoItem): HttpUrl {
 
+        return getImmoScoutApartmentUrl(item)
+    }
+
+
+    private fun getImmoScoutApartmentUrl(item: ImmoItem): HttpUrl {
         val webUrl = textLocalization.getString(R.string.immo_base_web_url)
         val builder = HttpUrl.parse(webUrl)!!.newBuilder()
 
