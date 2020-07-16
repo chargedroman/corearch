@@ -1,9 +1,8 @@
 package com.r.immoscoutpuller.repository.impl
 
-import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.work.*
-import com.r.immoscoutpuller.background.ImmoScoutPullWorker
+import com.r.immoscoutpuller.background.worker.ImmoScoutPullWorker
 import com.r.immoscoutpuller.repository.WorkRepository
 import java.util.concurrent.TimeUnit
 
@@ -13,8 +12,7 @@ import java.util.concurrent.TimeUnit
  * Created: 14.07.20
  */
 
-class WorkRepositoryImpl(private val context: Context):
-    WorkRepository {
+class WorkRepositoryImpl: WorkRepository {
 
     companion object {
         const val BACKOFF_DELAY_SECONDS = 60L

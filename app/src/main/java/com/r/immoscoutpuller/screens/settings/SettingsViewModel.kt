@@ -3,7 +3,7 @@ package com.r.immoscoutpuller.screens.settings
 import androidx.lifecycle.MutableLiveData
 import androidx.work.WorkInfo
 import com.r.immoscoutpuller.R
-import com.r.immoscoutpuller.background.ImmoScoutPullWorker
+import com.r.immoscoutpuller.background.worker.ImmoScoutPullWorker
 import com.r.immoscoutpuller.model.PresentableImmoScoutItem
 import com.r.immoscoutpuller.repository.WorkRepository
 import com.roman.basearch.utility.LocalRepository

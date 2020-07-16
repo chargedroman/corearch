@@ -26,16 +26,8 @@ val externalModule = module {
 
     single<ImmoUrlRepository> { ImmoUrlRepositoryImpl() }
 
-    single<WorkRepository> {
-        WorkRepositoryImpl(
-            get()
-        )
-    }
+    single<WorkRepository> { WorkRepositoryImpl() }
 
-    single<NotificationRepository> {
-        NotificationRepositoryImpl(
-            get()
-        )
-    }
+    single<NotificationRepository> { NotificationRepositoryImpl(get()) }
 
 }
