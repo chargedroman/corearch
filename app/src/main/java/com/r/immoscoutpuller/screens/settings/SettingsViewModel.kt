@@ -3,7 +3,6 @@ package com.r.immoscoutpuller.screens.settings
 import androidx.lifecycle.MutableLiveData
 import androidx.work.WorkInfo
 import com.r.immoscoutpuller.R
-import com.r.immoscoutpuller.background.worker.ImmoScoutPullWorker
 import com.r.immoscoutpuller.model.PresentableImmoScoutItem
 import com.r.immoscoutpuller.repository.WorkRepository
 import com.roman.basearch.utility.LocalRepository
@@ -32,7 +31,7 @@ class SettingsViewModel : BaseViewModel() {
     fun onDeleteOldItemsClicked() {
 
         val flow =
-            localRepository.saveFile(ImmoScoutPullWorker.KEY_IMMO_LIST, listOf<PresentableImmoScoutItem>())
+            localRepository.saveFile("immoScoutItems", listOf<PresentableImmoScoutItem>())
 
         launch(
             flow,
