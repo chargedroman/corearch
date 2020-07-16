@@ -19,6 +19,7 @@ abstract class ImmoItem : KoinComponent, Serializable {
 
 
     abstract val id: Long
+    abstract val dataTypeHashCode: Int
 
     abstract val warmRent: String
     abstract val rooms: String
@@ -51,6 +52,7 @@ abstract class ImmoItem : KoinComponent, Serializable {
         if (title != other.title) return false
         if (inserted != other.inserted) return false
         if (lastModified != other.lastModified) return false
+        if (dataTypeHashCode != other.dataTypeHashCode) return false
 
         return true
     }
@@ -63,6 +65,7 @@ abstract class ImmoItem : KoinComponent, Serializable {
         result = 31 * result + title.hashCode()
         result = 31 * result + inserted.hashCode()
         result = 31 * result + lastModified.hashCode()
+        result = 31 * result + dataTypeHashCode.hashCode()
         return result
     }
 

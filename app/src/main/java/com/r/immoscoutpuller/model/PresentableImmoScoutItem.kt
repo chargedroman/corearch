@@ -17,6 +17,7 @@ class PresentableImmoScoutItem(val pojo: ImmoItemResponse): ImmoItem() {
 
 
     override val id = pojo.id
+    override val dataTypeHashCode: Int = pojo.hashCode()
 
     override val warmRent = warmRent()
     override val rooms = rooms()
