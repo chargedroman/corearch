@@ -5,6 +5,8 @@
     <string name="menu_title_pull_welt">ImmoWelt</string>
     <string name="menu_title_settings">Settings</string>
 
+    <string name="common_unknown">Unknown</string>
+
     <string name="item_rooms">%1$s rooms</string>
     <string name="item_living_space">%1$s qm</string>
     <string name="item_inserted">Item inserted: %1$s</string>
