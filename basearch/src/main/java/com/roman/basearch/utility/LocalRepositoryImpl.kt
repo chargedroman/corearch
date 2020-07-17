@@ -69,8 +69,10 @@ class LocalRepositoryImpl(private val context: Context) : LocalRepository {
         val files = getAllWithPrefix(prefix)
         val objects = mutableListOf<Type>()
 
-        for(file in files) {
-            objects.add(readFileSync<Type>(file))
+        var i = files.size - 1
+        while(i >= 0) {
+            objects.add(readFileSync<Type>(files[i]))
+            i--
         }
 
         emit(objects)

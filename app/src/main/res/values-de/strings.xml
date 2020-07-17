@@ -24,9 +24,12 @@
     <string name="settings_delete_success">Zuletzt gepullte Daten gelöscht</string>
     <string name="settings_delete_fail">Beim Löschen ist etwas schiefgelaufen</string>
 
-    <string name="diff_created">Erstellt: %1$s</string>
+    <string name="diff_created">Änderung in beobachteten Items festgestellt: %1$s</string>
     <string name="diff_empty">Es sind keine Logs verfügbar</string>
     <string name="diff_error">Beim Lesen der Logs ist etwas schiefgelaufen</string>
+    <string name="diff_new">%1$s New</string>
+    <string name="diff_deleted">%1$s Deleted</string>
+    <string name="diff_modified">%1$s Modified</string>
 
 
     <string name="notifications_channel_name">ImmoPuller Hintergrund Notifications</string>
