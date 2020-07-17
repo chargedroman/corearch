@@ -1,6 +1,7 @@
 package com.r.immoscoutpuller.bindings
 
 import android.text.Editable
+import android.widget.CheckBox
 import android.widget.EditText
 import androidx.core.widget.addTextChangedListener
 import androidx.databinding.BindingAdapter
@@ -31,4 +32,19 @@ fun bindTextToLocalRepositoryKey(editText: EditText, key: String?) {
         val value = it?.toString() ?: key
         localRepository.save(key, value)
     })
+}
+
+@BindingAdapter("bindCheckBoxToLocalRepositoryKey")
+fun bindCheckBoxToLocalRepositoryKey(checkBox: CheckBox, key: String?) {
+    if(key == null) {
+        return
+    }
+
+    val localRepository = getKoinInstance<LocalRepository>()
+    val isChecked = (localRepository.retrieve(key) ?: key).toBoolean()
+
+    checkBox.isChecked = isChecked
+    checkBox.setOnCheckedChangeListener { _, value ->
+        localRepository.save(key, value.toString())
+    }
 }

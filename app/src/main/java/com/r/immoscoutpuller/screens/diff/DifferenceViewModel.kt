@@ -44,7 +44,7 @@ class DifferenceViewModel : BaseViewModel() {
 
         launch(
             getItemsFlow,
-            { diffItems.postValue(it) },
+            { onDiffItemsFetched(it) },
             { handleErrorOnReadDiffs(it) }
         )
     }
@@ -53,6 +53,29 @@ class DifferenceViewModel : BaseViewModel() {
         val errorMessage = textLocalization.getString(R.string.diff_error, error.toString())
         message.postValue(errorMessage)
         this.error.postValue(error)
+    }
+
+
+    private fun onDiffItemsFetched(items: List<ImmoListDiffer.Diff<ImmoItem>>) {
+        val key = textLocalization.getString(R.string.show_modified)
+        val showModifiedItems = (localRepository.retrieve(key) ?: "").toBoolean()
+
+        if(showModifiedItems) {
+            diffItems.postValue(items)
+        } else {
+            diffItems.postValue(items.removeModifiedItems())
+        }
+    }
+
+    private fun List<ImmoListDiffer.Diff<ImmoItem>>.removeModifiedItems(): List<ImmoListDiffer.Diff<ImmoItem>> {
+
+        val emptyList = listOf<ImmoItem>()
+
+        for(item in this) {
+            item.modifiedItems = emptyList
+        }
+
+        return this
     }
 
 }

@@ -182,6 +182,19 @@
                 app:layout_constraintTop_toBottomOf="@id/txt_stop_pull" />
 
 
+            <CheckBox
+                android:id="@+id/checkbox_show_modified"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/settings_show_modified"
+                android:layout_margin="24dp"
+                app:bindCheckBoxToLocalRepositoryKey="@{@string/show_modified}"
+                app:layout_constraintTop_toBottomOf="@id/txt_delete_old"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.core.widget.NestedScrollView>

@@ -15,6 +15,7 @@ import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.flow.*
 import org.koin.core.KoinComponent
 import org.koin.core.inject
+import java.util.*
 
 /**
  *
@@ -91,7 +92,7 @@ abstract class AbstractPullWorker<Type: ImmoItem>(context: Context, params: Work
             return flowOf(diff)
         }
 
-        return localRepository.saveFile(DIFF_PREFIX+diff.creationDate.toString(), diff)
+        return localRepository.saveFile(DIFF_PREFIX+UUID.randomUUID().toString(), diff)
     }
 
 }

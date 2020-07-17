@@ -23,6 +23,7 @@
     <string name="settings_delete_old">Zuletzt gepullte Daten löschen</string>
     <string name="settings_delete_success">Zuletzt gepullte Daten gelöscht</string>
     <string name="settings_delete_fail">Beim Löschen ist etwas schiefgelaufen</string>
+    <string name="settings_show_modified">Modifizierte Items in den Logs anzeigen</string>
 
     <string name="diff_created">Änderung in beobachteten Items festgestellt: %1$s</string>
     <string name="diff_empty">Es sind keine Logs verfügbar</string>

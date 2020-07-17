@@ -23,6 +23,7 @@
     <string name="settings_delete_old">Delete last pulled data</string>
     <string name="settings_delete_success">Last pulled data was deleted</string>
     <string name="settings_delete_fail">Something went wrong while deleting the old data</string>
+    <string name="settings_show_modified">Show modified items in the logs</string>
 
     <string name="diff_created">Difference in observed items detected: %1$s</string>
     <string name="diff_empty">There are no logs available</string>
