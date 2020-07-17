@@ -75,7 +75,7 @@ class DifferenceViewModel : BaseViewModel() {
             item.modifiedItems = emptyList
         }
 
-        return this
+        return this.filter { !it.noChanges() }
     }
 
 }
