@@ -26,6 +26,7 @@
 
     <string name="diff_created">Created: %1$s</string>
     <string name="diff_empty">There are no logs available</string>
+    <string name="diff_error">Something went wrong while reading diffs</string>
 
 
     <string name="notifications_channel_name">ImmoPuller background work notifications</string>
