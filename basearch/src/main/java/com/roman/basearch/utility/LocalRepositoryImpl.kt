@@ -3,10 +3,7 @@ package com.roman.basearch.utility
 import android.content.Context
 import android.net.Uri
 import androidx.core.content.edit
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
-import kotlinx.coroutines.flow.flowOn
 import java.io.File
 import java.io.ObjectInputStream
 import java.io.ObjectOutputStream
@@ -57,12 +54,50 @@ class LocalRepositoryImpl(private val context: Context) : LocalRepository {
     @Suppress("BlockingMethodInNonBlockingContext")
     override fun <Type> readFile(key: String) = flow {
 
+        val result = readFileSync<Type>(key)
+        emit(result)
+
+    }
+
+    override fun deleteFile(key: String) = flow {
+        deleteFileSync(key)
+        emit(Unit)
+    }
+
+    override fun <Type> readAllWithPrefix(prefix: String) = flow {
+
+        val files = getAllWithPrefix(prefix)
+        val objects = mutableListOf<Type>()
+
+        for(file in files) {
+            objects.add(readFileSync<Type>(file))
+        }
+
+        emit(objects)
+    }
+
+    override fun deleteAllWithPrefix(prefix: String) = flow {
+        val files = getAllWithPrefix(prefix)
+        for(file in files) deleteFileSync(file)
+        emit(Unit)
+    }
+
+
+    private fun deleteFileSync(key: String) {
+        val filesDir = context.filesDir
+        val file = File(filesDir, key)
+        file.delete()
+    }
+
+    private fun getAllWithPrefix(prefix: String): Array<String> {
+        return context.filesDir.list { _, string -> string.startsWith(prefix) }
+    }
+
+    private fun <Type> readFileSync(key: String): Type {
         val path = getFileUri(key)
         val stream = context.contentResolver.openInputStream(path)
         val objectStream = ObjectInputStream(stream)
-        val result = objectStream.readObject()
-        emit(result as Type)
-
+        return objectStream.readObject() as Type
     }
 
     private fun getFileUri(key: String): Uri {

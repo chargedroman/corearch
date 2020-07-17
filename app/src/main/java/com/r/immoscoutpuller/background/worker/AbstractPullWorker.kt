@@ -6,6 +6,7 @@ import androidx.work.WorkerParameters
 import com.r.immoscoutpuller.background.ImmoListDiffer
 import com.r.immoscoutpuller.background.NotificationHelperItem
 import com.r.immoscoutpuller.background.NotificationHelperSummary
+import com.r.immoscoutpuller.immoscout.DIFF_PREFIX
 import com.r.immoscoutpuller.model.ImmoItem
 import com.roman.basearch.utility.LocalRepository
 import kotlinx.coroutines.CoroutineDispatcher
@@ -51,6 +52,7 @@ abstract class AbstractPullWorker<Type: ImmoItem>(context: Context, params: Work
             .flatMapConcat { saveFreshItems(it) }
             .flatMapConcat { differ.freshItems = it; getDiff(differ) }
             .flatMapConcat { showNotificationsForEach(it) }
+            .flatMapConcat { dumpDiff(it) }
             .onStart { notificationHelperSummary.onStart() }
             .launchIn(this)
 
@@ -80,6 +82,16 @@ abstract class AbstractPullWorker<Type: ImmoItem>(context: Context, params: Work
 
     private fun saveFreshItems(items: List<Type>): Flow<List<Type>> {
         return localRepository.saveFile(keyImmoList, items)
+    }
+
+
+    private fun dumpDiff(diff: ImmoListDiffer.Diff<Type>): Flow<ImmoListDiffer.Diff<Type>> {
+
+        if(diff.noChanges()) {
+            return flowOf(diff)
+        }
+
+        return localRepository.saveFile(DIFF_PREFIX+diff.creationDate.toString(), diff)
     }
 
 }

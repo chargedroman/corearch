@@ -11,6 +11,7 @@ import com.roman.basearch.utility.LocalRepository
 
 const val IMMO_SCOUT_ITEMS = "immoScoutItems"
 const val IMMO_WELT_ITEMS = "immoWeltItems"
+const val DIFF_PREFIX = "diff_"
 
 
 fun LocalRepository.getImmoScoutRequestSettings(): ImmoRequest {

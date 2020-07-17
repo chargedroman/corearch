@@ -24,6 +24,10 @@ class PresentableImmoWeltItem(val pojo: ImmoWeltItemResponse): ImmoItem() {
     override val rooms = textLocalization.getString(R.string.item_rooms, pojo.rooms)
     override val livingSpace = textLocalization.getString(R.string.item_living_space, pojo.livingSpace)
 
+    override fun pojoStringDump(): String {
+        return pojo.toString()
+    }
+
 
     override val inserted =
         textLocalization.getString(

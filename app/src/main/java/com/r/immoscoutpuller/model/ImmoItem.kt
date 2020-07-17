@@ -30,15 +30,7 @@ abstract class ImmoItem : KoinComponent, Serializable {
     abstract val lastModified: String
 
 
-    class ViewModel<Type: ImmoItem>: BaseItemViewModel<Type>() {
-
-        val item: ObservableField<Type> = ObservableField()
-
-        override fun bindItem(item: Type) {
-            this.item.set(item)
-        }
-
-    }
+    abstract fun pojoStringDump(): String
 
 
     override fun equals(other: Any?): Boolean {
@@ -67,6 +59,17 @@ abstract class ImmoItem : KoinComponent, Serializable {
         result = 31 * result + lastModified.hashCode()
         result = 31 * result + dataTypeHashCode.hashCode()
         return result
+    }
+
+
+    class ViewModel<Type: ImmoItem>: BaseItemViewModel<Type>() {
+
+        val item: ObservableField<Type> = ObservableField()
+
+        override fun bindItem(item: Type) {
+            this.item.set(item)
+        }
+
     }
 
 }

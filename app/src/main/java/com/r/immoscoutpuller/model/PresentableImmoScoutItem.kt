@@ -27,6 +27,10 @@ class PresentableImmoScoutItem(val pojo: ImmoItemResponse): ImmoItem() {
     override val inserted = inserted()
     override val lastModified = lastModified()
 
+    override fun pojoStringDump(): String {
+        return pojo.toString()
+    }
+
 
     private fun inserted(): String {
         val inserted = textLocalization.getDateDifferenceToToday(pojo.publishDate)

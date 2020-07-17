@@ -1,6 +1,8 @@
 package com.r.immoscoutpuller.background
 
 import com.r.immoscoutpuller.model.ImmoItem
+import java.io.Serializable
+import java.util.*
 
 /**
  *
@@ -46,8 +48,9 @@ class ImmoListDiffer<Type: ImmoItem> {
     data class Diff<Type: ImmoItem>(
         val newItems: List<Type> = listOf(),
         val deletedItems: List<Type> = listOf(),
-        val modifiedItems: List<Type> = listOf()
-    ) {
+        val modifiedItems: List<Type> = listOf(),
+        val creationDate: Date = Date()
+    ): Serializable {
 
         fun noChanges(): Boolean {
             return newItems.isEmpty() && deletedItems.isEmpty() && modifiedItems.isEmpty()

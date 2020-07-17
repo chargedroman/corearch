@@ -3,9 +3,9 @@ package com.r.immoscoutpuller.screens.settings
 import androidx.lifecycle.MutableLiveData
 import androidx.work.WorkInfo
 import com.r.immoscoutpuller.R
+import com.r.immoscoutpuller.immoscout.DIFF_PREFIX
 import com.r.immoscoutpuller.immoscout.IMMO_SCOUT_ITEMS
 import com.r.immoscoutpuller.immoscout.IMMO_WELT_ITEMS
-import com.r.immoscoutpuller.model.ImmoItem
 import com.r.immoscoutpuller.repository.WorkRepository
 import com.roman.basearch.utility.LocalRepository
 import com.roman.basearch.utility.TextLocalization
@@ -34,8 +34,9 @@ class SettingsViewModel : BaseViewModel() {
     fun onDeleteOldItemsClicked() {
 
         val flow = localRepository
-            .saveFile(IMMO_SCOUT_ITEMS, listOf<ImmoItem>())
-            .flatMapConcat { localRepository.saveFile(IMMO_WELT_ITEMS, listOf<ImmoItem>()) }
+            .deleteFile(IMMO_SCOUT_ITEMS)
+            .flatMapConcat { localRepository.deleteFile(IMMO_WELT_ITEMS) }
+            .flatMapConcat { localRepository.deleteAllWithPrefix(DIFF_PREFIX) }
 
         launch(
             flow,
