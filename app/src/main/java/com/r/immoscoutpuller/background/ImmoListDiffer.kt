@@ -15,11 +15,6 @@ class ImmoListDiffer<Type: ImmoItem> {
     var freshItems: List<Type> = listOf()
 
 
-    companion object {
-        private val serialVersionUid: Long = -3829496429912586865
-    }
-
-
     fun createDiff(): Diff<Type> {
 
         val lastItems = lastItems
@@ -51,18 +46,18 @@ class ImmoListDiffer<Type: ImmoItem> {
 
 
     data class Diff<Type: ImmoItem>(
-        var newItems: List<Type> = listOf(),
-        var deletedItems: List<Type> = listOf(),
-        var modifiedItems: List<Type> = listOf(),
+        val newItems: List<Type> = listOf(),
+        val deletedItems: List<Type> = listOf(),
+        val modifiedItems: List<Type> = listOf(),
         val creationDate: Date = Date()
     ): Serializable {
 
-        companion object {
-            private val serialVersionUid: Long = -137613743503686213
-        }
-
         fun noChanges(): Boolean {
             return newItems.isEmpty() && deletedItems.isEmpty() && modifiedItems.isEmpty()
+        }
+
+        fun noChangesIgnoringModified(): Boolean {
+            return newItems.isEmpty() && deletedItems.isEmpty()
         }
 
     }

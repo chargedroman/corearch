@@ -63,19 +63,8 @@ class DifferenceViewModel : BaseViewModel() {
         if(showModifiedItems) {
             diffItems.postValue(items)
         } else {
-            diffItems.postValue(items.removeModifiedItems())
+            diffItems.postValue(items.filter { !it.noChangesIgnoringModified() })
         }
-    }
-
-    private fun List<ImmoListDiffer.Diff<ImmoItem>>.removeModifiedItems(): List<ImmoListDiffer.Diff<ImmoItem>> {
-
-        val emptyList = listOf<ImmoItem>()
-
-        for(item in this) {
-            item.modifiedItems = emptyList
-        }
-
-        return this.filter { !it.noChanges() }
     }
 
 }

@@ -5,6 +5,7 @@ import com.r.immoscoutpuller.model.ImmoItem
 import com.r.immoscoutpuller.notifications.NotificationModel
 import com.r.immoscoutpuller.notifications.NotificationRepository
 import com.r.immoscoutpuller.repository.ImmoUrlRepository
+import com.roman.basearch.utility.LocalRepository
 import com.roman.basearch.utility.TextLocalization
 import org.koin.core.KoinComponent
 import org.koin.core.inject
@@ -18,6 +19,7 @@ import org.koin.core.inject
 class NotificationHelperItem<Type: ImmoItem>(titlePrefixRes: Int): KoinComponent {
 
     private val urlBuilder: ImmoUrlRepository by inject()
+    private val localRepository: LocalRepository by inject()
     private val textLocalization: TextLocalization by inject()
     private val notificationRepository: NotificationRepository by inject()
 
@@ -48,6 +50,13 @@ class NotificationHelperItem<Type: ImmoItem>(titlePrefixRes: Int): KoinComponent
     }
 
     private fun showModifiedItemNotification(item: ImmoItem) {
+        val key = textLocalization.getString(R.string.show_modified)
+        val showModifiedItems = (localRepository.retrieve(key) ?: "").toBoolean()
+
+        if(!showModifiedItems) {
+            return
+        }
+
         val title = textLocalization.getString(R.string.notifications_item_modified_title)
         val model = item.itemNotification(title)
         notificationRepository.showNotification(model)

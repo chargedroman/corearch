@@ -31,10 +31,25 @@ class NotificationHelperSummary<Type: ImmoItem>(titlePrefixRes: Int): KoinCompon
     }
 
     fun onDone(diff: ImmoListDiffer.Diff<Type>) {
-        if(diff.noChanges()) {
+
+        val cancelSummaryNotification = cancelSummaryNotification(diff)
+
+        if(cancelSummaryNotification) {
             cancelSummaryNotification()
         } else {
             showDoneItemNotification()
+        }
+    }
+
+
+    private fun cancelSummaryNotification(diff: ImmoListDiffer.Diff<Type>): Boolean {
+        val key = textLocalization.getString(R.string.show_modified)
+        val showModifiedItems = (localRepository.retrieve(key) ?: "").toBoolean()
+
+        return if(showModifiedItems) {
+            diff.noChanges()
+        } else {
+            diff.noChangesIgnoringModified()
         }
     }
 
