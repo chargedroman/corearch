@@ -16,4 +16,9 @@
             android:icon="@drawable/ic_cogs_solid"
             android:title="@string/menu_title_settings"/>
 
+    <item
+        android:id="@id/fragment_diff"
+        android:icon="@drawable/ic_archive_solid"
+        android:title="@string/menu_title_diff"/>
+
 </menu>

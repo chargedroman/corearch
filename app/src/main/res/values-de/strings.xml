@@ -4,6 +4,7 @@
     <string name="menu_title_pull_scout">ImmoScout</string>
     <string name="menu_title_pull_welt">ImmoWelt</string>
     <string name="menu_title_settings">Einstellungen</string>
+    <string name="menu_title_diff">Logs</string>
 
     <string name="common_unknown">Unbekannt</string>
 
@@ -22,6 +23,9 @@
     <string name="settings_delete_old">Zuletzt gepullte Daten löschen</string>
     <string name="settings_delete_success">Zuletzt gepullte Daten gelöscht</string>
     <string name="settings_delete_fail">Beim Löschen ist etwas schiefgelaufen</string>
+
+    <string name="diff_created">Erstellt: %1$s</string>
+    <string name="diff_empty">Es sind keine Logs verfügbar</string>
 
 
     <string name="notifications_channel_name">ImmoPuller Hintergrund Notifications</string>

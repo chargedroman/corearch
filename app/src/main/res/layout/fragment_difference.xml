@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View"/>
+
+        <variable
+            name="viewModel"
+            type="com.r.immoscoutpuller.screens.diff.DifferenceViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/layout_refresh"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+
+        <TextView
+            android:id="@+id/txt_empty"
+            style="@style/StandardHeader"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:text="@string/diff_empty"
+            android:visibility="@{safeUnbox(viewModel.diffItems.empty) ? View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Some Title" />
+
+        <include
+            layout="@layout/layout_progressbar"
+            app:viewModel="@{viewModel}"
+            tools:visibility="gone" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
