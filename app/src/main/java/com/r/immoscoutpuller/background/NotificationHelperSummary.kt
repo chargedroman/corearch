@@ -87,6 +87,7 @@ class NotificationHelperSummary<Type: ImmoItem>(titlePrefixRes: Int): KoinCompon
             notificationId = prefix.hashCode(),
             title = fullTitle,
             text = text,
+            isSilent = true,
             showProgress = progress
         )
     }

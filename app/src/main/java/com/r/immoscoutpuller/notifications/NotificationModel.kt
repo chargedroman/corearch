@@ -13,6 +13,7 @@ data class NotificationModel(
     val title: String = "",
     val text: String = "",
     val showProgress: Boolean = false,
+    val isSilent: Boolean = false,
     val notificationId: Int = NOTIFICATION_ID,
     val deepLinkOnClick: String? = null
 ) {

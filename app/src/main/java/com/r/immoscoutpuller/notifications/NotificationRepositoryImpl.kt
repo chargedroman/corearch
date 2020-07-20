@@ -60,9 +60,21 @@ class NotificationRepositoryImpl(private val context: Context):
             .setContentText(model.text)
             .setStyle(NotificationCompat.BigTextStyle().bigText(model.text))
             .setContentIntent(getIntentFrom(model) ?: getAppIntent())
+            .setSilent(model)
             .setProgress(model)
             .setAutoCancel(true)
             .build()
+    }
+
+
+    private fun NotificationCompat.Builder.setSilent(model: NotificationModel)
+            : NotificationCompat.Builder {
+
+        return if(model.isSilent) {
+            this.setVibrate(longArrayOf(0))
+        } else {
+            this
+        }
     }
 
 
