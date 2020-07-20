@@ -7,22 +7,63 @@
 
         <import type="android.view.View" />
 
-        <import type="com.r.immoscoutpuller.model.ImmoItem"/>
+        <import type="com.r.immoscoutpuller.model.ImmoItem" />
 
         <variable
             name="viewModel"
             type="com.r.immoscoutpuller.screens.basepull.PullViewModel&lt;ImmoItem>" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
 
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/transactions_collapsing_header"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.google.android.material.appbar.CollapsingToolbarLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@android:color/white"
+                app:layout_scrollFlags="scroll|exitUntilCollapsed">
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_collapseMode="pin">
+
+                    <TextView
+                        style="@style/StandardHeader"
+                        android:id="@+id/txt_total_items"
+                        android:text="@{viewModel.immoItemsTotal}"
+                        android:gravity="center"
+                        android:layout_margin="16dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        tools:text="@string/pull_title"/>
+
+                    <View
+                        android:background="@android:color/darker_gray"
+                        android:layout_width="wrap_content"
+                        android:layout_height="1dp"/>
+
+                </LinearLayout>
+
+            </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+
         <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
             android:id="@+id/layout_refresh"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -39,22 +80,18 @@
         <TextView
             android:id="@+id/txt_empty"
             style="@style/StandardHeader"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:layout_margin="16dp"
             android:text="@string/pull_get_empty"
-            android:visibility="@{safeUnbox(viewModel.immoItems.empty) ? View.VISIBLE : View.GONE}"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="Some Title" />
+            android:visibility="@{safeUnbox(viewModel.immoItems.empty) ? View.VISIBLE : View.GONE}" />
 
         <include
             layout="@layout/layout_progressbar"
             app:viewModel="@{viewModel}"
             tools:visibility="gone" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
 </layout>

@@ -19,6 +19,7 @@
     <string name="pull_get_error_parse">Encountered an issue while parsing: %1$s</string>
     <string name="pull_get_error_default">Something went wrong while getting the apartments: %1$s</string>
     <string name="pull_get_empty">There were no items found for the searching criteria</string>
+    <string name="pull_title">Currently %1$s item(s) available</string>
 
     <string name="settings_start_work">Start pulling rentables</string>
     <string name="settings_stop_work">Stop pulling rentables</string>

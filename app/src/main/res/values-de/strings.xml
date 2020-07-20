@@ -17,6 +17,7 @@
     <string name="pull_get_error_parse">Beim Parsen ist ein Fehler aufgetreten: %1$s</string>
     <string name="pull_get_error_default">Beim Holen der Apartments ist ein Fehler aufgetreten: %1$s</string>
     <string name="pull_get_empty">Keine Items gefunden für die gegebenen Suchkriterien</string>
+    <string name="pull_title">Momentan %1$s Item(s) verfügbar</string>
 
     <string name="settings_start_work">Periodischs Anfragen starten</string>
     <string name="settings_stop_work">Nicht mehr periodisch Anfragen</string>

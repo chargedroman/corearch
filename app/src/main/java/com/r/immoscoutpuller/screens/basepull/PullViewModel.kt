@@ -21,6 +21,7 @@ import org.koin.core.inject
 abstract class PullViewModel<Type: ImmoItem> : BaseViewModel() {
 
     val immoItems: MutableLiveData<List<Type>> = MutableLiveData()
+    val immoItemsTotal: MutableLiveData<String> = MutableLiveData()
 
     val immoRepository: ImmoRepository by inject()
     val textLocalization: TextLocalization by inject()
@@ -44,7 +45,7 @@ abstract class PullViewModel<Type: ImmoItem> : BaseViewModel() {
 
         launch(
             getFreshItems(),
-            { immoItems.postValue(it) },
+            { onImmoItemsReceived(it) },
             { handleErrorOnGetApartments(it) }
         )
     }
@@ -70,6 +71,15 @@ abstract class PullViewModel<Type: ImmoItem> : BaseViewModel() {
         }
 
         message.postValue(errorMessage)
+    }
+
+
+    private fun onImmoItemsReceived(items: List<Type>) {
+        val size = items.size.toString()
+        val total = textLocalization.getString(R.string.pull_title, size)
+
+        immoItems.postValue(items)
+        immoItemsTotal.postValue(total)
     }
 
 }
