@@ -25,7 +25,7 @@
     <string name="settings_delete_old_yes">Löschen</string>
     <string name="settings_delete_old_no">Abbrechen</string>
     <string name="item_user_comment_hint">Persönliche Notiz</string>
-    <string name="item_user_contacted_hint">Vermieter schon kontaktiert?</string>
+    <string name="item_user_contacted_hint">Vermieter kontaktiert?</string>
 
     <string name="settings_delete_success">Zuletzt gepullte Daten gelöscht</string>
     <string name="settings_delete_fail">Beim Löschen ist etwas schiefgelaufen</string>

@@ -14,7 +14,7 @@
     <string name="item_last_modified">Last modification: %1$s</string>
     <string name="item_could_not_open">There seems to be no browser installed, cannot open item.</string>
     <string name="item_user_comment_hint">Personal note</string>
-    <string name="item_user_contacted_hint">Landlord already contacted?</string>
+    <string name="item_user_contacted_hint">Landlord contacted?</string>
 
     <string name="pull_get_error_parse">Encountered an issue while parsing: %1$s</string>
     <string name="pull_get_error_default">Something went wrong while getting the apartments: %1$s</string>

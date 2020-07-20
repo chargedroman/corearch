@@ -32,7 +32,6 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
             android:maxLines="1"
             android:text="@{viewModel.item.rooms}"
@@ -43,7 +42,7 @@
             app:layout_constraintBottom_toTopOf="@id/txt_living_space"
             app:layout_constraintEnd_toEndOf="@id/guide_middle"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/txt_title"
             app:layout_constraintVertical_chainStyle="packed"
             tools:text="2 rooms" />
 
@@ -73,14 +72,13 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
-            android:layout_marginBottom="16dp"
             android:maxLines="1"
             android:text="@{viewModel.item.warmRent}"
             app:autoSizeMaxTextSize="20sp"
             app:autoSizeMinTextSize="12sp"
             app:autoSizeStepGranularity="2sp"
             app:autoSizeTextType="uniform"
-            app:layout_constraintBottom_toTopOf="@id/user_comment"
+            app:layout_constraintBottom_toBottomOf="@+id/checkbox_contacted"
             app:layout_constraintEnd_toEndOf="@id/guide_middle"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/txt_living_space"
@@ -98,11 +96,10 @@
             android:id="@+id/divider"
             android:layout_width="1dp"
             android:layout_height="0dp"
-            android:layout_marginTop="16dp"
             android:background="@android:color/darker_gray"
-            app:layout_constraintBottom_toBottomOf="@+id/txt_warm_price"
+            app:layout_constraintBottom_toBottomOf="@+id/checkbox_contacted"
             app:layout_constraintStart_toEndOf="@id/guide_middle"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="@+id/txt_title" />
 
 
         <TextView
@@ -112,13 +109,14 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
+            android:layout_marginTop="16dp"
             android:gravity="start"
             android:text="@{viewModel.item.title}"
             app:layout_constraintBottom_toTopOf="@+id/txt_inserted"
             app:layout_constraintEnd_toStartOf="@id/img_note"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/divider"
-            app:layout_constraintTop_toTopOf="@+id/txt_rooms"
+            app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_chainStyle="packed"
             tools:text="Some Title" />
 
@@ -147,7 +145,7 @@
             android:layout_marginEnd="16dp"
             android:gravity="start"
             android:text="@{viewModel.item.lastModified}"
-            app:layout_constraintBottom_toBottomOf="@+id/txt_warm_price"
+            app:layout_constraintBottom_toTopOf="@+id/checkbox_contacted"
             app:layout_constraintEnd_toStartOf="@id/img_note"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/divider"
@@ -162,9 +160,9 @@
             android:layout_margin="16dp"
             android:onClick="@{() -> viewModel.onShowNoteToggleClicked()}"
             android:src="@drawable/ic_sticky_note_solid"
-            app:layout_constraintBottom_toBottomOf="@+id/txt_modified"
+            app:layout_constraintBottom_toBottomOf="@+id/txt_warm_price"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/txt_title" />
+            app:layout_constraintTop_toTopOf="@+id/txt_rooms" />
 
 
         <com.google.android.material.textfield.TextInputLayout
@@ -176,10 +174,10 @@
             android:visibility="@{safeUnbox(viewModel.noteVisible) ? View.VISIBLE : View.GONE}"
             app:endIconMode="clear_text"
             app:endIconDrawable="@drawable/ic_close"
-            app:layout_constraintTop_toBottomOf="@id/txt_warm_price"
+            app:layout_constraintTop_toBottomOf="@id/checkbox_contacted"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/checkbox_contacted">
+            app:layout_constraintBottom_toBottomOf="parent">
 
             <com.google.android.material.textfield.TextInputEditText
                 style="@style/StandardTextInput"
@@ -195,16 +193,20 @@
 
         <CheckBox
             android:id="@+id/checkbox_contacted"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="@string/item_user_contacted_hint"
-            android:layout_margin="16dp"
-            android:visibility="@{safeUnbox(viewModel.noteVisible) ? View.VISIBLE : View.GONE}"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
             android:checked="@{viewModel.noteContacted}"
+            android:text="@string/item_user_contacted_hint"
             app:bindCheckChanged="@{(contacted) -> viewModel.onContactedCheckChanged(contacted)}"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"/>
+            app:layout_constraintBottom_toTopOf="@+id/user_comment"
+            app:layout_constraintEnd_toStartOf="@+id/img_note"
+            app:layout_constraintStart_toStartOf="@+id/guide_middle"
+            app:layout_constraintTop_toBottomOf="@+id/txt_modified"
+            app:layout_constraintHorizontal_bias="0.5"/>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
