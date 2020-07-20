@@ -179,7 +179,7 @@
             app:layout_constraintTop_toBottomOf="@id/txt_warm_price"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent">
+            app:layout_constraintBottom_toTopOf="@id/checkbox_contacted">
 
             <com.google.android.material.textfield.TextInputEditText
                 style="@style/StandardTextInput"
@@ -191,6 +191,20 @@
                 app:bindTextChanged="@{(text) -> viewModel.onCommentTextChanged(text)}"/>
 
         </com.google.android.material.textfield.TextInputLayout>
+
+
+        <CheckBox
+            android:id="@+id/checkbox_contacted"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/item_user_contacted_hint"
+            android:layout_margin="16dp"
+            android:visibility="@{safeUnbox(viewModel.noteVisible) ? View.VISIBLE : View.GONE}"
+            android:checked="@{viewModel.noteContacted}"
+            app:bindCheckChanged="@{(contacted) -> viewModel.onContactedCheckChanged(contacted)}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -19,6 +19,34 @@ interface TextChanged {
     fun onChanged(text: String)
 }
 
+interface CheckChanged {
+    fun onChanged(checked: Boolean)
+}
+
+
+@BindingAdapter("bindTextChanged")
+fun bindTextChanged(editText: EditText, listener: TextChanged?) {
+    if(listener == null) {
+        return
+    }
+
+    editText.addTextChangedListener(afterTextChanged = {
+        val value = it?.toString() ?: ""
+        listener.onChanged(value)
+    })
+}
+
+@BindingAdapter("bindCheckChanged")
+fun bindCheckChanged(checkBox: CheckBox, listener: CheckChanged?) {
+    if(listener == null) {
+        return
+    }
+
+    checkBox.setOnCheckedChangeListener { _, value ->
+        listener.onChanged(value)
+    }
+}
+
 
 /**
  * Just a quick utility binding for syncing EditText text with LocalRepository via one key
@@ -37,18 +65,6 @@ fun bindTextToLocalRepositoryKey(editText: EditText, key: String?) {
     editText.addTextChangedListener(afterTextChanged = {
         val value = it?.toString() ?: key
         localRepository.save(key, value)
-    })
-}
-
-@BindingAdapter("bindTextChanged")
-fun bindTextChanged(editText: EditText, listener: TextChanged?) {
-    if(listener == null) {
-        return
-    }
-
-    editText.addTextChangedListener(afterTextChanged = {
-        val value = it?.toString() ?: ""
-        listener.onChanged(value)
     })
 }
 
