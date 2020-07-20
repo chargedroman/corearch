@@ -33,6 +33,12 @@ class SettingsViewModel : BaseViewModel() {
 
     fun onDeleteOldItemsClicked() {
 
+        val deleteLogs = SettingsNavigation.ToConfirmDelete(this::onDeleteOldItemsConfirmed)
+        navigation.postValue(deleteLogs)
+    }
+
+    fun onDeleteOldItemsConfirmed() {
+
         val flow = localRepository
             .deleteFile(IMMO_SCOUT_ITEMS)
             .flatMapConcat { localRepository.deleteFile(IMMO_WELT_ITEMS) }

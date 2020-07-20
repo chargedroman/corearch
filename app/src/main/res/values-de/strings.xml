@@ -21,6 +21,10 @@
     <string name="settings_start_work">Periodischs Anfragen starten</string>
     <string name="settings_stop_work">Nicht mehr periodisch Anfragen</string>
     <string name="settings_delete_old">Zuletzt gepullte Daten löschen</string>
+    <string name="settings_delete_old_explanation">Bitte bestätige, dass alle bisher beobachteten Veränderungen gelöscht werden sollen</string>
+    <string name="settings_delete_old_yes">Löschen</string>
+    <string name="settings_delete_old_no">Abbrechen</string>
+
     <string name="settings_delete_success">Zuletzt gepullte Daten gelöscht</string>
     <string name="settings_delete_fail">Beim Löschen ist etwas schiefgelaufen</string>
     <string name="settings_show_modified">Modifizierte Items anzeigen in Logs und Notifications</string>

@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">BaseArch</string>
+    <string name="common_yes">Ja</string>
+    <string name="common_no">Nein</string>
+</resources>
