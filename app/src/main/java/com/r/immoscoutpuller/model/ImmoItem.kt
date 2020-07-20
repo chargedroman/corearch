@@ -1,8 +1,11 @@
 package com.r.immoscoutpuller.model
 
 import androidx.databinding.ObservableField
+import com.r.immoscoutpuller.immoscout.IMMO_ITEM_NOTES_PREFIX
+import com.roman.basearch.utility.LocalRepository
 import com.roman.basearch.view.list.BaseItemViewModel
 import org.koin.core.KoinComponent
+import org.koin.core.inject
 import java.io.Serializable
 
 /**
@@ -62,12 +65,25 @@ abstract class ImmoItem : KoinComponent, Serializable {
     }
 
 
-    class ViewModel<Type: ImmoItem>: BaseItemViewModel<Type>() {
+    class ViewModel<Type: ImmoItem>: BaseItemViewModel<Type>(), KoinComponent {
 
         val item: ObservableField<Type> = ObservableField()
+        val noteKey: ObservableField<String> = ObservableField()
+        val noteText: ObservableField<String> = ObservableField()
+
+        private val localRepository: LocalRepository by inject()
 
         override fun bindItem(item: Type) {
+            val noteKey = IMMO_ITEM_NOTES_PREFIX+item.id
             this.item.set(item)
+            this.noteKey.set(noteKey)
+            this.noteText.set(localRepository.retrieve(noteKey) ?: "")
+        }
+
+        fun onCommentTextChanged(text: String) {
+            val noteKey = this.noteKey.get() ?: return
+            localRepository.save(noteKey, text)
+            noteText.set(text)
         }
 
     }

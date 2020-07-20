@@ -9,6 +9,7 @@ import com.roman.basearch.utility.LocalRepository
  * Created: 14.07.20
  */
 
+const val IMMO_ITEM_NOTES_PREFIX = "notes_"
 const val IMMO_SCOUT_ITEMS = "immoScoutItems"
 const val IMMO_WELT_ITEMS = "immoWeltItems"
 const val DIFF_PREFIX = "diff_"

@@ -14,6 +14,12 @@ import com.roman.basearch.viewmodel.getKoinInstance
  * Created: 14.07.20
  */
 
+
+interface TextChanged {
+    fun onChanged(text: String)
+}
+
+
 /**
  * Just a quick utility binding for syncing EditText text with LocalRepository via one key
  */
@@ -31,6 +37,18 @@ fun bindTextToLocalRepositoryKey(editText: EditText, key: String?) {
     editText.addTextChangedListener(afterTextChanged = {
         val value = it?.toString() ?: key
         localRepository.save(key, value)
+    })
+}
+
+@BindingAdapter("bindTextChanged")
+fun bindTextChanged(editText: EditText, listener: TextChanged?) {
+    if(listener == null) {
+        return
+    }
+
+    editText.addTextChangedListener(afterTextChanged = {
+        val value = it?.toString() ?: ""
+        listener.onChanged(value)
     })
 }
 

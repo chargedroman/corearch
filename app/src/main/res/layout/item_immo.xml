@@ -71,14 +71,14 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
-            android:layout_marginBottom="16dp"
+            android:layout_marginBottom="32dp"
             android:maxLines="1"
             android:text="@{viewModel.item.warmRent}"
             app:autoSizeMaxTextSize="20sp"
             app:autoSizeMinTextSize="12sp"
             app:autoSizeStepGranularity="2sp"
             app:autoSizeTextType="uniform"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/user_comment"
             app:layout_constraintEnd_toEndOf="@id/guide_middle"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/txt_living_space"
@@ -99,7 +99,7 @@
             android:layout_marginTop="16dp"
             android:layout_marginBottom="16dp"
             android:background="@android:color/darker_gray"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/user_comment"
             app:layout_constraintStart_toEndOf="@id/guide_middle"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -117,7 +117,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/divider"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/txt_rooms"
             app:layout_constraintVertical_chainStyle="packed"
             tools:text="Some Title" />
 
@@ -142,16 +142,53 @@
             style="@style/StandardBody"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:gravity="start"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
+            android:gravity="start"
             android:text="@{viewModel.item.lastModified}"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toBottomOf="@+id/txt_warm_price"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/divider"
             app:layout_constraintTop_toBottomOf="@+id/txt_inserted"
             tools:text="Last modified" />
+
+
+        <ImageView
+            android:id="@+id/img_note"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_sticky_note_solid"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintBottom_toBottomOf="@id/user_comment"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/user_comment"/>
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/user_comment"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:hint="@{@string/item_user_comment_hint}"
+            app:endIconMode="clear_text"
+            app:endIconDrawable="@drawable/ic_close"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/img_note"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+            <com.google.android.material.textfield.TextInputEditText
+                style="@style/StandardTextInput"
+                android:id="@+id/edit_profile_edit_content_first_name"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:singleLine="false"
+                android:text="@{viewModel.noteText}"
+                app:bindTextChanged="@{(text) -> viewModel.onCommentTextChanged(text)}"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
