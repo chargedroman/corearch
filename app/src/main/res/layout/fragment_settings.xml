@@ -38,7 +38,7 @@
                 android:id="@+id/divider_request"
                 android:layout_width="0dp"
                 android:layout_height="1dp"
-                android:layout_margin="16dp"
+                android:layout_marginTop="16dp"
                 android:background="@android:color/darker_gray"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -50,7 +50,9 @@
                 layout="@layout/text_input_shared_prefs"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_margin="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginTop="40dp"
                 app:hint="@{@string/min_price}"
                 app:key='@{@string/min_price}'
                 app:layout_constraintEnd_toStartOf="@id/max_price"
@@ -62,7 +64,9 @@
                 layout="@layout/text_input_shared_prefs"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_margin="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginTop="40dp"
                 app:hint="@{@string/max_price}"
                 app:key='@{@string/max_price}'
                 app:layout_constraintEnd_toEndOf="parent"
@@ -163,7 +167,7 @@
                 style="@style/StandardHeader"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="32dp"
+                android:layout_marginTop="40dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginEnd="16dp"
                 android:text="@string/settings_title_actions"
@@ -175,11 +179,25 @@
                 android:id="@+id/divider_actions"
                 android:layout_width="0dp"
                 android:layout_height="1dp"
-                android:layout_margin="16dp"
+                android:layout_marginTop="16dp"
                 android:background="@android:color/darker_gray"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/txt_actions" />
+
+
+            <CheckBox
+                android:id="@+id/checkbox_show_modified"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="16dp"
+                android:text="@string/settings_show_modified"
+                app:bindCheckBoxToLocalRepositoryKey="@{@string/show_modified}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/divider_actions"/>
 
 
             <TextView
@@ -188,14 +206,14 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="32dp"
+                android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
                 android:onClick="@{() -> viewModel.onStartPullingClicked()}"
                 android:text="@string/settings_start_work"
                 android:visibility="@{safeUnbox(viewModel.showStartButton) ? View.VISIBLE : View.GONE}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/divider_actions"
+                app:layout_constraintTop_toBottomOf="@id/checkbox_show_modified"
                 tools:visibility="visible" />
 
             <TextView
@@ -221,24 +239,13 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="32dp"
                 android:layout_marginEnd="16dp"
+                android:layout_marginBottom="16dp"
                 android:onClick="@{() -> viewModel.onDeleteOldItemsClicked()}"
                 android:text="@string/settings_delete_old"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/txt_stop_pull" />
-
-
-            <CheckBox
-                android:id="@+id/checkbox_show_modified"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="24dp"
-                android:text="@string/settings_show_modified"
-                app:bindCheckBoxToLocalRepositoryKey="@{@string/show_modified}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/txt_delete_old" />
+                app:layout_constraintTop_toBottomOf="@id/txt_stop_pull" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
