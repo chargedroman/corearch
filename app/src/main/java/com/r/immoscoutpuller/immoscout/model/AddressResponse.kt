@@ -11,7 +11,7 @@ import java.io.Serializable
 
 data class AddressResponse(
     @SerializedName("city") val city: String,
-    @SerializedName("houseNumber") val houseNumber: Int,
+    @SerializedName("houseNumber") val houseNumber: String,
     @SerializedName("postcode") val postcode: Int,
     @SerializedName("quarter") val quarter: String,
     @SerializedName("street") val street: String,
