@@ -23,6 +23,28 @@
             android:layout_height="match_parent">
 
 
+            <TextView
+                android:id="@+id/txt_request"
+                style="@style/StandardHeader"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:text="@string/settings_title_apartments"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <View
+                android:id="@+id/divider_request"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_margin="16dp"
+                android:background="@android:color/darker_gray"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/txt_request" />
+
+
             <include
                 android:id="@+id/min_price"
                 layout="@layout/text_input_shared_prefs"
@@ -33,7 +55,7 @@
                 app:key='@{@string/min_price}'
                 app:layout_constraintEnd_toStartOf="@id/max_price"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toBottomOf="@id/divider_request" />
 
             <include
                 android:id="@+id/max_price"
@@ -45,7 +67,7 @@
                 app:key='@{@string/max_price}'
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/min_price"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toBottomOf="@id/divider_request" />
 
 
             <include
@@ -137,6 +159,30 @@
 
 
             <TextView
+                android:id="@+id/txt_actions"
+                style="@style/StandardHeader"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:text="@string/settings_title_actions"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/geo_codes_welt" />
+
+            <View
+                android:id="@+id/divider_actions"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_margin="16dp"
+                android:background="@android:color/darker_gray"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/txt_actions" />
+
+
+            <TextView
                 android:id="@+id/txt_start_pull"
                 style="@style/StandardButton"
                 android:layout_width="0dp"
@@ -149,8 +195,8 @@
                 android:visibility="@{safeUnbox(viewModel.showStartButton) ? View.VISIBLE : View.GONE}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/geo_codes_welt"
-                tools:visibility="visible"/>
+                app:layout_constraintTop_toBottomOf="@id/divider_actions"
+                tools:visibility="visible" />
 
             <TextView
                 android:id="@+id/txt_stop_pull"
@@ -186,13 +232,13 @@
                 android:id="@+id/checkbox_show_modified"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/settings_show_modified"
                 android:layout_margin="24dp"
+                android:text="@string/settings_show_modified"
                 app:bindCheckBoxToLocalRepositoryKey="@{@string/show_modified}"
-                app:layout_constraintTop_toBottomOf="@id/txt_delete_old"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"/>
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/txt_delete_old" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

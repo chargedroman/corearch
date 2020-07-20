@@ -22,12 +22,14 @@
 
     <string name="settings_start_work">Start pulling rentables</string>
     <string name="settings_stop_work">Stop pulling rentables</string>
-    <string name="settings_delete_old">Delete last pulled data</string>
+    <string name="settings_delete_old">Delete all logs</string>
     <string name="settings_delete_old_explanation">Please confirm that you want to delete all tracked diffs</string>
     <string name="settings_delete_old_yes">Delete</string>
     <string name="settings_delete_old_no">Cancel</string>
+    <string name="settings_title_apartments">Apartment request parameters</string>
+    <string name="settings_title_actions">Actions</string>
 
-    <string name="settings_delete_success">Last pulled data was deleted</string>
+    <string name="settings_delete_success">All apartment logs deleted successfully</string>
     <string name="settings_delete_fail">Something went wrong while deleting the old data</string>
     <string name="settings_show_modified">Show modified items in logs and notifications</string>
 
