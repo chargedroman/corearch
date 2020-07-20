@@ -70,20 +70,28 @@ abstract class ImmoItem : KoinComponent, Serializable {
         val item: ObservableField<Type> = ObservableField()
         val noteKey: ObservableField<String> = ObservableField()
         val noteText: ObservableField<String> = ObservableField()
+        val noteVisible: ObservableField<Boolean> = ObservableField()
 
         private val localRepository: LocalRepository by inject()
 
         override fun bindItem(item: Type) {
             val noteKey = IMMO_ITEM_NOTES_PREFIX+item.id
+            val noteText = localRepository.retrieve(noteKey) ?: ""
             this.item.set(item)
             this.noteKey.set(noteKey)
-            this.noteText.set(localRepository.retrieve(noteKey) ?: "")
+            this.noteText.set(noteText)
+            this.noteVisible.set(false)
         }
 
         fun onCommentTextChanged(text: String) {
             val noteKey = this.noteKey.get() ?: return
             localRepository.save(noteKey, text)
             noteText.set(text)
+        }
+
+        fun onShowNoteToggleClicked() {
+            val visible = noteVisible.get() ?: false
+            noteVisible.set(!visible)
         }
 
     }

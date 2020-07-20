@@ -5,6 +5,8 @@
 
     <data>
 
+        <import type="android.view.View"/>
+
         <import type="com.r.immoscoutpuller.model.ImmoItem"/>
 
         <variable
@@ -114,7 +116,7 @@
             android:gravity="start"
             android:text="@{viewModel.item.title}"
             app:layout_constraintBottom_toTopOf="@+id/txt_inserted"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/img_note"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/divider"
             app:layout_constraintTop_toTopOf="@+id/txt_rooms"
@@ -131,7 +133,7 @@
             android:layout_marginEnd="16dp"
             android:text="@{viewModel.item.inserted}"
             app:layout_constraintBottom_toTopOf="@+id/txt_modified"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/img_note"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/divider"
             app:layout_constraintTop_toBottomOf="@+id/txt_title"
@@ -147,7 +149,7 @@
             android:gravity="start"
             android:text="@{viewModel.item.lastModified}"
             app:layout_constraintBottom_toBottomOf="@+id/txt_warm_price"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/img_note"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/divider"
             app:layout_constraintTop_toBottomOf="@+id/txt_inserted"
@@ -158,24 +160,25 @@
             android:id="@+id/img_note"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:onClick="@{() -> viewModel.onShowNoteToggleClicked()}"
             android:src="@drawable/ic_sticky_note_solid"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            app:layout_constraintBottom_toBottomOf="@id/user_comment"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@id/user_comment"/>
+            app:layout_constraintBottom_toBottomOf="@+id/txt_modified"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/txt_title" />
 
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/user_comment"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_margin="20dp"
+            android:layout_margin="16dp"
             android:hint="@{@string/item_user_comment_hint}"
+            android:visibility="@{safeUnbox(viewModel.noteVisible) ? View.VISIBLE : View.GONE}"
             app:endIconMode="clear_text"
             app:endIconDrawable="@drawable/ic_close"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/img_note"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintBottom_toBottomOf="parent">
 
             <com.google.android.material.textfield.TextInputEditText
