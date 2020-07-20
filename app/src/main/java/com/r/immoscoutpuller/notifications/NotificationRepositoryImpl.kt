@@ -24,15 +24,23 @@ class NotificationRepositoryImpl(private val context: Context):
     NotificationRepository {
 
     companion object {
-        const val BACKGROUND_WORK_NOTIFICATIONS_CHANNEL_ID = "ImmoPullerBackgroundNotifications"
+        const val ID_MAIN = "ImmoPullerBackgroundNotifications1"
+        const val ID_SECOND = "ImmoPullerBackgroundNotifications2"
     }
 
     private val notificationManager: NotificationManager =
         context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
 
-    private val notificationChannel =
+
+    private val mainChannel =
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
-            getBackgroundWorkNotificationChannel()
+            getBackgroundWorkNotificationChannel(ID_MAIN, NotificationManager.IMPORTANCE_HIGH)
+        else
+            null
+
+    private val secondChannel =
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
+            getBackgroundWorkNotificationChannel(ID_SECOND, NotificationManager.IMPORTANCE_LOW)
         else
             null
 
@@ -43,8 +51,9 @@ class NotificationRepositoryImpl(private val context: Context):
 
     override fun showNotification(model: NotificationModel) {
 
-        if (notificationChannel != null && Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            notificationManager.createNotificationChannel(notificationChannel)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            if(mainChannel != null) notificationManager.createNotificationChannel(mainChannel)
+            if(secondChannel != null) notificationManager.createNotificationChannel(secondChannel)
         }
 
         val notification = getNotification(model)
@@ -54,26 +63,26 @@ class NotificationRepositoryImpl(private val context: Context):
 
     private fun getNotification(model: NotificationModel): Notification {
 
-        return NotificationCompat.Builder(context, BACKGROUND_WORK_NOTIFICATIONS_CHANNEL_ID)
+        val channelId = model.getChannelId()
+
+        return NotificationCompat.Builder(context, channelId)
             .setSmallIcon(model.iconResId)
             .setContentTitle(model.title)
             .setContentText(model.text)
             .setStyle(NotificationCompat.BigTextStyle().bigText(model.text))
             .setContentIntent(getIntentFrom(model) ?: getAppIntent())
-            .setSilent(model)
             .setProgress(model)
             .setAutoCancel(true)
             .build()
     }
 
 
-    private fun NotificationCompat.Builder.setSilent(model: NotificationModel)
-            : NotificationCompat.Builder {
+    private fun NotificationModel.getChannelId(): String {
 
-        return if(model.isSilent) {
-            this.setVibrate(longArrayOf(0))
+        return if(isSilent) {
+            ID_SECOND
         } else {
-            this
+            ID_MAIN
         }
     }
 
@@ -103,17 +112,14 @@ class NotificationRepositoryImpl(private val context: Context):
 
 
     @RequiresApi(api = Build.VERSION_CODES.O)
-    private fun getBackgroundWorkNotificationChannel(): NotificationChannel {
+    private fun getBackgroundWorkNotificationChannel(
+        channelId: String,
+        importance: Int
+    ): NotificationChannel {
 
         val channelName = context.getString(R.string.notifications_channel_name)
         val channelDesc = context.getString(R.string.notifications_channel_desc)
-
-        val backgroundWorkChannel: NotificationChannel
-        backgroundWorkChannel = NotificationChannel(
-            BACKGROUND_WORK_NOTIFICATIONS_CHANNEL_ID,
-            channelName,
-            NotificationManager.IMPORTANCE_HIGH
-        )
+        val backgroundWorkChannel = NotificationChannel(channelId, channelName, importance)
 
         backgroundWorkChannel.description = channelDesc
         backgroundWorkChannel.lightColor = Color.GREEN
