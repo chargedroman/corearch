@@ -1,5 +1,6 @@
 package com.r.immoscoutpuller.repository.impl
 
+import com.r.immoscoutpuller.immoscout.ImmoFakeHeaders
 import com.r.immoscoutpuller.immoscout.ImmoScoutParser
 import com.r.immoscoutpuller.immoscout.getImmoScoutRequestSettings
 import com.r.immoscoutpuller.immoscout.getImmoWeltRequestSettings
@@ -124,8 +125,10 @@ class ImmoRepositoryImpl : ImmoRepository, KoinComponent {
 
         val immoWebUrl = immoUrlBuilder.getImmoScoutUrl(request, pageNumber)
         val webRequest = Request.Builder().url(immoWebUrl)
-        val r = immoUrlBuilder.buildWithFakeImmoScoutHeaders(webRequest)
-        val webResponse = client.newCall(r).execute()
+        val fakeHeader = getImmoScoutFakeHeaders()
+        fakeHeader.apply(webRequest)
+
+        val webResponse = client.newCall(webRequest.build()).execute()
         return immoScoutParser.extractPagingResponseFrom(webResponse)
     }
 
@@ -135,6 +138,11 @@ class ImmoRepositoryImpl : ImmoRepository, KoinComponent {
         val webRequest = Request.Builder().url(immoWebUrl).build()
         val webResponse = client.newCall(webRequest).execute()
         return immoWeltParser.extractImmoItemFrom(itemId, webResponse)
+    }
+
+
+    private fun getImmoScoutFakeHeaders(): ImmoFakeHeaders {
+        return ImmoFakeHeaders.dummy()
     }
 
 
