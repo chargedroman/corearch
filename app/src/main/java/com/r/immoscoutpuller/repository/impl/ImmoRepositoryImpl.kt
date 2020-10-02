@@ -123,8 +123,9 @@ class ImmoRepositoryImpl : ImmoRepository, KoinComponent {
     ): PagingResponse {
 
         val immoWebUrl = immoUrlBuilder.getImmoScoutUrl(request, pageNumber)
-        val webRequest = Request.Builder().url(immoWebUrl).build()
-        val webResponse = client.newCall(webRequest).execute()
+        val webRequest = Request.Builder().url(immoWebUrl)
+        val r = immoUrlBuilder.buildWithFakeImmoScoutHeaders(webRequest)
+        val webResponse = client.newCall(r).execute()
         return immoScoutParser.extractPagingResponseFrom(webResponse)
     }
 
