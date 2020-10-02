@@ -10,7 +10,6 @@ import okhttp3.HttpUrl
 import okhttp3.Request
 import org.koin.core.KoinComponent
 import org.koin.core.inject
-import java.util.*
 
 /**
  *
@@ -82,8 +81,6 @@ class ImmoUrlRepositoryImpl : ImmoUrlRepository, KoinComponent {
             .addHeader("Cookie", getCookieString())
             .addHeader("Connection", "keep-alive")
             .addHeader("Cache-Control", "no-cache")
-            .addHeader("Host", "www.immobilienscout24.de")
-            .addHeader("Postman-Token", UUID.randomUUID().toString())
             .build()
     }
 
