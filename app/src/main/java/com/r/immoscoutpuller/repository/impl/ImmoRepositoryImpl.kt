@@ -18,10 +18,12 @@ import com.roman.basearch.utility.LocalRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flatMapConcat
 import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.onCompletion
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import org.koin.core.KoinComponent
 import org.koin.core.inject
+import java.util.*
 
 /**
  *
@@ -34,6 +36,8 @@ class ImmoRepositoryImpl : ImmoRepository, KoinComponent {
     companion object {
         private const val IMMO_SCOUT_KEY = "IMMO_SCOUT_KEY"
         private const val IMMO_WELT_KEY = "IMMO_WELT_KEY"
+        private const val IMMO_SCOUT_DATE = "IMMO_SCOUT_DATE"
+        private const val IMMO_WELT_DATE = "IMMO_WELT_DATE"
     }
 
     private val client: OkHttpClient by inject()
@@ -61,12 +65,24 @@ class ImmoRepositoryImpl : ImmoRepository, KoinComponent {
         val request = localRepository.getImmoScoutRequestSettings()
         return getImmoScoutApartmentsWeb(request)
             .flatMapConcat { localRepository.saveFile(IMMO_SCOUT_KEY, it) }
+            .onCompletion { localRepository.save(IMMO_SCOUT_DATE, Date().time.toString()) }
     }
 
     override fun getImmoWeltApartmentsWeb(): Flow<List<PresentableImmoWeltItem>> {
         val request = localRepository.getImmoWeltRequestSettings()
         return getImmoWeltApartmentsWeb(request)
             .flatMapConcat { localRepository.saveFile(IMMO_WELT_KEY, it) }
+            .onCompletion { localRepository.save(IMMO_WELT_DATE, Date().time.toString()) }
+    }
+
+    override fun getLastCacheUpdateScout(): Date {
+        val date = localRepository.retrieve(IMMO_SCOUT_DATE)?.toLongOrNull() ?: return Date()
+        return Date(date)
+    }
+
+    override fun getLastCacheUpdateWelt(): Date {
+        val date = localRepository.retrieve(IMMO_WELT_DATE)?.toLongOrNull() ?: return Date()
+        return Date(date)
     }
 
 

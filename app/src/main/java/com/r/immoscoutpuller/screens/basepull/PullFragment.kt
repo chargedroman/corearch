@@ -35,6 +35,11 @@ abstract class PullFragment<Type: ImmoItem> : BaseFragment<FragmentPullBinding, 
         observeViewModel()
     }
 
+    override fun onResume() {
+        super.onResume()
+        viewModel.refreshLastPulledTimeHeader()
+    }
+
 
     private fun setupRefresh() {
 

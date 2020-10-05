@@ -11,6 +11,7 @@ import com.roman.basearch.viewmodel.BaseViewModel
 import com.roman.basearch.viewmodel.launch
 import kotlinx.coroutines.flow.Flow
 import org.koin.core.inject
+import java.util.*
 
 /**
  *
@@ -22,6 +23,7 @@ abstract class PullViewModel<Type: ImmoItem> : BaseViewModel() {
 
     val immoItems: MutableLiveData<List<Type>> = MutableLiveData()
     val immoItemsTotal: MutableLiveData<String> = MutableLiveData()
+    val immoItemsLastPulled: MutableLiveData<String> = MutableLiveData()
 
     val immoRepository: ImmoRepository by inject()
     val textLocalization: TextLocalization by inject()
@@ -30,6 +32,7 @@ abstract class PullViewModel<Type: ImmoItem> : BaseViewModel() {
 
     abstract fun getItems(): Flow<List<Type>>
     abstract fun getFreshItems(): Flow<List<Type>>
+    abstract fun getItemsLastCacheUpdate(): Date
 
 
     init {
@@ -78,12 +81,19 @@ abstract class PullViewModel<Type: ImmoItem> : BaseViewModel() {
     }
 
 
+    fun refreshLastPulledTimeHeader() {
+        val lastUpdate = textLocalization.getDateDifferenceToToday(getItemsLastCacheUpdate())
+        val lastUpdateText = textLocalization.getString(R.string.pull_body, lastUpdate)
+        immoItemsLastPulled.postValue(lastUpdateText)
+    }
+
     private fun onImmoItemsReceived(items: List<Type>) {
         val size = items.size.toString()
         val total = textLocalization.getString(R.string.pull_title, size)
 
         immoItems.postValue(items)
         immoItemsTotal.postValue(total)
+        refreshLastPulledTimeHeader()
     }
 
 }

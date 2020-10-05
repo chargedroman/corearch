@@ -3,6 +3,7 @@ package com.r.immoscoutpuller.screens.pullscout
 import com.r.immoscoutpuller.model.PresentableImmoScoutItem
 import com.r.immoscoutpuller.screens.basepull.PullViewModel
 import kotlinx.coroutines.flow.Flow
+import java.util.*
 
 /**
  *
@@ -18,6 +19,10 @@ class PullScoutViewModel : PullViewModel<PresentableImmoScoutItem>() {
 
     override fun getItems(): Flow<List<PresentableImmoScoutItem>> {
         return immoRepository.getImmoScoutApartmentsCache()
+    }
+
+    override fun getItemsLastCacheUpdate(): Date {
+        return immoRepository.getLastCacheUpdateScout()
     }
 
 }
