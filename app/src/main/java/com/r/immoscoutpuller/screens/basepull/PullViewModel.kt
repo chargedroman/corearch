@@ -28,27 +28,31 @@ abstract class PullViewModel<Type: ImmoItem> : BaseViewModel() {
     val immoUrlBuilder: ImmoUrlRepository by inject()
 
 
+    abstract fun getItems(): Flow<List<Type>>
     abstract fun getFreshItems(): Flow<List<Type>>
 
 
     init {
-        getApartments()
+        getItemsFromCacheOrFresh()
     }
 
 
+    fun getItemsFromCacheOrFresh() {
+        launch(
+            getItems(),
+            { onImmoItemsReceived(it) },
+            { handleErrorOnGetApartments(it) }
+        )
+    }
 
     fun onUserRefreshedData() {
-        getApartments()
-    }
-
-    fun getApartments() {
-
         launch(
             getFreshItems(),
             { onImmoItemsReceived(it) },
             { handleErrorOnGetApartments(it) }
         )
     }
+
 
 
     fun onImmoItemClicked(item: Type) {

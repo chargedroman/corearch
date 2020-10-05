@@ -16,4 +16,8 @@ class PullWeltViewModel : PullViewModel<PresentableImmoWeltItem>() {
         return immoRepository.getImmoWeltApartmentsWeb()
     }
 
+    override fun getItems(): Flow<List<PresentableImmoWeltItem>> {
+        return immoRepository.getImmoWeltApartmentsCache()
+    }
+
 }

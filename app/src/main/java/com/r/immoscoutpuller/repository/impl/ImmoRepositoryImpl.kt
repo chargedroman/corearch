@@ -13,8 +13,10 @@ import com.r.immoscoutpuller.model.PresentableImmoScoutItem
 import com.r.immoscoutpuller.model.PresentableImmoWeltItem
 import com.r.immoscoutpuller.repository.ImmoRepository
 import com.r.immoscoutpuller.repository.ImmoUrlRepository
+import com.roman.basearch.baseextensions.onErrorDo
 import com.roman.basearch.utility.LocalRepository
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flatMapConcat
 import kotlinx.coroutines.flow.flow
 import okhttp3.OkHttpClient
 import okhttp3.Request
@@ -29,6 +31,11 @@ import org.koin.core.inject
 
 class ImmoRepositoryImpl : ImmoRepository, KoinComponent {
 
+    companion object {
+        private const val IMMO_SCOUT_KEY = "IMMO_SCOUT_KEY"
+        private const val IMMO_WELT_KEY = "IMMO_WELT_KEY"
+    }
+
     private val client: OkHttpClient by inject()
     private val localRepository: LocalRepository by inject()
     private val immoScoutParser: ImmoScoutParser by inject()
@@ -36,12 +43,48 @@ class ImmoRepositoryImpl : ImmoRepository, KoinComponent {
     private val immoUrlBuilder: ImmoUrlRepository by inject()
 
 
+
+    override fun getImmoScoutApartmentsCache(): Flow<List<PresentableImmoScoutItem>> {
+        return localRepository
+            .readFile<List<PresentableImmoScoutItem>>(IMMO_SCOUT_KEY)
+            .onErrorDo(getImmoScoutApartmentsWeb())
+    }
+
+    override fun getImmoWeltApartmentsCache(): Flow<List<PresentableImmoWeltItem>> {
+        return localRepository
+            .readFile<List<PresentableImmoWeltItem>>(IMMO_WELT_KEY)
+            .onErrorDo(getImmoWeltApartmentsWeb())
+    }
+
+
     override fun getImmoScoutApartmentsWeb(): Flow<List<PresentableImmoScoutItem>> {
         val request = localRepository.getImmoScoutRequestSettings()
         return getImmoScoutApartmentsWeb(request)
+            .flatMapConcat { localRepository.saveFile(IMMO_SCOUT_KEY, it) }
     }
 
-    override fun getImmoScoutApartmentsWeb(request: ImmoRequest) = flow {
+    override fun getImmoWeltApartmentsWeb(): Flow<List<PresentableImmoWeltItem>> {
+        val request = localRepository.getImmoWeltRequestSettings()
+        return getImmoWeltApartmentsWeb(request)
+            .flatMapConcat { localRepository.saveFile(IMMO_WELT_KEY, it) }
+    }
+
+
+    private fun getImmoWeltApartmentsWeb(request: ImmoRequest) = flow {
+
+        val resultList = mutableListOf<PresentableImmoWeltItem>()
+        val allItemIds = getImmoWeltIds(request)
+
+        for(itemId in allItemIds) {
+            val immoWeltItem = getImmoWeltItem(itemId)
+            resultList.add(PresentableImmoWeltItem(immoWeltItem))
+        }
+
+        emit(resultList)
+    }
+
+
+    private fun getImmoScoutApartmentsWeb(request: ImmoRequest) = flow {
 
         val resultList = mutableListOf<PresentableImmoScoutItem>()
 
@@ -58,26 +101,6 @@ class ImmoRepositoryImpl : ImmoRepository, KoinComponent {
         }
 
         resultList.sortBy { -it.pojo.creation.time }
-
-        emit(resultList)
-    }
-
-
-    override fun getImmoWeltApartmentsWeb(): Flow<List<PresentableImmoWeltItem>> {
-        val request = localRepository.getImmoWeltRequestSettings()
-        return getImmoWeltApartmentsWeb(request)
-    }
-
-
-    override fun getImmoWeltApartmentsWeb(request: ImmoRequest) = flow {
-
-        val resultList = mutableListOf<PresentableImmoWeltItem>()
-        val allItemIds = getImmoWeltIds(request)
-
-        for(itemId in allItemIds) {
-            val immoWeltItem = getImmoWeltItem(itemId)
-            resultList.add(PresentableImmoWeltItem(immoWeltItem))
-        }
 
         emit(resultList)
     }

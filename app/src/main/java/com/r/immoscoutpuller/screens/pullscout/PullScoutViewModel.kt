@@ -16,4 +16,8 @@ class PullScoutViewModel : PullViewModel<PresentableImmoScoutItem>() {
         return immoRepository.getImmoScoutApartmentsWeb()
     }
 
+    override fun getItems(): Flow<List<PresentableImmoScoutItem>> {
+        return immoRepository.getImmoScoutApartmentsCache()
+    }
+
 }
