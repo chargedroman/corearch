@@ -34,9 +34,10 @@ data class ImmoFakeHeaders(
             map.put("sec-fetch-user", "?1")
             map.put("upgrade-insecure-requests", "1")
             map.put("user-agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.121 Safari/537.36")
-            map.put("Cookie", "reese84=3:7vSJTalSi4TMqUNSK0hCwg==:NKkUCj01QWYg+PQQHeuzq/NFz7TkZuCBnd17bt7hZSdJXI0MMuCab4QiHOickH8d+slb4pYp8nQVw8eOpLpTxja36aN8dLFp19o3R3vKnDzydRw/uzZF1Vfg2yG28gILZ8lz8pmTuNj3cTZnl0nSCYfr1yw8JoFkejminS98VAl09ukTOJfhnfWRNZada5+vf97hRKYx4099GL+enMviVhsbUYjVaVgfUwJHEVyTjFpPGVJ+HR9ZHn4LbRHq0lflR1kiLR7T//HLSFG1xHzlO3z0eJYOW/ZQ2AKoZT+gp3VkhKuN/R31jPS3ju8l9PvdG4bBoXkBZdr9AFOn/jIty/9dpscXONGDWT8eYI8CKRozmPwg8uaDKBhFDJLCQ4kJ1tM58FSUzyZ1Gk2Jfb+v6q0CkkRGxiS4NURqKlz6tvg=:1KKSXEnQjt+xL75wO3v6JcyB1Stm6D+xsax/o81fuY8=;")
+            //map.put("Cookie", "reese84=3:7vSJTalSi4TMqUNSK0hCwg==:NKkUCj01QWYg+PQQHeuzq/NFz7TkZuCBnd17bt7hZSdJXI0MMuCab4QiHOickH8d+slb4pYp8nQVw8eOpLpTxja36aN8dLFp19o3R3vKnDzydRw/uzZF1Vfg2yG28gILZ8lz8pmTuNj3cTZnl0nSCYfr1yw8JoFkejminS98VAl09ukTOJfhnfWRNZada5+vf97hRKYx4099GL+enMviVhsbUYjVaVgfUwJHEVyTjFpPGVJ+HR9ZHn4LbRHq0lflR1kiLR7T//HLSFG1xHzlO3z0eJYOW/ZQ2AKoZT+gp3VkhKuN/R31jPS3ju8l9PvdG4bBoXkBZdr9AFOn/jIty/9dpscXONGDWT8eYI8CKRozmPwg8uaDKBhFDJLCQ4kJ1tM58FSUzyZ1Gk2Jfb+v6q0CkkRGxiS4NURqKlz6tvg=:1KKSXEnQjt+xL75wO3v6JcyB1Stm6D+xsax/o81fuY8=;")
             map.put("Connection", "keep-alive")
             map.put("Cache-Control", "no-cache")
+            map.put("host", "www.immobilienscout24.de")
             return ImmoFakeHeaders(map)
         }
     }
