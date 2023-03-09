@@ -92,9 +92,10 @@ class LocalRepositoryImpl(private val context: Context) : LocalRepository {
     }
 
     private fun getAllWithPrefix(prefix: String): Array<String> {
-        return context.filesDir.list { _, string -> string.startsWith(prefix) }
+        return context.filesDir.list { _, string -> string.startsWith(prefix) } ?: arrayOf()
     }
 
+    @Suppress("UNCHECKED_CAST")
     private fun <Type> readFileSync(key: String): Type {
         val path = getFileUri(key)
         val stream = context.contentResolver.openInputStream(path)

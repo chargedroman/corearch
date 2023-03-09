@@ -1,8 +1,12 @@
+@file:OptIn(ExperimentalCoroutinesApi::class)
+@file:Suppress("OPT_IN_IS_NOT_ENABLED")
+
 package com.roman.basearch.viewmodel
 
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.*
 import org.koin.core.KoinComponent
