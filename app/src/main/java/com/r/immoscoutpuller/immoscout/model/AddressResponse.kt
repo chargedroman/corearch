@@ -10,10 +10,10 @@ import java.io.Serializable
  */
 
 data class AddressResponse(
-    @SerializedName("city") val city: String,
-    @SerializedName("houseNumber") val houseNumber: String,
-    @SerializedName("postcode") val postcode: Int,
-    @SerializedName("quarter") val quarter: String,
-    @SerializedName("street") val street: String,
-    @SerializedName("wgs84Coordinate") val wgs84Coordinate: Wgs84Coordinate
+    @SerializedName("city") val city: String?,
+    @SerializedName("houseNumber") val houseNumber: String?,
+    @SerializedName("postcode") val postcode: Int?,
+    @SerializedName("quarter") val quarter: String?,
+    @SerializedName("street") val street: String?,
+    @SerializedName("wgs84Coordinate") val wgs84Coordinate: Wgs84Coordinate?
 ): Serializable

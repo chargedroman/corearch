@@ -9,6 +9,7 @@ import com.r.immoscoutpuller.notifications.NotificationRepositoryImpl
 import com.r.immoscoutpuller.repository.ImmoRepository
 import com.r.immoscoutpuller.repository.ImmoUrlRepository
 import com.r.immoscoutpuller.repository.WorkRepository
+import com.r.immoscoutpuller.repository.impl.FakeBrowser
 import com.r.immoscoutpuller.repository.impl.ImmoRepositoryImpl
 import com.r.immoscoutpuller.repository.impl.ImmoUrlRepositoryImpl
 import com.r.immoscoutpuller.repository.impl.WorkRepositoryImpl
@@ -33,5 +34,7 @@ val externalModule = module {
     single<WorkRepository> { WorkRepositoryImpl() }
 
     single<NotificationRepository> { NotificationRepositoryImpl(get()) }
+
+    single { FakeBrowser() }
 
 }

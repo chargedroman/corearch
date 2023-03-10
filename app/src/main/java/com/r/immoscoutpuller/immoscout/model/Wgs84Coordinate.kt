@@ -10,6 +10,6 @@ import java.io.Serializable
  */
 
 data class Wgs84Coordinate(
-    @SerializedName("latitude") val latitude: Double,
-    @SerializedName("longitude") val longitude: Double
+    @SerializedName("latitude") val latitude: Double?,
+    @SerializedName("longitude") val longitude: Double?
 ): Serializable

@@ -10,7 +10,7 @@ import java.io.Serializable
  */
 
 data class ImmoItemsResponse(
-    @SerializedName("@numberOfHits") val numberOfHits: Int,
-    @SerializedName("@realEstateType") val realEstateType: Int,
-    @SerializedName("resultlistEntry") val immoItems: List<ImmoItemResponse>
+    @SerializedName("@numberOfHits") val numberOfHits: Int?,
+    @SerializedName("@realEstateType") val realEstateType: Int?,
+    @SerializedName("resultlistEntry") val immoItems: List<ImmoItemResponse>?
 ): Serializable

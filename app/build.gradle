@@ -51,6 +51,7 @@ dependencies {
 
     // time formatting
     implementation 'net.danlew:android.joda:2.10.6'
+    implementation 'org.apache.commons:commons-text:1.7'
 
     // schedule background work
     implementation "androidx.work:work-runtime-ktx:2.8.0"

@@ -101,13 +101,13 @@ class NotificationRepositoryImpl(private val context: Context):
         val deepLinkUri = model.deepLinkOnClick ?: return null
         val intent = Intent(Intent.ACTION_VIEW, Uri.parse(deepLinkUri))
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP)
-        return PendingIntent.getActivity(context, 1, intent, PendingIntent.FLAG_CANCEL_CURRENT)
+        return PendingIntent.getActivity(context, 1, intent, PendingIntent.FLAG_IMMUTABLE)
     }
 
     private fun getAppIntent(): PendingIntent {
         val intent = Intent(context, MainActivity::class.java)
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP)
-        return PendingIntent.getActivity(context, 1, intent, PendingIntent.FLAG_CANCEL_CURRENT)
+        return PendingIntent.getActivity(context, 1, intent, PendingIntent.FLAG_IMMUTABLE)
     }
 
 

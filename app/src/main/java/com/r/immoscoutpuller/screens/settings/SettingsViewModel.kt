@@ -1,5 +1,6 @@
 package com.r.immoscoutpuller.screens.settings
 
+import android.os.Build
 import androidx.lifecycle.MutableLiveData
 import androidx.work.WorkInfo
 import com.r.immoscoutpuller.R
@@ -7,6 +8,8 @@ import com.r.immoscoutpuller.immoscout.DIFF_PREFIX
 import com.r.immoscoutpuller.immoscout.IMMO_SCOUT_ITEMS
 import com.r.immoscoutpuller.immoscout.IMMO_WELT_ITEMS
 import com.r.immoscoutpuller.repository.WorkRepository
+import com.roman.basearch.models.Permission
+import com.roman.basearch.repository.PermissionRepository
 import com.roman.basearch.utility.LocalRepository
 import com.roman.basearch.utility.TextLocalization
 import com.roman.basearch.viewmodel.BaseViewModel
@@ -25,6 +28,7 @@ class SettingsViewModel : BaseViewModel() {
     val workRepository: WorkRepository by inject()
     val localRepository: LocalRepository by inject()
     val textLocalization: TextLocalization by inject()
+    val permissionRepository: PermissionRepository by inject()
     val workData = workRepository.pullWorkLiveData()
 
     val showStartButton: MutableLiveData<Boolean> = MutableLiveData()
@@ -62,8 +66,24 @@ class SettingsViewModel : BaseViewModel() {
     }
 
     fun onStartPullingClicked() {
-        workRepository.startPullingWork()
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            if(permissionRepository.hasPermission(Permission.NOTIFICATION)) {
+                workRepository.startPullingWork()
+            } else {
+                permissionRepository.requestPermission(Permission.NOTIFICATION, this::notificationPermissionChanged)
+            }
+        } else {
+            workRepository.startPullingWork()
+        }
     }
+
+    private fun notificationPermissionChanged(wasGranted: Boolean) {
+        if(wasGranted)
+            workRepository.startPullingWork()
+        else
+            message.postValue(textLocalization.getString(R.string.notifications_permission_required))
+    }
+
 
     fun onStopPullingClicked() {
         workRepository.stopPullingWork()

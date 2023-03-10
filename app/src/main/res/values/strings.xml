@@ -21,6 +21,7 @@
     <string name="pull_get_empty">There were no items found for the searching criteria</string>
     <string name="pull_title">Currently %1$s item(s) available</string>
     <string name="pull_body">Last updated: %1$s</string>
+    <string name="pull_captcha">The site requires us to solve a captcha</string>
 
     <string name="settings_start_work">Start pulling rentables</string>
     <string name="settings_stop_work">Stop pulling rentables</string>
@@ -30,6 +31,7 @@
     <string name="settings_delete_old_no">Cancel</string>
     <string name="settings_title_apartments">Apartment request parameters</string>
     <string name="settings_title_actions">Actions</string>
+    <string name="settings_hint_user_agent">If provided, this will be used as the user agent for requests</string>
 
     <string name="settings_delete_success">All apartment logs deleted successfully</string>
     <string name="settings_delete_fail">Something went wrong while deleting the old data</string>
@@ -43,6 +45,7 @@
     <string name="diff_modified">%1$s Modified</string>
 
 
+    <string name="notifications_permission_required">This requires the notification Permission</string>
     <string name="notifications_channel_name">ImmoPuller background work notifications</string>
     <string name="notifications_channel_desc">All relevant notifications for background work while pulling rentables</string>
 

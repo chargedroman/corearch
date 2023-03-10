@@ -1,6 +1,7 @@
 package com.roman.basearch.models
 
 import android.Manifest
+import androidx.annotation.RequiresApi
 
 /**
  *
@@ -10,6 +11,7 @@ import android.Manifest
 
 private const val LOCATION_CODE = 120
 private const val CAMERA_CODE = 121
+private const val NOTIFICATION_PERMISSION_CODE = 122
 
 enum class Permission(val code: Int, val keys: Array<String>) {
 
@@ -25,6 +27,14 @@ enum class Permission(val code: Int, val keys: Array<String>) {
         CAMERA_CODE,
         arrayOf(
             Manifest.permission.CAMERA
+        )
+    ),
+
+    @RequiresApi(33)
+    NOTIFICATION(
+        NOTIFICATION_PERMISSION_CODE,
+        arrayOf(
+            Manifest.permission.POST_NOTIFICATIONS
         )
     );
 

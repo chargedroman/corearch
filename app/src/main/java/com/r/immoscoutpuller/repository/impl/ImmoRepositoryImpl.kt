@@ -1,6 +1,6 @@
 package com.r.immoscoutpuller.repository.impl
 
-import com.r.immoscoutpuller.immoscout.ImmoFakeHeaders
+import android.annotation.SuppressLint
 import com.r.immoscoutpuller.immoscout.ImmoScoutParser
 import com.r.immoscoutpuller.immoscout.getImmoScoutRequestSettings
 import com.r.immoscoutpuller.immoscout.getImmoWeltRequestSettings
@@ -45,7 +45,7 @@ class ImmoRepositoryImpl : ImmoRepository, KoinComponent {
     private val immoScoutParser: ImmoScoutParser by inject()
     private val immoWeltParser: ImmoWeltParser by inject()
     private val immoUrlBuilder: ImmoUrlRepository by inject()
-
+    private val fakeBrowser: FakeBrowser by inject()
 
 
     override fun getImmoScoutApartmentsCache(): Flow<List<PresentableImmoScoutItem>> {
@@ -105,18 +105,26 @@ class ImmoRepositoryImpl : ImmoRepository, KoinComponent {
         val resultList = mutableListOf<PresentableImmoScoutItem>()
 
         var hasNext = true
-        var pageNumber = 0
+        var pageNumber = 1
 
         while(hasNext) {
             val next = getImmoScoutApartmentsWeb(request, pageNumber)
+            val pages = next.paging?.numberOfPages
             val result = next.getAllImmoItems()
             resultList.transformingAddAll(result)
 
             pageNumber++
-            hasNext = next.paging?.numberOfPages != null && next.paging.numberOfPages > pageNumber
+            hasNext = pages != null && pages > pageNumber
         }
 
-        resultList.sortBy { -it.pojo.creation.time }
+        resultList.removeAll {
+            val totalRent = it.pojo.details?.calculatedTotalRent?.totalRent?.value
+            totalRent == null || totalRent > request.maxPrice
+        }
+
+        resultList.sortBy {
+            -(it.pojo.creation?.time ?: 0)
+        }
 
         emit(resultList)
     }
@@ -157,18 +165,15 @@ class ImmoRepositoryImpl : ImmoRepository, KoinComponent {
         return immoWeltParser.extractEstateIdsFrom(webResponse)
     }
 
-    private fun getImmoScoutApartmentsWeb(
+    @SuppressLint("SetJavaScriptEnabled")
+    private suspend fun getImmoScoutApartmentsWeb(
         request: ImmoRequest,
         pageNumber: Int
     ): PagingResponse {
 
-        val immoWebUrl = immoUrlBuilder.getImmoScoutUrl(request, pageNumber)
-        val webRequest = Request.Builder().url(immoWebUrl)
-        val fakeHeader = getImmoScoutFakeHeaders()
-        fakeHeader.apply(webRequest)
-
-        val webResponse = client.newCall(webRequest.build()).execute()
-        return immoScoutParser.extractPagingResponseFrom(webResponse)
+        val immoWebUrl = immoUrlBuilder.getImmoScoutUrl(request, pageNumber).toString()
+        val rawHtml = fakeBrowser.loadPage(immoWebUrl)
+        return immoScoutParser.extractPagingResponseFrom(rawHtml)
     }
 
     private fun getImmoWeltItem(itemId: String): ImmoWeltItemResponse {
@@ -179,10 +184,6 @@ class ImmoRepositoryImpl : ImmoRepository, KoinComponent {
         return immoWeltParser.extractImmoItemFrom(itemId, webResponse)
     }
 
-
-    private fun getImmoScoutFakeHeaders(): ImmoFakeHeaders {
-        return ImmoFakeHeaders.dummy()
-    }
 
 
 }

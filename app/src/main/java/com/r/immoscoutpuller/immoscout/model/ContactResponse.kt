@@ -10,7 +10,7 @@ import java.io.Serializable
  */
 
 data class ContactResponse(
-    @SerializedName("firstname") val firstName: String,
-    @SerializedName("lastname") val lastName: String,
-    @SerializedName("salutation") val salutation: String
+    @SerializedName("firstname") val firstName: String?,
+    @SerializedName("lastname") val lastName: String?,
+    @SerializedName("salutation") val salutation: String?
 ): Serializable

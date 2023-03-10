@@ -23,7 +23,7 @@ class PresentableImmoScoutItem(val pojo: ImmoItemResponse): ImmoItem() {
     override val rooms = rooms()
     override val livingSpace = livingSpace()
 
-    override val title = pojo.details.title
+    override val title = pojo.details?.title ?: ""
     override val inserted = inserted()
     override val lastModified = lastModified()
 
@@ -33,26 +33,41 @@ class PresentableImmoScoutItem(val pojo: ImmoItemResponse): ImmoItem() {
 
 
     private fun inserted(): String {
+        if(pojo.publishDate == null)
+            return ""
+
         val inserted = textLocalization.getDateDifferenceToToday(pojo.publishDate)
         return textLocalization.getString(R.string.item_inserted, inserted)
     }
 
     private fun lastModified(): String {
+        if(pojo.modification == null)
+            return ""
+
         val inserted = textLocalization.getDateDifferenceToToday(pojo.modification)
         return textLocalization.getString(R.string.item_last_modified, inserted)
     }
 
     private fun warmRent(): String {
-        val price = textLocalization.formatDecimal(pojo.details.calculatedPrice.value)
-        return price+" "+pojo.details.calculatedPrice.currency
+        val rent = pojo.details?.calculatedTotalRent?.totalRent
+            ?: return ""
+
+        val price = textLocalization.formatDecimal(rent.value ?: 0.0)
+        return price+" "+rent.currency
     }
 
     private fun rooms(): String {
+        if(pojo.details?.numberOfRooms == null)
+            return ""
+
         val rooms = textLocalization.formatDecimal(pojo.details.numberOfRooms)
         return textLocalization.getString(R.string.item_rooms, rooms)
     }
 
     private fun livingSpace(): String {
+        if(pojo.details?.livingSpace == null)
+            return ""
+
         val space = textLocalization.formatDecimal(pojo.details.livingSpace)
         return textLocalization.getString(R.string.item_living_space, space)
     }

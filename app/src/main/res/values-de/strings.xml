@@ -19,6 +19,7 @@
     <string name="pull_get_empty">Keine Items gefunden für die gegebenen Suchkriterien</string>
     <string name="pull_title">Momentan %1$s Item(s) verfügbar</string>
     <string name="pull_body">Zuletzt aktualisiert: %1$s</string>
+    <string name="pull_captcha">Die Webseite möchte ein Captcha gelöst bekommen</string>
 
     <string name="settings_start_work">Periodischs Anfragen starten</string>
     <string name="settings_stop_work">Nicht mehr periodisch Anfragen</string>
@@ -28,6 +29,7 @@
     <string name="settings_delete_old_no">Abbrechen</string>
     <string name="settings_title_apartments">Apartment Anfrageparameter</string>
     <string name="settings_title_actions">Aktionen</string>
+    <string name="settings_hint_user_agent">Wenn gegeben, wird das als User-Agent bei Anfragen verwendet</string>
 
     <string name="item_user_comment_hint">Persönliche Notiz</string>
     <string name="item_user_contacted_hint">Vermieter kontaktiert?</string>
@@ -44,6 +46,7 @@
     <string name="diff_modified">%1$s Modified</string>
 
 
+    <string name="notifications_permission_required">Dies benötigt die Berechtigung Push-Nachrichten zu schicken</string>
     <string name="notifications_channel_name">ImmoPuller Hintergrund Notifications</string>
     <string name="notifications_channel_desc">Alle relevanten Notifications um die Ergebnisse nach dem Checken von Apartment Änderungen zu kommunizieren</string>
 

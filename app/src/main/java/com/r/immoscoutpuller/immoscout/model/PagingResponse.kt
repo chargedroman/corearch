@@ -23,7 +23,7 @@ data class PagingResponse(
         val result = mutableListOf<ImmoItemResponse>()
 
         for(entry in resultListEntries) {
-            result.addAll(entry.immoItems)
+            result.addAll(entry.immoItems ?: emptyList())
         }
 
         return result

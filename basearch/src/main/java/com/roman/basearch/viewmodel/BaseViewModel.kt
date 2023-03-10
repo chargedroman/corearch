@@ -5,7 +5,6 @@ import androidx.lifecycle.ViewModel
 import com.andcharge.mobile.base.architecture.components.SingleLiveEvent
 import com.roman.basearch.models.ActionMessage
 import com.roman.basearch.navigation.Navigation
-import com.roman.basearch.navigation.NavigationCommand
 import org.koin.core.KoinComponent
 
 /**

@@ -2,7 +2,6 @@ package com.r.immoscoutpuller.screens.basepull
 
 import android.os.Bundle
 import android.view.View
-import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -10,9 +9,11 @@ import com.r.immoscoutpuller.R
 import com.r.immoscoutpuller.databinding.FragmentPullBinding
 import com.r.immoscoutpuller.model.ImmoItem
 import com.r.immoscoutpuller.model.PullAdapter
+import com.r.immoscoutpuller.repository.impl.FakeBrowser
 import com.roman.basearch.arch.AutoClearedValue
 import com.roman.basearch.baseextensions.closeKeyboardOnTouch
 import com.roman.basearch.view.BaseFragment
+import org.koin.android.ext.android.inject
 
 /**
  *
@@ -26,10 +27,13 @@ abstract class PullFragment<Type: ImmoItem> : BaseFragment<FragmentPullBinding, 
 
     override val layoutResourceId: Int get() = R.layout.fragment_pull
 
+    private val fakeBrowser: FakeBrowser by inject()
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        setupCaptchaWebViewContainer()
         setupRefresh()
         setupRecyclerView()
         observeViewModel()
@@ -40,6 +44,19 @@ abstract class PullFragment<Type: ImmoItem> : BaseFragment<FragmentPullBinding, 
         viewModel.refreshLastPulledTimeHeader()
     }
 
+    private fun setupCaptchaWebViewContainer() {
+        fakeBrowser.captchaRequired.observe(viewLifecycleOwner) {
+            dataBinding.layoutCaptchaWebviewContainer.removeAllViews()
+
+            if(it != null) {
+                viewModel.message.postValue(viewModel.textLocalization.getString(R.string.pull_captcha))
+                dataBinding.layoutCaptchaWebviewContainer.addView(it)
+            }
+
+            dataBinding.layoutCaptchaWebviewContainer.visibility =
+                if(it != null) View.VISIBLE else View.GONE
+        }
+    }
 
     private fun setupRefresh() {
 
@@ -47,7 +64,7 @@ abstract class PullFragment<Type: ImmoItem> : BaseFragment<FragmentPullBinding, 
             viewModel.onUserRefreshedData()
         }
 
-        viewModel.isLoading.observe(viewLifecycleOwner, Observer {
+        viewModel.isLoading.observe(viewLifecycleOwner, {
             if(it == false) dataBinding.layoutRefresh.isRefreshing = false
         })
     }
@@ -70,7 +87,7 @@ abstract class PullFragment<Type: ImmoItem> : BaseFragment<FragmentPullBinding, 
 
     private fun observeViewModel() {
 
-        viewModel.immoItems.observe(viewLifecycleOwner, Observer {
+        viewModel.immoItems.observe(viewLifecycleOwner, {
             if(it != null) adapter.submitList(it)
         })
     }

@@ -10,9 +10,9 @@ import java.io.Serializable
  */
 
 data class PageDataResponse(
-    @SerializedName("numberOfHits") val numberOfHits: Int,
-    @SerializedName("numberOfListings") val numberOfListings: Int,
-    @SerializedName("numberOfPages") val numberOfPages: Int,
-    @SerializedName("pageNumber") val pageNumber: Int,
-    @SerializedName("pageSize") val pageSize: Int
+    @SerializedName("numberOfHits") val numberOfHits: Int?,
+    @SerializedName("numberOfListings") val numberOfListings: Int?,
+    @SerializedName("numberOfPages") val numberOfPages: Int?,
+    @SerializedName("pageNumber") val pageNumber: Int?,
+    @SerializedName("pageSize") val pageSize: Int?
 ): Serializable

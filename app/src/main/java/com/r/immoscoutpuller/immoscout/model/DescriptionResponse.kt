@@ -10,5 +10,5 @@ import java.io.Serializable
  */
 
 data class DescriptionResponse(
-    @SerializedName("text") val text: String
+    @SerializedName("text") val text: String?
 ): Serializable

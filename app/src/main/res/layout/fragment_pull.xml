@@ -106,6 +106,16 @@
             app:viewModel="@{viewModel}"
             tools:visibility="gone" />
 
+
+        <FrameLayout
+            android:id="@+id/layout_captcha_webview_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone">
+
+        </FrameLayout>
+
+
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
 </layout>
