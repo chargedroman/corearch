@@ -6,12 +6,12 @@
             android:icon="@drawable/ic_house_solid"
             android:title="@string/menu_title_pull_scout"/>
 
-<!-- disable Immowelt for now
+
     <item
         android:id="@id/fragment_home_welt"
         android:icon="@drawable/ic_house_solid"
         android:title="@string/menu_title_pull_welt"/>
-        -->
+
 
     <item
             android:id="@id/fragment_settings"
