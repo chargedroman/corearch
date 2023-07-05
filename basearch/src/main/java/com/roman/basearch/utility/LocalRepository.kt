@@ -11,9 +11,6 @@ import kotlinx.coroutines.flow.Flow
 
 interface LocalRepository {
 
-    fun save(key: String, value: String)
-    fun retrieve(key: String): String?
-
     fun <Type> saveFile(key: String, type: Type): Flow<Type>
     fun <Type> readFile(key: String): Flow<Type>
     fun deleteFile(key: String): Flow<Unit>

@@ -2,7 +2,6 @@ package com.roman.basearch.utility
 
 import android.content.Context
 import android.net.Uri
-import androidx.core.content.edit
 import kotlinx.coroutines.flow.flow
 import java.io.File
 import java.io.ObjectInputStream
@@ -19,18 +18,6 @@ class LocalRepositoryImpl(private val context: Context) : LocalRepository {
 
     companion object {
         private const val KEY = "coolPrefs"
-    }
-
-    override fun save(key: String, value: String) {
-        val prefs = context.getSharedPreferences(KEY, Context.MODE_PRIVATE)
-        prefs.edit(commit = true) {
-            putString(key, value)
-        }
-    }
-
-    override fun retrieve(key: String): String? {
-        val prefs = context.getSharedPreferences(KEY, Context.MODE_PRIVATE)
-        return prefs.getString(key, null)
     }
 
 

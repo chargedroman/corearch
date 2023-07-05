@@ -6,6 +6,8 @@ import com.roman.basearch.repository.PermissionRepositoryImpl
 import com.roman.basearch.utility.LocalRepository
 import com.roman.basearch.utility.LocalRepositoryImpl
 import com.roman.basearch.utility.TextLocalization
+import com.roman.basearch.utility.store.KeyValueStoreManager
+import com.roman.basearch.utility.store.KeyValueStoreManagerImpl
 import org.koin.dsl.module
 
 /**
@@ -17,6 +19,8 @@ import org.koin.dsl.module
 val utilityModule = module {
 
     single<PermissionRepository> { PermissionRepositoryImpl() }
+
+    single<KeyValueStoreManager> { KeyValueStoreManagerImpl() }
 
     single { TextLocalization.createInstance(get()) }
 
