@@ -12,11 +12,8 @@ import com.roman.basearch.view.BaseActivity
 
 class StandardMessageHandler(private val context: BaseActivity<*, *>) : Observer<String> {
 
-    override fun onChanged(message: String?) {
-
-        if(message != null) {
-            context.showMessage(message)
-        }
+    override fun onChanged(value: String) {
+        context.showMessage(value)
     }
 
 }

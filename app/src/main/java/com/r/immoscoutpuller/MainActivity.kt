@@ -11,9 +11,7 @@ import com.roman.basearch.view.BaseActivity
 
 class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() {
 
-    val lazy: MainViewModel by viewModels()
-
-    override val viewModel: MainViewModel get() = lazy
+    override val viewModel: MainViewModel by viewModels()
     override val layoutResourceId: Int get() = R.layout.activity_main
 
 

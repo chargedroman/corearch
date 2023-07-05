@@ -1,64 +1,8 @@
 <resources>
-    <string name="app_name">ImmoscoutPuller</string>
+    <string name="app_name">WirTestenZeug</string>
 
-    <string name="menu_title_pull_scout">ImmoScout</string>
-    <string name="menu_title_pull_welt">ImmoWelt</string>
-    <string name="menu_title_settings">Einstellungen</string>
-    <string name="menu_title_diff">Logs</string>
-
-    <string name="common_unknown">Unbekannt</string>
-
-    <string name="item_rooms">%1$s Räume</string>
-    <string name="item_living_space">%1$s qm</string>
-    <string name="item_inserted">Item eingefügt: %1$s</string>
-    <string name="item_last_modified">Letzte Modifikation: %1$s</string>
-    <string name="item_could_not_open">Konnte Item nicht öffnen, es scheint kein Browser installiert zu sein.</string>
-
-    <string name="pull_get_error_parse">Beim Parsen ist ein Fehler aufgetreten: %1$s</string>
-    <string name="pull_get_error_default">Beim Holen der Apartments ist ein Fehler aufgetreten: %1$s</string>
-    <string name="pull_get_empty">Keine Items gefunden für die gegebenen Suchkriterien</string>
-    <string name="pull_title">Momentan %1$s Item(s) verfügbar</string>
-    <string name="pull_body">Zuletzt aktualisiert: %1$s</string>
-    <string name="pull_captcha">Die Webseite möchte ein Captcha gelöst bekommen</string>
-
-    <string name="settings_start_work">Periodischs Anfragen starten</string>
-    <string name="settings_stop_work">Nicht mehr periodisch Anfragen</string>
-    <string name="settings_delete_old">Alle logs löschen</string>
-    <string name="settings_delete_old_explanation">Bitte bestätige, dass alle bisher beobachteten Veränderungen gelöscht werden sollen</string>
-    <string name="settings_delete_old_yes">Löschen</string>
-    <string name="settings_delete_old_no">Abbrechen</string>
-    <string name="settings_title_apartments">Apartment Anfrageparameter</string>
-    <string name="settings_title_actions">Aktionen</string>
-    <string name="settings_hint_user_agent">Wenn gegeben, wird das als User-Agent bei Anfragen verwendet</string>
-
-    <string name="item_user_comment_hint">Persönliche Notiz</string>
-    <string name="item_user_contacted_hint">Vermieter kontaktiert?</string>
-
-    <string name="settings_delete_success">Alle logs erfolgreich gelöscht</string>
-    <string name="settings_delete_fail">Beim Löschen ist etwas schiefgelaufen</string>
-    <string name="settings_show_modified">Modifizierte Items anzeigen in Logs und Notifications</string>
-
-    <string name="diff_created">Änderung in beobachteten Items festgestellt: %1$s</string>
-    <string name="diff_empty">Es sind keine Logs verfügbar</string>
-    <string name="diff_error">Beim Lesen der Logs ist etwas schiefgelaufen</string>
-    <string name="diff_new">%1$s New</string>
-    <string name="diff_deleted">%1$s Deleted</string>
-    <string name="diff_modified">%1$s Modified</string>
-
-
-    <string name="notifications_permission_required">Dies benötigt die Berechtigung Push-Nachrichten zu schicken</string>
-    <string name="notifications_channel_name">ImmoPuller Hintergrund Notifications</string>
-    <string name="notifications_channel_desc">Alle relevanten Notifications um die Ergebnisse nach dem Checken von Apartment Änderungen zu kommunizieren</string>
-
-    <string name="notifications_item_new_title">Neues Apartment hinzugefügt!</string>
-    <string name="notifications_item_deleted_title">Apartment entfernt</string>
-    <string name="notifications_item_modified_title">Apartment modifiziert</string>
-
-    <string name="notifications_progress_title">Checke Apartments..</string>
-    <string name="notifications_done_title">Änderung in den Apartment festgestellt</string>
-
-    <string name="notifications_summary">Preis: %1$s, Größe: %2$s, Räume: %3$s, GeoCodes: %4$s</string>
-    <string name="notifications_item_summary">%1$s\n%2$s, %3$s, %4$s, %5$s, %6$s</string>
-
-
+    <string name="screen_1_name">Screen 1</string>
+    <string name="screen_2_name">Screen 2</string>
+    <string name="screen_1_text">Demo Text: Screen 1</string>
+    <string name="screen_2_text">Demo Text: Screen 2</string>
 </resources>

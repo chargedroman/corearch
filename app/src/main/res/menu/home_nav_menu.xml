@@ -2,25 +2,14 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-            android:id="@id/fragment_home_scout"
-            android:icon="@drawable/ic_house_solid"
-            android:title="@string/menu_title_pull_scout"/>
-
-
-    <item
-        android:id="@id/fragment_home_welt"
+        android:id="@id/fragment_1"
         android:icon="@drawable/ic_house_solid"
-        android:title="@string/menu_title_pull_welt"/>
-
-
-    <item
-            android:id="@id/fragment_settings"
-            android:icon="@drawable/ic_cogs_solid"
-            android:title="@string/menu_title_settings"/>
+        android:title="@string/screen_1_name" />
 
     <item
-        android:id="@id/fragment_diff"
-        android:icon="@drawable/ic_archive_solid"
-        android:title="@string/menu_title_diff"/>
+        android:id="@id/fragment_2"
+        android:icon="@drawable/ic_house_solid"
+        android:title="@string/screen_2_name" />
+
 
 </menu>

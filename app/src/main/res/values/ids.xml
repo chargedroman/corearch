@@ -1,24 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="immo_scout_base_web_url" translatable="false">https://www.immobilienscout24.de/</string>
-    <string name="immo_welt_base_web_url" translatable="false">https://www.immowelt.de/</string>
-
-
-    <string name="min_price" translatable="false">minPrice</string>
-    <string name="max_price" translatable="false">maxPrice</string>
-
-    <string name="min_space" translatable="false">minSpace</string>
-    <string name="max_space" translatable="false">maxSpace</string>
-
-    <string name="min_rooms" translatable="false">minRooms</string>
-    <string name="max_rooms" translatable="false">maxRooms</string>
-
-    <string name="geo_codes_scout" translatable="false">geoCodesScout</string>
-    <string name="geo_codes_welt" translatable="false">geoCodesWelt</string>
-    <string name="custom_user_agent" translatable="false">customUserAgent</string>
-    <string name="city" translatable="false">city</string>
-    <string name="show_modified" translatable="false">showModified</string>
-
-
 </resources>

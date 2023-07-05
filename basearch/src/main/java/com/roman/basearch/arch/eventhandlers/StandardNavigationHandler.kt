@@ -19,10 +19,9 @@ class StandardNavigationHandler(private val context: BaseActivity<*, *>)
     private val analytics: AnalyticsRepository by inject()
 
 
-    override fun onChanged(command: NavigationCommand) {
-
+    override fun onChanged(value: NavigationCommand) {
         try {
-            navigate(command)
+            navigate(value)
         } catch (e: IllegalArgumentException){
             logNavigationException(e)
         }

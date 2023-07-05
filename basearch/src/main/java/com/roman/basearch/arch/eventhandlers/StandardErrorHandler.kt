@@ -1,8 +1,6 @@
 package com.roman.basearch.arch.eventhandlers
 
-import android.util.Log
 import androidx.lifecycle.Observer
-import com.roman.basearch.baseextensions.showMessage
 import com.roman.basearch.repository.AnalyticsRepository
 import com.roman.basearch.view.BaseActivity
 import org.koin.core.KoinComponent
@@ -20,11 +18,8 @@ class StandardErrorHandler(private val context: BaseActivity<*, *>)
     private val analytics: AnalyticsRepository by inject()
 
 
-    override fun onChanged(throwable: Throwable?) {
-
-        if(throwable != null) {
-            log(throwable)
-        }
+    override fun onChanged(value: Throwable) {
+        log(value)
     }
 
     private fun log(error: Throwable) {

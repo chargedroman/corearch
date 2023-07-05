@@ -3,6 +3,8 @@ package com.roman.basearch.view
 import android.app.Application
 import com.roman.basearch.di.utilityModule
 import com.roman.basearch.repository.AnalyticsRepository
+import com.tencent.mmkv.MMKV
+import net.danlew.android.joda.JodaTimeAndroid
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
@@ -24,6 +26,8 @@ abstract class BaseApplication : Application() {
 
     override fun onCreate() {
         super.onCreate()
+        JodaTimeAndroid.init(this)
+        MMKV.initialize(this)
         initKoin()
     }
 
