@@ -1,6 +1,9 @@
 package com.r.immoscoutpuller
 
+import com.roman.basearch.utility.store.KeyValueStore
+import com.roman.basearch.utility.store.KeyValueStoreManager
 import com.roman.basearch.viewmodel.BaseViewModel
+import org.koin.core.inject
 
 /**
  *
@@ -9,5 +12,15 @@ import com.roman.basearch.viewmodel.BaseViewModel
  */
 
 class Screen1ViewModel: BaseViewModel() {
+
+    companion object {
+        const val STORE_KEY_NAME = "name"
+    }
+
+    val storeManager: KeyValueStoreManager by inject()
+    val store: KeyValueStore = storeManager.get()
+
+    val storeKeyName = STORE_KEY_NAME
+
 
 }

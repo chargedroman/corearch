@@ -8,6 +8,11 @@ package com.roman.basearch.utility.store
 
 interface KeyValueStoreManager {
 
+    /**
+     * Default
+     */
+    fun get(): KeyValueStore
+
     fun get(key: StoreKey): KeyValueStore
 
 }
