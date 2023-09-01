@@ -89,6 +89,9 @@ dependencies {
     // work manager
     api("androidx.work:work-runtime-ktx:2.8.1")
 
+    // browser
+    api("androidx.browser:browser:1.4.0")
+
     testImplementation("junit:junit:4.13.2")
     testImplementation("org.koin:koin-test:2.0.1")
     testImplementation("android.arch.core:core-testing:1.1.1")

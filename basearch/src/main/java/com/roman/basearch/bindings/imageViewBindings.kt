@@ -31,6 +31,15 @@ fun bindImage(imageView: ImageView, image: Image?) {
         .into(imageView)
 }
 
+@BindingAdapter("bindImageUrl")
+fun bindImageUrl(imageView: ImageView, imageUrl: String?) {
+    if(imageUrl.isNullOrBlank()) {
+        return
+    }
+
+    bindImage(imageView, Image(imageUrl = imageUrl))
+}
+
 @BindingAdapter("bindImageResource")
 fun bindImageResource(imageView: ImageView, imageResource: Int?) {
     if(imageResource == null || imageResource == 0) {

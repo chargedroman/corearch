@@ -5,6 +5,6 @@
     <color name="colorAccent">#03DAC5</color>
     <color name="colorGreyOut">#dadada</color>
 
-    <color name="colorForeground">#181818</color>
-    <color name="colorBackground">#ffffff</color>
+    <color name="colorForeground">#ffffff</color>
+    <color name="colorBackground">#181818</color>
 </resources>
