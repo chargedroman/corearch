@@ -2,4 +2,7 @@
     <string name="app_name">BaseArch</string>
     <string name="common_yes">Ja</string>
     <string name="common_no">Nein</string>
+    <string name="common_error_default">Oops! Etwas ist schiefgelaufen..</string>
+    <string name="common_notification_channel_name">Bro Channel Name</string>
+    <string name="common_notification_channel_description">Dieser Channel ist der Hauptchannel für Push Notifications dieser App</string>
 </resources>

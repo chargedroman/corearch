@@ -1,9 +1,11 @@
 package com.roman.basearch.utility
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.res.Resources.NotFoundException
 import android.text.format.DateUtils
 import android.text.format.DateUtils.MINUTE_IN_MILLIS
+import java.text.SimpleDateFormat
 import java.util.*
 
 /**
@@ -44,15 +46,30 @@ class TextLocalizationImpl(val context: Context):
         }
     }
 
-    override fun getSimpleDate(date: Date): String {
+    override fun getRelativeDate(date: Date): String {
         val result = DateUtils.getRelativeTimeSpanString(context, date.time)
         return result.toString()
+    }
+
+    override fun getSimpleDate(date: Date): String {
+        val format = SimpleDateFormat.getDateInstance()
+        return format.format(date)
+    }
+
+    @SuppressLint("SimpleDateFormat")
+    override fun getFullDate(date: Date): String {
+        val format = SimpleDateFormat("(EEE) dd MMM yyyy, HH:mm")
+        return format.format(date)
     }
 
     override fun getDateDifferenceToToday(date: Date): String {
         val time = date.time
         val now = Date().time
         return DateUtils.getRelativeTimeSpanString(time, now, MINUTE_IN_MILLIS).toString()
+    }
+
+    override fun getCurrentTime(): Calendar {
+        return Calendar.getInstance()
     }
 
 }

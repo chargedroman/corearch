@@ -86,6 +86,12 @@ dependencies {
     // key value store
     api("com.tencent:mmkv-static:1.2.10")
 
-    testImplementation("org.koin:koin-test:2.0.1")
+    // work manager
+    api("androidx.work:work-runtime-ktx:2.8.1")
+
     testImplementation("junit:junit:4.13.2")
+    testImplementation("org.koin:koin-test:2.0.1")
+    testImplementation("android.arch.core:core-testing:1.1.1")
+    testImplementation("org.mockito.kotlin:mockito-kotlin:4.1.0")
+    testImplementation("com.google.truth:truth:1.1.3")
 }

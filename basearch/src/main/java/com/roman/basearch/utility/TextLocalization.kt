@@ -1,7 +1,8 @@
 package com.roman.basearch.utility
 
 import android.content.Context
-import java.util.*
+import java.util.Calendar
+import java.util.Date
 
 /**
  *
@@ -22,7 +23,13 @@ interface TextLocalization {
 
     fun getSimpleDate(date: Date): String
 
+    fun getRelativeDate(date: Date): String
+
+    fun getFullDate(date: Date): String
+
     fun getDateDifferenceToToday(date: Date): String
+
+    fun getCurrentTime(): Calendar
 
 
     companion object {

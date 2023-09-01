@@ -8,6 +8,8 @@ import com.roman.basearch.utility.LocalRepositoryImpl
 import com.roman.basearch.utility.TextLocalization
 import com.roman.basearch.utility.store.KeyValueStoreManager
 import com.roman.basearch.utility.store.KeyValueStoreManagerImpl
+import com.roman.basearch.utility.usecase.SchedulePushNotificationUseCase
+import com.roman.basearch.utility.usecase.ShowPushNotificationUseCase
 import org.koin.dsl.module
 
 /**
@@ -27,5 +29,9 @@ val utilityModule = module {
     single<LocalRepository> { LocalRepositoryImpl(get()) }
 
     single { OkHttpClientFactory().createStandardInstance() }
+
+    factory { SchedulePushNotificationUseCase() }
+
+    factory { ShowPushNotificationUseCase() }
 
 }

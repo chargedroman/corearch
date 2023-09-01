@@ -27,6 +27,7 @@ abstract class BaseDialog<Binding : ViewDataBinding, ViewModel : BaseViewModel>:
 
     private var baseActivity: BaseActivity<*,*>? = null
 
+    var onDismissListener: (() -> Unit)? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -68,6 +69,7 @@ abstract class BaseDialog<Binding : ViewDataBinding, ViewModel : BaseViewModel>:
 
     override fun onDetach() {
         super.onDetach()
+        onDismissListener = null
         baseActivity = null
     }
 
