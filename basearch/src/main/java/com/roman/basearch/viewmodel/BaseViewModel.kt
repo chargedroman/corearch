@@ -35,9 +35,10 @@ abstract class BaseViewModel: ViewModel(), KoinComponent {
             try {
                 isLoading.postValue(true)
                 block()
-                isLoading.postValue(false)
             } catch (e: Throwable) {
                 onError?.invoke(e) ?: onErrorDefault(e)
+            } finally {
+                isLoading.postValue(false)
             }
         }
     }
