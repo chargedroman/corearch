@@ -1,4 +1,4 @@
-package com.r.immoscoutpuller
+package com.r.immoscoutpuller.home
 
 import com.roman.basearch.utility.store.KeyValueStore
 import com.roman.basearch.utility.store.KeyValueStoreManager
@@ -11,7 +11,7 @@ import org.koin.core.inject
  * Created: 05.07.23
  */
 
-class Screen1ViewModel: BaseViewModel() {
+class HomeViewModel: BaseViewModel() {
 
     companion object {
         const val STORE_KEY_NAME = "name"

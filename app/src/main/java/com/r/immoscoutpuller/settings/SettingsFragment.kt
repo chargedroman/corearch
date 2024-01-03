@@ -1,9 +1,10 @@
-package com.r.immoscoutpuller
+package com.r.immoscoutpuller.settings
 
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
-import com.r.immoscoutpuller.databinding.Fragment2Binding
+import com.r.immoscoutpuller.R
+import com.r.immoscoutpuller.databinding.FragmentSettingsBinding
 import com.roman.basearch.view.BaseFragment
 import com.roman.basearch.view.list.RecyclerViewBuilder
 
@@ -13,10 +14,10 @@ import com.roman.basearch.view.list.RecyclerViewBuilder
  * Created: 05.07.23
  */
 
-class Screen2Fragment: BaseFragment<Fragment2Binding, Screen2ViewModel>() {
+class SettingsFragment: BaseFragment<FragmentSettingsBinding, SettingsViewModel>() {
 
-    override val viewModel: Screen2ViewModel by viewModels()
-    override val layoutResourceId: Int = R.layout.fragment_2
+    override val viewModel: SettingsViewModel by viewModels()
+    override val layoutResourceId: Int = R.layout.fragment_settings
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

@@ -6,11 +6,11 @@ plugins {
 }
 
 android {
-    compileSdk = 33
+    compileSdk = 34
     namespace = "com.r.immoscoutpuller"
 
     defaultConfig {
-        applicationId = "com.r.immoscoutpuller"
+        applicationId = "com.r.quicktrade"
         minSdk = 26
         versionCode = 1
         versionName = "1.0"

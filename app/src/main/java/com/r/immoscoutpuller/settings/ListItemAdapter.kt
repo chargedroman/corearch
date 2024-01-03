@@ -1,6 +1,7 @@
-package com.r.immoscoutpuller
+package com.r.immoscoutpuller.settings
 
 import androidx.recyclerview.widget.DiffUtil
+import com.r.immoscoutpuller.R
 import com.r.immoscoutpuller.databinding.ItemListItemBinding
 import com.roman.basearch.view.list.BaseItemViewModel
 import com.roman.basearch.view.list.BaseListAdapter

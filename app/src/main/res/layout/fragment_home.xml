@@ -8,7 +8,7 @@
 
         <variable
             name="viewModel"
-            type="com.r.immoscoutpuller.Screen1ViewModel" />
+            type="com.r.immoscoutpuller.home.HomeViewModel" />
     </data>
 
 
@@ -27,7 +27,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="16dp"
-                android:text="@string/screen_1_text"
+                android:text="@string/screen_home_title"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -37,7 +37,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="16dp"
-                android:hint="@string/screen_1_hint"
+                android:hint="@string/screen_home_hint"
                 android:paddingStart="8dp"
                 android:paddingTop="0dp"
                 android:paddingEnd="8dp"

@@ -3,33 +3,18 @@
             xmlns:app="http://schemas.android.com/apk/res-auto"
             xmlns:tools="http://schemas.android.com/tools"
             android:id="@+id/home_nav_graph"
-            app:startDestination="@id/fragment_1">
+            app:startDestination="@id/fragment_home">
 
-
-    <fragment android:id="@+id/fragment_1"
-              android:name="com.r.immoscoutpuller.Screen1Fragment"
-              android:label="@string/screen_1_name"
-              tools:layout="@layout/fragment_1">
-
-    </fragment>
-
-    <fragment android:id="@+id/fragment_2"
-        android:name="com.r.immoscoutpuller.Screen2Fragment"
-        android:label="@string/screen_2_name"
-        tools:layout="@layout/fragment_2">
+    <fragment android:id="@+id/fragment_home"
+              android:name="com.r.immoscoutpuller.home.HomeFragment"
+              android:label="@string/screen_home_name"
+              tools:layout="@layout/fragment_home">
 
     </fragment>
 
     <fragment android:id="@+id/fragment_settings"
-        android:name="com.r.immoscoutpuller.screens.settings.SettingsFragment"
-        android:label="@string/app_name"
-        tools:layout="@layout/fragment_settings">
-
-    </fragment>
-
-    <fragment android:id="@+id/fragment_diff"
-        android:name="com.r.immoscoutpuller.screens.diff.DifferenceFragment"
-        android:label="@string/app_name"
+        android:name="com.r.immoscoutpuller.settings.SettingsFragment"
+        android:label="@string/screen_settings_name"
         tools:layout="@layout/fragment_settings">
 
     </fragment>

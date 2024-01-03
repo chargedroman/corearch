@@ -1,4 +1,4 @@
-package com.r.immoscoutpuller
+package com.r.immoscoutpuller.settings
 
 import androidx.lifecycle.MutableLiveData
 import com.roman.basearch.viewmodel.BaseViewModel
@@ -12,7 +12,7 @@ import kotlinx.coroutines.flow.flow
  * Created: 05.07.23
  */
 
-class Screen2ViewModel: BaseViewModel() {
+class SettingsViewModel: BaseViewModel() {
 
     val list = MutableLiveData<List<ListItem>>()
 

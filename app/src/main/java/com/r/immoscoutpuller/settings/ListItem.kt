@@ -1,4 +1,4 @@
-package com.r.immoscoutpuller
+package com.r.immoscoutpuller.settings
 
 import java.util.UUID
 

@@ -1,10 +1,10 @@
 <resources>
-    <string name="app_name">WirTestenZeug</string>
+    <string name="app_name">QuickTrade</string>
 
-    <string name="screen_2_name">Screen 2</string>
-    <string name="screen_2_text">Demo Text: Screen 2</string>
+    <string name="screen_settings_name">Settings</string>
+    <string name="screen_settings_title">Settings</string>
 
-    <string name="screen_1_name">Screen 1</string>
-    <string name="screen_1_text">Demo Text: Screen 1</string>
-    <string name="screen_1_hint">Your name</string>
+    <string name="screen_home_name">Home</string>
+    <string name="screen_home_title">Home</string>
+    <string name="screen_home_hint">Your name</string>
 </resources>

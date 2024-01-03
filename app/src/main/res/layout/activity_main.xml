@@ -32,6 +32,7 @@
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/home_nav_view"
+            style="@style/Widget.MaterialComponents.BottomAppBar"
             android:layout_width="0dp"
             android:layout_height="56dp"
             android:layout_marginStart="0dp"
